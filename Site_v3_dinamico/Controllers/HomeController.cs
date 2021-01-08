@@ -33,6 +33,26 @@ namespace Site_v3_dinamico.Controllers
             return View();
         }
 
+        public IActionResult Competencias()
+        {
+            return View();
+        }
+
+        public IActionResult Formacao()
+        {
+            return View();
+        }
+
+        public IActionResult Exp_Profissional()
+        {
+            return View();
+        }
+
+        public IActionResult Contactos()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
