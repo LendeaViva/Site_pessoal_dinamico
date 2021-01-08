@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <title>Patrícia Gameiro - Site Pessoal</title>
+
+    <!-- Tipos de letra embed -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+    @*Efeito de expandir da Formação Complementar*@
+    <script src="~/js/site.js"></script>
+
+    <!-- Ícones -->
+    <script src="https://kit.fontawesome.com/8509cb6789.js" crossorigin="anonymous"></script>
+
+    <!--
+    Reflux Template
+    https://templatemo.com/tm-531-reflux
+    -->
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/css/fontawesome.css" />
+    <link rel="stylesheet" href="~/css/templatemo-style.css" />
+    <link rel="stylesheet" href="~/css/owl.css" />
+    <link rel="stylesheet" href="~/css/lightbox.css" />
+</head>
+<body>
+    <div id="page-wraper" class="animate-in">
+        <!-- Sidebar Menu -->
+        <div class="responsive-nav">
+            <i class="fa fa-bars" id="menu-toggle"></i>
+            <div id="menu" class="menu">
+                <i class="fa fa-times" id="menu-close"></i>
+                <div class="container">
+                    <div class="image">
+                        <a href="index.html"><img src="~/img/author-image.png" class="rounded-circle" alt="" /></a>
+                    </div>
+                    <div class="author-content">
+                        <h4>Patrícia Gameiro</h4>
+                        <span>/dev in the making</span>
+                    </div>
+                    <nav class="main-nav" role="navigation">
+                        <ul class="main-menu">
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre_mim">Sobre Mim</a>
+                            </li>
+                            <li><a href="#section2">Competências</a></li>
+                            <li><a href="#section5">Formação</a></li>
+                            <li><a href="#section3">Experiência Profissional</a></li>
+                            <li><a href="#section4">Contactos</a></li>
+
+                        </ul>
+                    </nav>
+                    <div class="social-network">
+                        <ul class="soial-icons">
+                            <li>
+                                <a href="https://www.facebook.com/jjboceoficial" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="https://twitter.com/Lendea_Viva" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </li>
+
+                            <li>
+                                <a href="https://github.com/LendeaViva" target="_blank">
+                                    <i class="fab fa-github"></i>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="copyright-text">
+                        <p>Copyright 2019 Reflux Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
