@@ -28,20 +28,18 @@
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Additional CSS Files -->
-
+    <link rel="stylesheet" href="~/css/fontawesome.css" />
     <link rel="stylesheet" href="~/css/templatemo-style.css" />
+    <link rel="stylesheet" href="~/css/owl.css" />
     <link rel="stylesheet" href="~/css/lightbox.css" />
-    <link rel="stylesheet" href="~/css/flex-slider.css" />
-
-
-    <link rel="stylesheet" href="~/js/lightbox.js" />
-    <link rel="stylesheet" href="~/js/custom.js" />
+    <link rel="stylesheet" href="~/css/owl.css" />
 
 
 
 </head>
 <body>
-    <div id="page-wraper" class="animate-in">
+    <div id="page-wraper" @*class="animate-in"*@>
+        @RenderBody()
         <!-- Sidebar Menu -->
         <div class="responsive-nav">
             <i class="fa fa-bars" id="menu-toggle"></i>
@@ -94,17 +92,15 @@
             </div>
         </div>
     </div>
-    <div>
-        @RenderBody()
-    </div>
 
-     @*Scripts 
-     Bootstrap core JavaScript*@ 
-    @*<script src="~/lib/jquery/jquery.min.js"></script>*@
+    @*Scripts
+        Bootstrap core JavaScript*@
+    <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    
-    <script src="~/lib/js/custom.js"></script>
+    <script src="~/js/isotope.min.js"></script>
+    <script src="~/js/owl-carousel.js"></script>
+    <script src="~/js/lightbox.js"></script>
+    <script src="~/js/custom.js"></script>
     <script>
         //according to loftblog tut
         $(".main-menu li:first").addClass("active");
