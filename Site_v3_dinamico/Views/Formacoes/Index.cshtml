@@ -30,20 +30,30 @@
                     </tr>
                 </thead>*@
                 <tbody>
+                   
+                </tbody>
+            </table>
+            <div class="table-responsive">
+                <table class="table table-dark">
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nomeInstituicao)
+                            <td class="inst">
+                                <h4>
+                                    @Html.DisplayFor(modelItem => item.nomeInstituicao)
+                                </h4> 
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.dataIniciodataFim)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.nomeCurso)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.conteudosCurso)
+                                <h3>
+                                    @Html.DisplayFor(modelItem => item.nomeCurso)
+                                </h3>
+
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.conteudosCurso)
+                                </p>
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -52,10 +62,6 @@
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-            <div class="table-responsive">
-                <table class="table table-dark">
                     <tr>
                         <td class="inst">
                             <a href="http://www.ipg.pt/website/" target="_blank">
