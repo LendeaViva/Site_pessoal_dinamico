@@ -4,147 +4,149 @@
     ViewData["Title"] = "Formacao";
 }
 
-<section class="section my-services" data-section="section5">
-    <div class="container">
-        <div class="section-heading">
-            <h2>Formação</h2>
-            <div class="line-dec"></div>
-        </div>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nomeInstituicao)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dataIniciodataFim)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nomeCurso)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.conteudosCurso)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+<body>
+    <div class="section my-services" data-section="section5">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Formação</h2>
+                <div class="line-dec"></div>
+            </div>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nomeInstituicao)
+                        <th>
+                            @Html.DisplayNameFor(model => model.nomeInstituicao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dataIniciodataFim)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nomeCurso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.conteudosCurso)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nomeInstituicao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dataIniciodataFim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nomeCurso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.conteudosCurso)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <tr>
+                        <td class="inst">
+                            <a href="http://www.ipg.pt/website/" target="_blank">
+                                <img src="~/img/IPG.png" alt="Avatar">
+                            </a>
+
+                            <h4>Instituto Politécnico da Guarda</h4>
                         </td>
+                        <td>2020 -2021</td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.dataIniciodataFim)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nomeCurso)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.conteudosCurso)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <h3>
+                                Curso em Programação .NET
+                            </h3>
+                            <p>
+                                - Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />
+                                - Entender e definir arquiteturas Cliente-Servidor, em particular em cenários Web;<br />
+                                - Estruturar e programar uma interface web, recorrendo a HTML e a Javascript;<br />
+                                - Arquiteturar aplicações servidoras em ASPNET CORE;<br />
+                                - Identificar e realizar as fases constituintes do Processo de Desenvolvimento de Software iterativo e incremental, em particular em sistemas Web;<br />
+                                - Realizar as fases da Engenharia de Requisitos;<br />
+                                - Modelar e inquerir informação numa base de dados relacional;
+                            </p>
                         </td>
                     </tr>
-                }
-            </tbody>
-        </table>
-        <div class="table-responsive">
-            <table class="table table-dark">
-                <tr>
-                    <td class="inst">
-                        <a href="http://www.ipg.pt/website/" target="_blank">
-                            <img src="~/img/IPG.png" alt="Avatar">
-                        </a>
+                    <tr>
+                        <td class="inst">
+                            <a href="https://www.uc.pt/fpce" target="_blank">
+                                <img src="~/img/UC.png" alt="Avatar">
+                            </a>
+                            <h4>Faculdade de Psicologia e de Ciências da Educação da Universidade de Coimbra</h4>
+                        </td>
+                        <td>2010 -2016</td>
+                        <td>
+                            <h3>Mestrado Integrado em Psicologia</h3>
 
-                        <h4>Instituto Politécnico da Guarda</h4>
-                    </td>
-                    <td>2020 -2021</td>
-                    <td>
-                        <h3>
-                            Curso em Programação .NET
-                        </h3>
-                        <p>
-                            - Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />
-                            - Entender e definir arquiteturas Cliente-Servidor, em particular em cenários Web;<br />
-                            - Estruturar e programar uma interface web, recorrendo a HTML e a Javascript;<br />
-                            - Arquiteturar aplicações servidoras em ASPNET CORE;<br />
-                            - Identificar e realizar as fases constituintes do Processo de Desenvolvimento de Software iterativo e incremental, em particular em sistemas Web;<br />
-                            - Realizar as fases da Engenharia de Requisitos;<br />
-                            - Modelar e inquerir informação numa base de dados relacional;
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="inst">
-                        <a href="https://www.uc.pt/fpce" target="_blank">
-                            <img src="~/img/UC.png" alt="Avatar">
-                        </a>
-                        <h4>Faculdade de Psicologia e de Ciências da Educação da Universidade de Coimbra</h4>
-                    </td>
-                    <td>2010 -2016</td>
-                    <td>
-                        <h3>Mestrado Integrado em Psicologia</h3>
+                            <p>
+                                - Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />
+                                - Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra <br />
+                                - Dissertação de mestrado "Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2"
+                            </p>
+                        </td>
 
-                        <p>
-                            - Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />
-                            - Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra <br />
-                            - Dissertação de mestrado "Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2"
-                        </p>
-                    </td>
+                        <td></td>
+                    </tr>
 
-                    <td></td>
-                </tr>
+                </table>
+            </div>
+            <div>
 
-            </table>
-        </div>
-        <div>
+                <button onclick="mostrar()">
+                    <h4 style="padding:20px; margin-top:10px;">
+                        <i class="far fa-plus-square"></i>
+                        Formação complementar
+                    </h4>
+                </button>
+                <div id="mostrarDiv" style="display:none">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-dark">
+                            <tr>
+                                <td>Instituto CRIAP</td>
+                                <td>2020</td>
+                                <td>Curso de Técnico de Apoio à Vítima</td>
+                            </tr>
+                            <tr>
+                                <td>Ordem dos Psicológos Portugueses</td>
+                                <td>2020</td>
+                                <td>Intervenção Psicológica em Situações de Catástrofe</td>
+                            </tr>
+                            <tr>
+                                <td>Mindform</td>
+                                <td>2019</td>
+                                <td>Formação Pedagógica Inicial de Formadores (CCP)</td>
+                            </tr>
+                            <tr>
+                                <td>Instituto CRIAP</td>
+                                <td>2019</td>
+                                <td>Especialização Avançada em Terapias Cognitivo-Comportamentais para Adultos</td>
+                            </tr>
 
-            <button onclick="mostrar()">
-                <h4 style="padding:20px; margin-top:10px;">
-                    <i class="far fa-plus-square"></i>
-                    Formação complementar
-                </h4>
-            </button>
-            <div id="mostrarDiv" style="display:none">
-                <div class="table-responsive">
-                    <table class="table table-hover table-dark">
-                        <tr>
-                            <td>Instituto CRIAP</td>
-                            <td>2020</td>
-                            <td>Curso de Técnico de Apoio à Vítima</td>
-                        </tr>
-                        <tr>
-                            <td>Ordem dos Psicológos Portugueses</td>
-                            <td>2020</td>
-                            <td>Intervenção Psicológica em Situações de Catástrofe</td>
-                        </tr>
-                        <tr>
-                            <td>Mindform</td>
-                            <td>2019</td>
-                            <td>Formação Pedagógica Inicial de Formadores (CCP)</td>
-                        </tr>
-                        <tr>
-                            <td>Instituto CRIAP</td>
-                            <td>2019</td>
-                            <td>Especialização Avançada em Terapias Cognitivo-Comportamentais para Adultos</td>
-                        </tr>
-
-                    </table>
+                        </table>
+                    </div>
                 </div>
+
             </div>
 
+
         </div>
-
-
     </div>
-</section>
+</body>
 
 
