@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Formacao.Data;
+using Formacao1.Data;
 using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
-    public class FormacaoController : Controller
+    public class FormacoesController : Controller
     {
         private readonly FormacaoBdContext _context;
 
-        public FormacaoController(FormacaoBdContext context)
+        public FormacoesController(FormacaoBdContext context)
         {
             _context = context;
         }
 
-        // GET: Formacao
+        // GET: Formacoes
         public async Task<IActionResult> Index()
         {
             return View(await _context.Formacao.ToListAsync());
         }
 
-        // GET: Formacao/Details/5
+        // GET: Formacoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +43,13 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
-        // GET: Formacao/Create
+        // GET: Formacoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Formacao/Create
+        // POST: Formacoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +65,7 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
-        // GET: Formacao/Edit/5
+        // GET: Formacoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +81,7 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
-        // POST: Formacao/Edit/5
+        // POST: Formacoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -116,7 +116,7 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
-        // GET: Formacao/Delete/5
+        // GET: Formacoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
-        // POST: Formacao/Delete/5
+        // POST: Formacoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
