@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Site_v3_dinamico.Models;
 
-namespace FormacaoContext.Data
+namespace Formacao.Data
 {
-    public class FormacaoContext : DbContext
+    public class FormacaoBdContext : DbContext
     {
-        public FormacaoContext(DbContextOptions<FormacaoContext> options)
+        public FormacaoBdContext(DbContextOptions<FormacaoBdContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Formacao> Formacao { get; set; }
+        public DbSet<Site_v3_dinamico.Models.Formacao> Formacao { get; set; }
     }
 }
