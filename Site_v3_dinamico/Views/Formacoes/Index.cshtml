@@ -11,11 +11,8 @@
                 <h2>Formação</h2>
                 <div class="line-dec"></div>
             </div>
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
             <table class="table">
-                <thead>
+                @*<thead>
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.nomeInstituicao)
@@ -31,7 +28,7 @@
                         </th>
                         <th></th>
                     </tr>
-                </thead>
+                </thead>*@
                 <tbody>
                     @foreach (var item in Model)
                     {
@@ -100,11 +97,8 @@
                                 - Dissertação de mestrado "Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2"
                             </p>
                         </td>
-
-                        <td></td>
-                    </tr>
-
                 </table>
+                <a asp-action="Create">Adicionar formação</a>
             </div>
             <div>
 
