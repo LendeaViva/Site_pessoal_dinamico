@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Site_v3_dinamico.Models;
 
-namespace Formacao1.Data
+namespace Formacao.Data
 {
     public class FormacaoBdContext : DbContext
     {
