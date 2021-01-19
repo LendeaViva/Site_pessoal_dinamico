@@ -12,17 +12,17 @@ namespace Site_v3_dinamico.Controllers
 {
     public class FormacoesController : Controller
     {
-        private readonly FormacaoBdContext bd;
+        private readonly FormacaoBdContext _context;
 
         public FormacoesController(FormacaoBdContext context)
         {
-            bd = context;
+            _context = context;
         }
 
         // GET: Formacoes
         public async Task<IActionResult> Index()
         {
-            return View(await bd.Formacao.ToListAsync());
+            return View(await _context.Formacao.ToListAsync());
         }
 
         // GET: Formacoes/Details/5
@@ -33,7 +33,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var formacao = await bd.Formacao
+            var formacao = await _context.Formacao
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (formacao == null)
             {
@@ -56,17 +56,13 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Formacao formacao)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(formacao);
+                _context.Add(formacao);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-
-            bd.Add(formacao);
-            await bd.SaveChangesAsync();
-
-            ViewBag.Mensagem = "Formação adicionada com sucesso.";
-            return View("Sucesso");
+            return View(formacao);
         }
 
         // GET: Formacoes/Edit/5
@@ -77,7 +73,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var formacao = await bd.Formacao.FindAsync(id);
+            var formacao = await _context.Formacao.FindAsync(id);
             if (formacao == null)
             {
                 return NotFound();
@@ -101,8 +97,8 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
-                    bd.Update(formacao);
-                    await bd.SaveChangesAsync();
+                    _context.Update(formacao);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,7 +124,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var formacao = await bd.Formacao
+            var formacao = await _context.Formacao
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (formacao == null)
             {
@@ -143,15 +139,15 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var formacao = await bd.Formacao.FindAsync(id);
-            bd.Formacao.Remove(formacao);
-            await bd.SaveChangesAsync();
+            var formacao = await _context.Formacao.FindAsync(id);
+            _context.Formacao.Remove(formacao);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FormacaoExists(int id)
         {
-            return bd.Formacao.Any(e => e.Id == id);
+            return _context.Formacao.Any(e => e.Id == id);
         }
     }
 }
