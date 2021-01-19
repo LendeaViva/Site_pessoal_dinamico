@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SitePessoal.Data;
+using Formacao1.Data;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -29,7 +29,7 @@ namespace Site_v3_dinamico
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SitePessoalBdContext>(options =>
+            services.AddDbContext<FormacaoBdContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("FormacaoBdContext")));
 
         }

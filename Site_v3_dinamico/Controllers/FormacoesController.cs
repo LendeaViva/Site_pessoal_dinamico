@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SitePessoal.Data;
+using Formacao1.Data;
 using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
     public class FormacoesController : Controller
     {
-        private readonly SitePessoalBdContext bd;
+        private readonly FormacaoBdContext bd;
 
-        public FormacoesController(SitePessoalBdContext context)
+        public FormacoesController(FormacaoBdContext context)
         {
             bd = context;
         }
@@ -54,7 +54,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Models.SitePessoal formacao)
+        public async Task<IActionResult> Create([Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Formacao formacao)
         {
             if (!ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Models.SitePessoal formacao)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Formacao formacao)
         {
             if (id != formacao.Id)
             {
