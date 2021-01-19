@@ -34,7 +34,7 @@ namespace Site_v3_dinamico.Controllers
             }
 
             var formacao = await bd.Formacao
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID_Formacao == id);
             if (formacao == null)
             {
                 return NotFound();
@@ -91,7 +91,7 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudosCurso")] Models.SitePessoal formacao)
         {
-            if (id != formacao.Id)
+            if (id != formacao.ID_Formacao)
             {
                 return NotFound();
             }
@@ -105,7 +105,7 @@ namespace Site_v3_dinamico.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormacaoExists(formacao.Id))
+                    if (!FormacaoExists(formacao.ID_Formacao))
                     {
                         return NotFound();
                     }
@@ -128,7 +128,7 @@ namespace Site_v3_dinamico.Controllers
             }
 
             var formacao = await bd.Formacao
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID_Formacao == id);
             if (formacao == null)
             {
                 return NotFound();
@@ -150,7 +150,7 @@ namespace Site_v3_dinamico.Controllers
 
         private bool FormacaoExists(int id)
         {
-            return bd.Formacao.Any(e => e.Id == id);
+            return bd.Formacao.Any(e => e.ID_Formacao == id);
         }
     }
 }
