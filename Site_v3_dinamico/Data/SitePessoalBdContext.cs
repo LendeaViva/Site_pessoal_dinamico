@@ -15,6 +15,5 @@ namespace SitePessoal.Data
         }
 
         public DbSet<Site_v3_dinamico.Models.SitePessoal> Formacao { get; set; }
-        public DbSet<Site_v3_dinamico.Models.SitePessoal> FormacaoComplementar { get; set; }
     }
 }

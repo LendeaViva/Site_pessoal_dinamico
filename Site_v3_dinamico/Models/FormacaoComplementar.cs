@@ -7,8 +7,7 @@ namespace Site_v3_dinamico.Models
 {
     public class FormacaoComplementar
     {
-        
-        public int ID { get; set; }
+        public int ID_FC { get; set; }
         public string FC_nomeInstituicao { get; set; }
 
         public string FC_dataIniciodataFim { get; set; }
