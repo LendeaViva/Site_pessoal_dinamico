@@ -65,7 +65,8 @@ namespace Site_v3_dinamico.Controllers
             bd.Add(formacao);
             await bd.SaveChangesAsync();
 
-            return View();
+            ViewBag.Mensagem = "Formação adicionada com sucesso.";
+            return View("Sucesso");
         }
 
         // GET: Formacoes/Edit/5

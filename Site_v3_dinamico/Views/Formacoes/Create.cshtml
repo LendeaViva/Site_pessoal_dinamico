@@ -4,48 +4,40 @@
     ViewData["Title"] = "Create";
 }
 
-<!--Formação-->
-<section class="section my-services" data-section="section5">
-    <div class="container">
-        <div class="section-heading">
-            <h2>Adicionar formação</h2>
-            <div class="line-dec"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="nomeInstituicao" class="control-label">Nome da Instituição</label>
-                        <input asp-for="nomeInstituicao" class="form-control" />
-                        <span asp-validation-for="nomeInstituicao" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="dataIniciodataFim" class="control-label">Data de Início - Data de Fim</label>
-                        <input asp-for="dataIniciodataFim" class="form-control" />
-                        <span asp-validation-for="dataIniciodataFim" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="nomeCurso" class="control-label">Nome do Curso</label>
-                        <input asp-for="nomeCurso" class="form-control" />
-                        <span asp-validation-for="nomeCurso" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="conteudosCurso" class="control-label">Conteúdos Programáticos</label>
-                        <input asp-for="conteudosCurso" class="form-control" />
-                        <span asp-validation-for="conteudosCurso" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Adicionar" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+<h1>Create</h1>
 
+<h4>Formacao</h4>
 <hr />
-
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nomeInstituicao" class="control-label"></label>
+                <input asp-for="nomeInstituicao" class="form-control" />
+                <span asp-validation-for="nomeInstituicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataIniciodataFim" class="control-label"></label>
+                <input asp-for="dataIniciodataFim" class="form-control" />
+                <span asp-validation-for="dataIniciodataFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomeCurso" class="control-label"></label>
+                <input asp-for="nomeCurso" class="form-control" />
+                <span asp-validation-for="nomeCurso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="conteudosCurso" class="control-label"></label>
+                <input asp-for="conteudosCurso" class="form-control" />
+                <span asp-validation-for="conteudosCurso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
