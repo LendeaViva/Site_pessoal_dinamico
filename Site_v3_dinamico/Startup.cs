@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Site_v3_dinamico.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Site_v3_dinamico
 {
@@ -24,6 +26,10 @@ namespace Site_v3_dinamico
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<FormacaoContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FormacaoContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
