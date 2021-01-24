@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Site_v3_dinamico.Models.Formacao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeInstituicao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataIniciodataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.conteudos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeInstituicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataIniciodataFim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.conteudos)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FormacaoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FormacaoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FormacaoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
