@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Site_v3_dinamico.Models.Competencias>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeComp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricaoComp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeLinguagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nivelComp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeComp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricaoComp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeLinguagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivelComp)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CompetenciasId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CompetenciasId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CompetenciasId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

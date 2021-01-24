@@ -1,0 +1,42 @@
+﻿@model Site_v3_dinamico.Models.Competencias
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Competencias</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nomeComp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nomeComp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descricaoComp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descricaoComp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nomeLinguagem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nomeLinguagem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nivelComp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nivelComp)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CompetenciasId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
