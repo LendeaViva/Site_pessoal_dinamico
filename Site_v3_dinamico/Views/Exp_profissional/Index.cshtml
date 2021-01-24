@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Site_v3_dinamico.Models.Exp_profissional>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.funcao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricaoFuncao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataFim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.funcao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricaoFuncao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Exp_profissionalId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Exp_profissionalId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Exp_profissionalId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
