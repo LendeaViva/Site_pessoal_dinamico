@@ -16,7 +16,5 @@ namespace Site_v3_dinamico.Models
         public string nomeLinguagem { get; set; }
         public int nivelComp { get; set; }
 
-
-
     }
 }
