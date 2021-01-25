@@ -1,15 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Site_v3_dinamico.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Site_v3_dinamico.Data;
 
 namespace Site_v3_dinamico
 {
@@ -25,19 +27,13 @@ namespace Site_v3_dinamico
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<SiteDinamicoBdContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("SiteDinamicoBdContext")));
-
-            //ASP.NET Core is built with dependency injection (DI). 
-            //Services (such as the EF Core DB context) must be registered with DI during application startup.
-            //Components that require these services (such as Razor Pages) are provided these services via constructor parameters. 
-            //In this section, you register the database context with the DI container.
-
-            //The name of the connection string is passed in to the context by calling a method on a DbContextOptions object. 
-            //For local development, the ASP.NET Core configuration system reads the connection string from the appsettings.json file.
-
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<SiteDinamicoBdContext>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +42,7 @@ namespace Site_v3_dinamico
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -58,6 +55,7 @@ namespace Site_v3_dinamico
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -65,6 +63,7 @@ namespace Site_v3_dinamico
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

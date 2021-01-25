@@ -9,8 +9,8 @@ using Site_v3_dinamico.Data;
 namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    [Migration("20210125112328_FormacaoComo")]
-    partial class FormacaoComo
+    [Migration("20210125153419_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,9 +44,9 @@ namespace Site_v3_dinamico.Migrations
                     b.ToTable("Competencias");
                 });
 
-            modelBuilder.Entity("Site_v3_dinamico.Models.Exp_profissional", b =>
+            modelBuilder.Entity("Site_v3_dinamico.Models.Exp_Profissional", b =>
                 {
-                    b.Property<int>("Exp_profissionalId")
+                    b.Property<int>("Exp_ProfissionalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -66,9 +66,9 @@ namespace Site_v3_dinamico.Migrations
                     b.Property<string>("nomeEmpresa")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Exp_profissionalId");
+                    b.HasKey("Exp_ProfissionalId");
 
-                    b.ToTable("Exp_profissional");
+                    b.ToTable("Exp_Profissional");
                 });
 
             modelBuilder.Entity("Site_v3_dinamico.Models.Formacao", b =>

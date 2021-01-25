@@ -2,7 +2,7 @@
 
 namespace Site_v3_dinamico.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,10 +23,10 @@ namespace Site_v3_dinamico.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exp_profissional",
+                name: "Exp_Profissional",
                 columns: table => new
                 {
-                    Exp_profissionalId = table.Column<int>(nullable: false)
+                    Exp_ProfissionalId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nomeEmpresa = table.Column<string>(nullable: true),
                     dataInicio = table.Column<int>(nullable: false),
@@ -36,7 +36,7 @@ namespace Site_v3_dinamico.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exp_profissional", x => x.Exp_profissionalId);
+                    table.PrimaryKey("PK_Exp_Profissional", x => x.Exp_ProfissionalId);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,6 +54,21 @@ namespace Site_v3_dinamico.Migrations
                 {
                     table.PrimaryKey("PK_Formacao", x => x.FormacaoId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "FormacaoComp",
+                columns: table => new
+                {
+                    FormacaoCompId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nomeInstituicaoComp = table.Column<string>(nullable: true),
+                    dataIniciodataFimComp = table.Column<string>(nullable: true),
+                    nomeCursoComp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormacaoComp", x => x.FormacaoCompId);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -62,10 +77,13 @@ namespace Site_v3_dinamico.Migrations
                 name: "Competencias");
 
             migrationBuilder.DropTable(
-                name: "Exp_profissional");
+                name: "Exp_Profissional");
 
             migrationBuilder.DropTable(
                 name: "Formacao");
+
+            migrationBuilder.DropTable(
+                name: "FormacaoComp");
         }
     }
 }

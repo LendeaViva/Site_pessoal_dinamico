@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Site_v3_dinamico.Models
 {
-    public class Exp_profissional
+    public class Exp_Profissional
     {
-        public int Exp_profissionalId { get; set; }
+        public int Exp_ProfissionalId { get; set; }
 
         public string nomeEmpresa { get; set; }
         public int dataInicio { get; set; }

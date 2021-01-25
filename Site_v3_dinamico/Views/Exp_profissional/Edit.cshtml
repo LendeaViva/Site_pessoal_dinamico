@@ -1,4 +1,4 @@
-﻿@model Site_v3_dinamico.Models.Exp_profissional
+﻿@model Site_v3_dinamico.Models.Exp_Profissional
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,13 +6,13 @@
 
 <h1>Edit</h1>
 
-<h4>Exp_profissional</h4>
+<h4>Exp_Profissional</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Exp_profissionalId" />
+            <input type="hidden" asp-for="Exp_ProfissionalId" />
             <div class="form-group">
                 <label asp-for="nomeEmpresa" class="control-label"></label>
                 <input asp-for="nomeEmpresa" class="form-control" />

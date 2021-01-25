@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using Site_v3_dinamico.Data;
 using Site_v3_dinamico.Models;
 
-namespace Site_v3_dinamico.Controllers
+namespace SitePessoalDinamico.Controllers
 {
-    public class Exp_profissionalController : Controller
+    public class Exp_ProfissionalController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
 
-        public Exp_profissionalController(SiteDinamicoBdContext context)
+        public Exp_ProfissionalController(SiteDinamicoBdContext context)
         {
             _context = context;
         }
 
-        // GET: Exp_profissional
+        // GET: Exp_Profissional
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Exp_profissional.ToListAsync());
+            return View(await _context.Exp_Profissional.ToListAsync());
         }
 
-        // GET: Exp_profissional/Details/5
+        // GET: Exp_Profissional/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var exp_profissional = await _context.Exp_profissional
-                .FirstOrDefaultAsync(m => m.Exp_profissionalId == id);
-            if (exp_profissional == null)
+            var Exp_Profissional = await _context.Exp_Profissional
+                .FirstOrDefaultAsync(m => m.Exp_ProfissionalId == id);
+            if (Exp_Profissional == null)
             {
                 return NotFound();
             }
 
-            return View(exp_profissional);
+            return View(Exp_Profissional);
         }
 
-        // GET: Exp_profissional/Create
+        // GET: Exp_Profissional/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Exp_profissional/Create
+        // POST: Exp_Profissional/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Exp_profissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_profissional exp_profissional)
+        public async Task<IActionResult> Create([Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(exp_profissional);
+                _context.Add(Exp_Profissional);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(exp_profissional);
+            return View(Exp_Profissional);
         }
 
-        // GET: Exp_profissional/Edit/5
+        // GET: Exp_Profissional/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var exp_profissional = await _context.Exp_profissional.FindAsync(id);
-            if (exp_profissional == null)
+            var Exp_Profissional = await _context.Exp_Profissional.FindAsync(id);
+            if (Exp_Profissional == null)
             {
                 return NotFound();
             }
-            return View(exp_profissional);
+            return View(Exp_Profissional);
         }
 
-        // POST: Exp_profissional/Edit/5
+        // POST: Exp_Profissional/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Exp_profissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_profissional exp_profissional)
+        public async Task<IActionResult> Edit(int id, [Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional)
         {
-            if (id != exp_profissional.Exp_profissionalId)
+            if (id != Exp_Profissional.Exp_ProfissionalId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
-                    _context.Update(exp_profissional);
+                    _context.Update(Exp_Profissional);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Exp_profissionalExists(exp_profissional.Exp_profissionalId))
+                    if (!Exp_ProfissionalExists(Exp_Profissional.Exp_ProfissionalId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Site_v3_dinamico.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(exp_profissional);
+            return View(Exp_Profissional);
         }
 
-        // GET: Exp_profissional/Delete/5
+        // GET: Exp_Profissional/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var exp_profissional = await _context.Exp_profissional
-                .FirstOrDefaultAsync(m => m.Exp_profissionalId == id);
-            if (exp_profissional == null)
+            var Exp_Profissional = await _context.Exp_Profissional
+                .FirstOrDefaultAsync(m => m.Exp_ProfissionalId == id);
+            if (Exp_Profissional == null)
             {
                 return NotFound();
             }
 
-            return View(exp_profissional);
+            return View(Exp_Profissional);
         }
 
-        // POST: Exp_profissional/Delete/5
+        // POST: Exp_Profissional/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var exp_profissional = await _context.Exp_profissional.FindAsync(id);
-            _context.Exp_profissional.Remove(exp_profissional);
+            var Exp_Profissional = await _context.Exp_Profissional.FindAsync(id);
+            _context.Exp_Profissional.Remove(Exp_Profissional);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool Exp_profissionalExists(int id)
+        private bool Exp_ProfissionalExists(int id)
         {
-            return _context.Exp_profissional.Any(e => e.Exp_profissionalId == id);
+            return _context.Exp_Profissional.Any(e => e.Exp_ProfissionalId == id);
         }
     }
 }

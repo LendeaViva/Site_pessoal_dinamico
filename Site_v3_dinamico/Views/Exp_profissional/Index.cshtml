@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Site_v3_dinamico.Models.Exp_profissional>
+﻿@model IEnumerable<Site_v3_dinamico.Models.Exp_Profissional>
 
 @{
     ViewData["Title"] = "Index";
@@ -50,9 +50,9 @@
                         @Html.DisplayFor(modelItem => item.descricaoFuncao)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Exp_profissionalId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Exp_profissionalId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Exp_profissionalId">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Exp_ProfissionalId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Exp_ProfissionalId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Exp_ProfissionalId">Delete</a>
                     </td>
                 </tr>
                 }
@@ -98,9 +98,7 @@
                         </td>
                         <td>
                             <div class="col-7 profissional" style="margin-top: 20px;">
-
                                 <h4>Psicóloga clínica e da saúde</h4>
-
                                 <ul class="profissional">
                                     <li>Acompanhamento psicoterapêutico individual de jovens e adultos, de abordagem cognitivo-comportamental, em português e inglês  </li>
                                     <li>Dinamização e mediação de sessões terapêuticas de grupo (e.g.: psicoeducação, mindfulness, prevenção da recaída, terapia ocupacional)  </li>
@@ -111,10 +109,8 @@
                                     <li>Colaboração no desenvolvimento de modelo terapêutico adaptado e de materiais psicoeducativos</li>
                                     <li>Desempenho de tarefas administrativas e logísticas inerentes à manutenção e organização interna da unidade terapêutica</li>
                                 </ul>
-
                             </div>
                         </td>
-
                     </tr>
                 </table>
             </div>

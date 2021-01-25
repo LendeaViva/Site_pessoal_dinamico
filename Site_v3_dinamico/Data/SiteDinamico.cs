@@ -15,7 +15,7 @@ namespace Site_v3_dinamico.Data
         }
 
         public DbSet<Site_v3_dinamico.Models.Competencias> Competencias { get; set; }
-        public DbSet<Site_v3_dinamico.Models.Exp_profissional> Exp_profissional { get; set; }
+        public DbSet<Site_v3_dinamico.Models.Exp_Profissional> Exp_Profissional { get; set; }
         public DbSet<Site_v3_dinamico.Models.Formacao> Formacao { get; set; }
         public DbSet<Site_v3_dinamico.Models.FormacaoComp> FormacaoComp { get; set; }
 
