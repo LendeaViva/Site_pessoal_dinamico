@@ -13,9 +13,9 @@ namespace Site_v3_dinamico.Models
         public int dataInicio { get; set; }
 
         public int dataFim { get; set; }
-        public int funcao { get; set; }
+        public string funcao { get; set; }
 
-        public int descricaoFuncao { get; set; }
+        public string descricaoFuncao { get; set; }
 
 
     }

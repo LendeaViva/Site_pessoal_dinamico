@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
 namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    partial class SiteDinamicoBdContextModelSnapshot : ModelSnapshot
+    [Migration("20210126101304_logotipo")]
+    partial class logotipo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,9 +95,6 @@ namespace Site_v3_dinamico.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nomeInstituicao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("website")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FormacaoId");

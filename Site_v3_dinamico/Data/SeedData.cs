@@ -47,5 +47,92 @@ namespace Site_v3_dinamico.Data
 
             bd.SaveChanges();
         }
+
+        public static void InsereFormacaoComp(SiteDinamicoBdContext bd)
+        {
+            // Insere exemplos de formações principais(bd);
+
+            if (bd.FormacaoComp.Any()) return;
+
+            bd.FormacaoComp.AddRange(new FormacaoComp[] {
+                new FormacaoComp
+                {
+
+                    nomeInstituicaoComp = "Instituto CRIAP",
+                    dataIniciodataFimComp = "2020",
+                    nomeCursoComp = "Curso de Técnico de Apoio à Vítima"
+
+                },
+
+                new FormacaoComp
+                {
+
+                    nomeInstituicaoComp = "Ordem dos Psicológos Portugueses",
+                    dataIniciodataFimComp = "2020",
+                    nomeCursoComp = "Intervenção Psicológica em Situações de Catástrofe"
+
+                },
+
+                new FormacaoComp
+                {
+
+                    nomeInstituicaoComp = "Mindform",
+                    dataIniciodataFimComp = "2020",
+                    nomeCursoComp = "Formação Pedagógica Inicial de Formadores (CCP)"
+
+                },
+
+                new FormacaoComp
+                {
+
+                    nomeInstituicaoComp = "Instituto CRIAP",
+                    dataIniciodataFimComp = "2019",
+                    nomeCursoComp = "Especialização Avançada em Terapias Cognitivo-Comportamentais para Adultos"
+
+                },
+            });
+
+            bd.SaveChanges();
+        }
+
+        public static void InsereExpProfissional(SiteDinamicoBdContext bd)
+        {
+            // Insere exemplos de formações principais(bd);
+
+            if (bd.Exp_Profissional.Any()) return;
+
+            bd.Exp_Profissional.AddRange(new Exp_Profissional[] 
+            {
+                new Exp_Profissional
+                {
+                   nomeEmpresa = "Upskill",
+                   dataInicio = 2020,
+                   dataFim = 2021,
+                   funcao = "Trainee",
+                   descricaoFuncao = "Programa de requalificação profissional na área das novas tecnologias"+
+                   "Estágio na multinacional Altran"
+                },
+
+                     new Exp_Profissional
+                {
+                   nomeEmpresa = "VillaRamadas",
+                   dataInicio = 2017,
+                   dataFim = 2020,
+                   funcao = "Psicóloga clínica e da saúde",
+                   descricaoFuncao = "Acompanhamento psicoterapêutico individual de jovens e adultos, de abordagem cognitivo-comportamental, em português e inglês"+
+                                    "Dinamização e mediação de sessões terapêuticas de grupo (e.g.: psicoeducação, mindfulness, prevenção da recaída, terapia ocupacional)"+
+                                    "Integração de equipa multidisciplinar em parceria com multinacional holandesa"+
+                                    "Elaboração de planos de tratamento individuais com estabelecimento de objetivos terapêuticos"+
+                                    "Aplicação de instrumentos de avaliação psicológica e elaboração de relatórios"+
+                                    "Coordenação de unidade terapêutica e gestão da respetiva equipa"+
+                                    "Colaboração no desenvolvimento de modelo terapêutico adaptado e de materiais psicoeducativos"+
+                                    "Desempenho de tarefas administrativas e logísticas inerentes à manutenção e organização interna da unidade terapêutica"
+                },
+
+            });
+            bd.SaveChanges();
+        }
+
+
     }
 }
