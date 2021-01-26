@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Site_v3_dinamico.Migrations
 {
@@ -47,6 +48,7 @@ namespace Site_v3_dinamico.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nomeInstituicao = table.Column<string>(nullable: true),
                     dataIniciodataFim = table.Column<string>(nullable: true),
+                    dataFim = table.Column<DateTime>(nullable: false),
                     nomeCurso = table.Column<string>(nullable: true),
                     conteudos = table.Column<string>(nullable: true)
                 },

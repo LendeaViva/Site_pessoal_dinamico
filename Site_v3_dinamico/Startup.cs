@@ -37,7 +37,7 @@ namespace Site_v3_dinamico
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SiteDinamicoBdContext bd)
         {
             if (env.IsDevelopment())
             {
@@ -65,6 +65,11 @@ namespace Site_v3_dinamico
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            if (env.IsDevelopment())
+            {
+                SeedData.InsereFormacao(bd);
+            }
         }
     }
 }
