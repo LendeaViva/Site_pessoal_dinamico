@@ -17,9 +17,6 @@ namespace Site_v3_dinamico.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        //[Display(Name = "Categoria")]
-        //public int CategoriaId { get; set; }
-        //public Categoria Categoria { get; set; }
 
 
     }
