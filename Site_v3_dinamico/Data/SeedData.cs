@@ -15,6 +15,14 @@ namespace Site_v3_dinamico.Data
 
         private const string ROLE_ADMIN = "Administradora";
 
+        internal static void PreencheDadosSite(SiteDinamicoBdContext bd)
+        {
+            InsereFormacao(bd);
+            InsereFormacaoComp(bd);
+            InsereExpProfissional(bd);
+            InsereServicos(bd);
+        }
+
         public static void InsereFormacao(SiteDinamicoBdContext bd)
         {
             // Insere exemplos de formações principais(bd);
@@ -135,6 +143,43 @@ namespace Site_v3_dinamico.Data
                                     "Colaboração no desenvolvimento de modelo terapêutico adaptado e de materiais psicoeducativos"+
                                     "Desempenho de tarefas administrativas e logísticas inerentes à manutenção e organização interna da unidade terapêutica"
                 },
+
+            });
+            bd.SaveChanges();
+        }
+
+        public static void InsereServicos(SiteDinamicoBdContext bd)
+        {
+            // Insere exemplos de formações principais(bd);
+
+            if (bd.Servicos.Any()) return;
+
+            bd.Servicos.AddRange(new Servicos[]
+            {
+                new Servicos
+                {
+             Nome = "Design de Páginas Web",
+             Descricao = "Uau"
+                },
+
+                new Servicos
+                {
+             Nome = "Design de Curriculum Vitae",
+             Descricao = " "
+                },
+
+                new Servicos
+                {
+             Nome = "Desenvolvimento de aplicações",
+             Descricao = "Desenvolvimento front-end e back-end de aplicações dinâmicas, intuitivas e user-friendly" 
+                },
+
+                                new Servicos
+                {
+             Nome = "Testes de software",
+             Descricao = "Uau"
+                },
+
 
             });
             bd.SaveChanges();

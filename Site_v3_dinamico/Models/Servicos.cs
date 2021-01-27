@@ -17,6 +17,8 @@ namespace Site_v3_dinamico.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        public string teste { get; set; }
+
 
 
     }
