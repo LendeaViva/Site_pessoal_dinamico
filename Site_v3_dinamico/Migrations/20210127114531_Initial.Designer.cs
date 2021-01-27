@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
-namespace Site_v3_dinamico.Migrations.ApplicationDb
+namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210127100045_initial2")]
-    partial class initial2
+    [Migration("20210127114531_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Site_v3_dinamico.Migrations
+namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 {
-    public partial class initial : Migration
+    public partial class initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

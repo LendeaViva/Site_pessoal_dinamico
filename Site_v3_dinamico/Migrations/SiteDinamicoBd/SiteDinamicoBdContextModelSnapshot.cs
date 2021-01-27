@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
-namespace Site_v3_dinamico.Migrations
+namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
     partial class SiteDinamicoBdContextModelSnapshot : ModelSnapshot

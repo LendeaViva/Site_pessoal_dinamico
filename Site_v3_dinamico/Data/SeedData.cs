@@ -10,10 +10,10 @@ namespace Site_v3_dinamico.Data
 {
     public class SeedData
     {
-        private const string NOME_UTILIZADOR_ADMIN_PADRAO = "pgameiro";
-        private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "naomexe";
+        private const string NOME_UTILIZADOR_ADMIN_PADRAO = "pgameiro@upskill.pt";
+        private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "Secret123$";
 
-        private const string ROLE_ADIMIN = "Administradora";
+        private const string ROLE_ADMIN = "Administradora";
 
         public static void InsereFormacao(SiteDinamicoBdContext bd)
         {
@@ -152,7 +152,7 @@ namespace Site_v3_dinamico.Data
 
         internal static async Task InsereRolesAsync(RoleManager<IdentityRole> gestorRoles)
         {
-            await CriaRoleSeNecessario(gestorRoles, ROLE_ADIMIN);
+            await CriaRoleSeNecessario(gestorRoles, ROLE_ADMIN);
             //await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
             //await CriaRoleSeNecessario(gestorRoles, ROLE_GESTOR_PRODUTOS);
             //await CriaRoleSeNecessario(gestorRoles, "PodeAlterarPrecoProdutos");
@@ -170,7 +170,7 @@ namespace Site_v3_dinamico.Data
         internal static async Task InsereAdministradorPadraoAsync(UserManager<IdentityUser> gestorUtilizadores)
         {
             IdentityUser utilizador = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, NOME_UTILIZADOR_ADMIN_PADRAO, PASSWORD_UTILIZADOR_ADMIN_PADRAO);
-            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, utilizador, ROLE_ADIMIN);
+            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, utilizador, ROLE_ADMIN);
         }
 
         private static async Task AdicionaUtilizadorRoleSeNecessario(UserManager<IdentityUser> gestorUtilizadores, IdentityUser utilizador, string role)

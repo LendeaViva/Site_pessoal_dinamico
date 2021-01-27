@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Site_v3_dinamico.Data;
 using Site_v3_dinamico.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Site_v3_dinamico.Controllers
 {
+    
+
     public class FormacaoCompController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
