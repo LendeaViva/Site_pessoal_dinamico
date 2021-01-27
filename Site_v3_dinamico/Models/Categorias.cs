@@ -8,7 +8,7 @@ namespace Site_v3_dinamico.Models
 {
     public class Categorias
     {
-        public int CategoriaId { get; set; }
+        public int CategoriasId { get; set; }
 
         [Required]
         [StringLength(100)]
