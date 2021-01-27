@@ -32,8 +32,8 @@ namespace Site_v3_dinamico.Migrations
                     nomeEmpresa = table.Column<string>(nullable: true),
                     dataInicio = table.Column<int>(nullable: false),
                     dataFim = table.Column<int>(nullable: false),
-                    funcao = table.Column<int>(nullable: false),
-                    descricaoFuncao = table.Column<int>(nullable: false)
+                    funcao = table.Column<string>(nullable: true),
+                    descricaoFuncao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,6 +47,8 @@ namespace Site_v3_dinamico.Migrations
                     FormacaoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nomeInstituicao = table.Column<string>(nullable: true),
+                    website = table.Column<string>(nullable: true),
+                    logotipo = table.Column<string>(nullable: true),
                     dataIniciodataFim = table.Column<string>(nullable: true),
                     dataFim = table.Column<DateTime>(nullable: false),
                     nomeCurso = table.Column<string>(nullable: true),
