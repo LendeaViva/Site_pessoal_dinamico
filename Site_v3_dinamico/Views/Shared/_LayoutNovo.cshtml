@@ -36,10 +36,14 @@
 
 </head>
 <body>
+
     <div id="page-wraper" @*class="animate-in"*@>
+       
+
         @RenderBody()
         <!-- Sidebar Menu -->
         <div class="responsive-nav">
+            <partial name="_LoginPartial" /> @*Chama o login partial*@
             <i class="fa fa-bars" id="menu-toggle"></i>
             <div id="menu" class="menu">
                 <i class="fa fa-times" id="menu-close"></i>

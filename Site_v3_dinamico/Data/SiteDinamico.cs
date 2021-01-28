@@ -14,6 +14,25 @@ namespace Site_v3_dinamico.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Encomenda>() // Lado N
+                .HasOne(p => p.Servicos) // um produto tem uma categoria
+                .WithMany(c => c.Encomenda) // que por sua vez tem vários produtos
+                .HasForeignKey(p => p.ServicosId) // chave estrangeira
+                .OnDelete(DeleteBehavior.Restrict); // não permitir o cascade delete
+
+            modelBuilder.Entity<Encomenda>() // Lado N
+                .HasOne(p => p.Cliente) // um produto tem uma categoria
+                .WithMany(c => c.Encomenda) // que por sua vez tem vários produtos
+                .HasForeignKey(p => p.ClienteId) // chave estrangeira
+                .OnDelete(DeleteBehavior.Restrict); // não permitir o cascade delete
+
+        }
+
+
+
+
         public DbSet<Site_v3_dinamico.Models.Competencias> Competencias { get; set; }
         public DbSet<Site_v3_dinamico.Models.Exp_Profissional> Exp_Profissional { get; set; }
         public DbSet<Site_v3_dinamico.Models.Formacao> Formacao { get; set; }

@@ -15,7 +15,7 @@ namespace Site_v3_dinamico.Models
         [Required]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
         [StringLength(9, MinimumLength = 9)]
-        public string Telefone { get; set; }
+        public string Telemóvel { get; set; }
 
         [Required]
         [EmailAddress]

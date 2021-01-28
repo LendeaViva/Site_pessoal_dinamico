@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
 namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    partial class SiteDinamicoBdContextModelSnapshot : ModelSnapshot
+    [Migration("20210127213344_clientes")]
+    partial class clientes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,28 +70,6 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                     b.HasKey("CompetenciasId");
 
                     b.ToTable("Competencias");
-                });
-
-            modelBuilder.Entity("Site_v3_dinamico.Models.Encomenda", b =>
-                {
-                    b.Property<int>("EncomendaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServicosId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EncomendaId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("ServicosId");
-
-                    b.ToTable("Encomenda");
                 });
 
             modelBuilder.Entity("Site_v3_dinamico.Models.Exp_Profissional", b =>
@@ -188,24 +168,12 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
+                    b.Property<string>("teste")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ServicosId");
 
                     b.ToTable("Servicos");
-                });
-
-            modelBuilder.Entity("Site_v3_dinamico.Models.Encomenda", b =>
-                {
-                    b.HasOne("Site_v3_dinamico.Models.Cliente", "Cliente")
-                        .WithMany("Encomenda")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Site_v3_dinamico.Models.Servicos", "Servicos")
-                        .WithMany("Encomenda")
-                        .HasForeignKey("ServicosId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

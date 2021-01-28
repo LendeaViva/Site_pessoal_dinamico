@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,13 @@ namespace Site_v3_dinamico.Controllers
     public class ClientesController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
+        private readonly UserManager<IdentityUser> _gestorUtilizadores;
 
-        public ClientesController(SiteDinamicoBdContext context)
+
+        public ClientesController(SiteDinamicoBdContext context, UserManager<IdentityUser> gestorUtilizadores)
         {
             _context = context;
+            _gestorUtilizadores = gestorUtilizadores;
         }
 
         // GET: Clientes
@@ -44,7 +48,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Clientes/Create
-        public IActionResult Create()
+        public IActionResult Registo()
         {
             return View();
         }
@@ -54,15 +58,42 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteId,Nome,Telemóvel,Email")] Cliente cliente)
+        public async Task<IActionResult> Registo(RegistoClienteViewModel infoCliente)
         {
-            if (ModelState.IsValid)
+            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoCliente.Email);
+
+            if (utilizador != null)
             {
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("Email", "Já existe um cliente/utilizador com o email que especificou.");
             }
-            return View(cliente);
+
+            utilizador = new IdentityUser(infoCliente.Email);
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoCliente.Password);
+            if (!resultado.Succeeded)
+            {
+                ModelState.AddModelError("", "Não foi possível fazer o registo. Por favor tente mais tarde novamente e se o problema persistir contacte a assistência.");
+            }
+            else
+            {
+                await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(infoCliente);
+            }
+
+            Cliente cliente = new Cliente
+            {
+                Nome = infoCliente.Nome,
+                Email = infoCliente.Email,
+                Telemóvel = infoCliente.Telemóvel
+            };
+
+            _context.Add(cliente);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details));
         }
 
         // GET: Clientes/Edit/5

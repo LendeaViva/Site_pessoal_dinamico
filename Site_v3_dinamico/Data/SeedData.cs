@@ -12,6 +12,8 @@ namespace Site_v3_dinamico.Data
     {
         private const string NOME_UTILIZADOR_ADMIN_PADRAO = "pgameiro@upskill.pt";
         private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "Secret123$";
+        private const string ROLE_CLIENTE = "Cliente";
+
 
         private const string ROLE_ADMIN = "Administradora";
 
@@ -186,19 +188,19 @@ namespace Site_v3_dinamico.Data
         }
 
 
-        //internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
-        //{
-        //    IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "joao@ipg.pt", "Secret123$");
-        //    await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente ROLE_CLIENTE);
+        internal static async Task InsereClientesFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
+        {
+            IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "sofia@ipg.pt", "Secret123$");
+            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
 
-        //    IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");
-        //    await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor ROLE_GESTOR_PRODUTOS);
-        //}
+            //    IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");
+            //    await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor ROLE_GESTOR_PRODUTOS);
+        }
 
         internal static async Task InsereRolesAsync(RoleManager<IdentityRole> gestorRoles)
         {
             await CriaRoleSeNecessario(gestorRoles, ROLE_ADMIN);
-            //await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
+            await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
             //await CriaRoleSeNecessario(gestorRoles, ROLE_GESTOR_PRODUTOS);
             //await CriaRoleSeNecessario(gestorRoles, "PodeAlterarPrecoProdutos");
         }

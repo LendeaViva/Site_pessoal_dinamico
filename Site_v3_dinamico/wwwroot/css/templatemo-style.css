@@ -10,10 +10,10 @@ https://templatemo.com/tm-531-reflux
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
 body {
     font-family: 'Raleway', sans-serif;
+    background: url(~/img/page-bg.png) no-repeat center center fixed;
 }
 
 #page-wraper {
-    background: url(../images/page-bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
 namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    partial class SiteDinamicoBdContextModelSnapshot : ModelSnapshot
+    [Migration("20210128104040_encomenda")]
+    partial class encomenda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,13 +200,13 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                     b.HasOne("Site_v3_dinamico.Models.Cliente", "Cliente")
                         .WithMany("Encomenda")
                         .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Site_v3_dinamico.Models.Servicos", "Servicos")
                         .WithMany("Encomenda")
                         .HasForeignKey("ServicosId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

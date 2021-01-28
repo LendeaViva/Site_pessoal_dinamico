@@ -23,5 +23,9 @@ namespace Site_v3_dinamico.Models
         [EmailAddress]
         [StringLength(256)]
         public string Email { get; set; }
+
+        public ICollection<Encomenda> Encomenda { get; set; }
+
+
     }
 }
