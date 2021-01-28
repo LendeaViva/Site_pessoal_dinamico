@@ -8,6 +8,7 @@ namespace Site_v3_dinamico.Models
 {
     public class RegistoClienteViewModel
     {
+
         [Required]
         [StringLength(200)]
         public string Nome { get; set; }

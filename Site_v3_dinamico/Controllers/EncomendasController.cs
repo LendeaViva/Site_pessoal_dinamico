@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
+    [Authorize(Roles ="Administradora, Cliente")]
     public class EncomendasController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
@@ -35,7 +37,7 @@ namespace Site_v3_dinamico.Controllers
             }
 
             var encomenda = await _context.Encomenda
-                .Include(e => e.Cliente)
+                .Include(e => e.ClienteId == id)
                 .Include(e => e.Servicos)
                 .FirstOrDefaultAsync(m => m.EncomendaId == id);
             if (encomenda == null)
@@ -49,7 +51,7 @@ namespace Site_v3_dinamico.Controllers
         // GET: Encomendas/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente_1, "ClienteId", "Email");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email");
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome");
             return View();
         }
@@ -59,16 +61,20 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+
         public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ClienteId,ServicosId")] Encomenda encomenda)
         {
+
             if (ModelState.IsValid)
             {
+
                 encomenda.dataEncomenda = DateTime.Now;
                 _context.Add(encomenda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente_1, "ClienteId", "Email", encomenda.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome", encomenda.ServicosId);
             return View(encomenda);
         }
@@ -86,7 +92,7 @@ namespace Site_v3_dinamico.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente_1, "ClienteId", "Email", encomenda.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome", encomenda.ServicosId);
             return View(encomenda);
         }
@@ -123,7 +129,7 @@ namespace Site_v3_dinamico.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente_1, "ClienteId", "Email", encomenda.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome", encomenda.ServicosId);
             return View(encomenda);
         }

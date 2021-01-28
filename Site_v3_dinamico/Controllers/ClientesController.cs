@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,24 +25,42 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Clientes
+        [Authorize(Roles = "Administradora")]
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cliente_1.ToListAsync());
+            return View(await _context.Cliente.ToListAsync());
         }
 
         // GET: Clientes/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Cliente cliente;
 
-            var cliente = await _context.Cliente_1
-                .FirstOrDefaultAsync(m => m.ClienteId == id);
-            if (cliente == null)
+            if (id != null)
             {
-                return NotFound();
+                cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.ClienteId == id);
+
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+            }
+            else
+            {
+                if (!User.IsInRole("Cliente"))
+                {
+                    return NotFound();
+                }
+
+                cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.Email == User.Identity.Name);
+
+                if (cliente == null)
+                {
+                    // todo: Enviar para uma página a explicar o problema
+                    return NotFound();
+                }
             }
 
             return View(cliente);
@@ -104,7 +123,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente_1.FindAsync(id);
+            var cliente = await _context.Cliente.FindAsync(id);
             if (cliente == null)
             {
                 return NotFound();
@@ -148,6 +167,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Clientes/Delete/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,7 +175,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente_1
+            var cliente = await _context.Cliente
                 .FirstOrDefaultAsync(m => m.ClienteId == id);
             if (cliente == null)
             {
@@ -168,17 +188,18 @@ namespace Site_v3_dinamico.Controllers
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente_1.FindAsync(id);
-            _context.Cliente_1.Remove(cliente);
+            var cliente = await _context.Cliente.FindAsync(id);
+            _context.Cliente.Remove(cliente);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClienteExists(int id)
         {
-            return _context.Cliente_1.Any(e => e.ClienteId == id);
+            return _context.Cliente.Any(e => e.ClienteId == id);
         }
     }
 }

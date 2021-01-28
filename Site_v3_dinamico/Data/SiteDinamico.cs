@@ -40,9 +40,7 @@ namespace Site_v3_dinamico.Data
 
         public DbSet<Site_v3_dinamico.Models.Servicos> Servicos { get; set; }
 
-        public DbSet<Site_v3_dinamico.Models.Servicos> Cliente { get; set; }
-
-        public DbSet<Site_v3_dinamico.Models.Cliente> Cliente_1 { get; set; }
+        public DbSet<Site_v3_dinamico.Models.Cliente> Cliente { get; set; }
 
         public DbSet<Site_v3_dinamico.Models.Encomenda> Encomenda { get; set; }
 

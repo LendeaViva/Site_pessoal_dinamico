@@ -22,7 +22,8 @@ namespace Site_v3_dinamico.Data
             InsereFormacao(bd);
             InsereFormacaoComp(bd);
             InsereExpProfissional(bd);
-            InsereServicos(bd);
+            InsereServicos(bd); 
+
         }
 
         public static void InsereFormacao(SiteDinamicoBdContext bd)
