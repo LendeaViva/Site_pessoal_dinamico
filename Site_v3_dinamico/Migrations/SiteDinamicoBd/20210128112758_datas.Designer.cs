@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
 namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    partial class SiteDinamicoBdContextModelSnapshot : ModelSnapshot
+    [Migration("20210128112758_datas")]
+    partial class datas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -44,6 +44,8 @@ namespace Site_v3_dinamico.Data
 
         public DbSet<Site_v3_dinamico.Models.Cliente> Cliente_1 { get; set; }
 
+        public DbSet<Site_v3_dinamico.Models.Encomenda> Encomenda { get; set; }
+
         //The preceding code creates a DbSet<Formacao> property for the entity set. 
         //In Entity Framework terminology, an entity set typically corresponds to 
         //a database table. An entity corresponds to a row in the table.
