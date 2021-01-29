@@ -65,6 +65,16 @@ namespace SitePessoalDinamico.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
+
+            _context.Add(Exp_Profissional);
+            await _context.SaveChangesAsync();
+
+            return View(Exp_Profissional);
+        }
+
+        private static void AtualizaLogotipoExp(Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
+        {
             if (ficheiroLogotipo != null && ficheiroLogotipo.Length > 0)
             {
                 using (var ficheiroMemoria = new MemoryStream())
@@ -73,8 +83,6 @@ namespace SitePessoalDinamico.Controllers
                     Exp_Profissional.logotipo = ficheiroMemoria.ToArray();
                 }
             }
-
-            return View(Exp_Profissional);
         }
 
         // GET: Exp_Profissional/Edit/5
