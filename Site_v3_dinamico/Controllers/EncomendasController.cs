@@ -22,7 +22,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Encomendas
-        [Authorize (Roles="Administradora")]
+        //[Authorize (Roles="Administradora")]
         public async Task<IActionResult> Index()
         {
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
