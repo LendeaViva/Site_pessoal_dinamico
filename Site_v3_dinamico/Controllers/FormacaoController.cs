@@ -63,11 +63,17 @@ namespace Site_v3_dinamico.Controllers
         {
             if (ModelState.IsValid)
             {
+                AtualizaLogotipoForm(formacao, ficheiroLogotipoForm);
                 _context.Add(formacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
+            return View(formacao);
+        }
+
+        private static void AtualizaLogotipoForm(Formacao formacao, IFormFile ficheiroLogotipoForm)
+        {
             if (ficheiroLogotipoForm != null && ficheiroLogotipoForm.Length > 0)
             {
                 using (var ficheiroMemoria = new MemoryStream())
@@ -76,9 +82,7 @@ namespace Site_v3_dinamico.Controllers
                     formacao.logotipoForm = ficheiroMemoria.ToArray();
                 }
             }
-            return View(formacao);
         }
-
         // GET: Formacao/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -100,7 +104,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FormacaoId,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudos")] Formacao formacao)
+        public async Task<IActionResult> Edit(int id, [Bind("FormacaoId,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudos,logotipoForm")] Formacao formacao, IFormFile ficheiroLogotipoForm)
         {
             if (id != formacao.FormacaoId)
             {
@@ -111,6 +115,7 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
+                    AtualizaLogotipoForm(formacao, ficheiroLogotipoForm);
                     _context.Update(formacao);
                     await _context.SaveChangesAsync();
                 }

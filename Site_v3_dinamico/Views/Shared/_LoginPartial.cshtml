@@ -2,8 +2,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<div>
-    <ul class="navbar-nav ml-auto">
+<div style="position: absolute; top: 0; right: 0;">
+    <ul>
         @if (SignInManager.IsSignedIn(User))
         {
             <li class="nav-item mx-0 mx-lg-1">
