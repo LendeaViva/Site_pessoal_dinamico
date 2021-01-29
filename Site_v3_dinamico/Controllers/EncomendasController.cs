@@ -22,6 +22,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Encomendas
+        [Authorize (Roles="Administradora")]
         public async Task<IActionResult> Index()
         {
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
@@ -36,6 +37,7 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
+            var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
             var encomenda = await _context.Encomenda
                 .Include(e => e.ClienteId == id)
                 .Include(e => e.Servicos)
@@ -80,6 +82,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: Encomendas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -135,6 +138,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: Encomendas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
