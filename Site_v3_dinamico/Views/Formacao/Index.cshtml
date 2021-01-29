@@ -38,6 +38,12 @@
                     {
                     <tr>
                         <td class="inst">
+
+
+                            @if (item.logotipoForm != null)
+                            {
+                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logotipoForm)" class="img-fluid" />
+                            }
                             <h4>
                                 @Html.DisplayFor(modelItem => item.nomeInstituicao)
                             </h4>

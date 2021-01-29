@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -54,13 +56,22 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ServicosId,Nome,Descricao")] Servicos servicos)
+        public async Task<IActionResult> Create([Bind("ServicosId,Nome,Descricao")] Servicos servicos, IFormFile ficheiroImagem)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+
+            if (ficheiroImagem != null && ficheiroImagem.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroImagem.CopyTo(ficheiroMemoria);
+                    servicos.imagem = ficheiroMemoria.ToArray();
+                }
             }
             return View(servicos);
         }

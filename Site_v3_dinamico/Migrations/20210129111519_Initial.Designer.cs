@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Site_v3_dinamico.Data;
 
-namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
+namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    [Migration("20210128112351_dataAtual")]
-    partial class dataAtual
+    [Migration("20210129111519_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
 
                     b.HasKey("ClienteId");
 
-                    b.ToTable("Cliente_1");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("Site_v3_dinamico.Models.Competencias", b =>
@@ -85,6 +85,9 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                     b.Property<int>("ServicosId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("dataEncomenda")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("EncomendaId");
 
                     b.HasIndex("ClienteId");
@@ -101,20 +104,26 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("dataFim")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("dataFim")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("dataInicio")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("dataInicio")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("descricaoFuncao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("funcao")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("logotipo")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("nomeEmpresa")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Exp_ProfissionalId");
 
@@ -134,17 +143,20 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                     b.Property<DateTime>("dataFim")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("dataIniciodataFim")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("dataInicio")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("logotipo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("logotipoForm")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("nomeCurso")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nomeInstituicao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("website")
                         .HasColumnType("nvarchar(max)");
@@ -161,14 +173,17 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("dataIniciodataFimComp")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("dataIniciodataFimComp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("nomeCursoComp")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nomeInstituicaoComp")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("FormacaoCompId");
 
@@ -189,6 +204,9 @@ namespace Site_v3_dinamico.Migrations.SiteDinamicoBd
                         .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
+
+                    b.Property<byte[]>("imagem")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("ServicosId");
 

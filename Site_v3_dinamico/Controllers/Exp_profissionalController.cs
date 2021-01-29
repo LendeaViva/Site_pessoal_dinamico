@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +56,7 @@ namespace SitePessoalDinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional)
+        public async Task<IActionResult> Create([Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +64,16 @@ namespace SitePessoalDinamico.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            if (ficheiroLogotipo != null && ficheiroLogotipo.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroLogotipo.CopyTo(ficheiroMemoria);
+                    Exp_Profissional.logotipo = ficheiroMemoria.ToArray();
+                }
+            }
+
             return View(Exp_Profissional);
         }
 

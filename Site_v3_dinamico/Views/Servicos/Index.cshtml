@@ -29,19 +29,26 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Nome)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.ServicosId">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.ServicosId">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.ServicosId">Delete</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td >
+                                    @if (item.imagem != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.imagem)" class="img-fluid" />
+                                    }
+                   
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.ServicosId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.ServicosId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.ServicosId">Delete</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

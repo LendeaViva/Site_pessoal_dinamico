@@ -9,6 +9,8 @@ using Site_v3_dinamico.Data;
 using Site_v3_dinamico.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Site_v3_dinamico.Controllers
 {
@@ -57,13 +59,22 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FormacaoId,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudos")] Formacao formacao)
+        public async Task<IActionResult> Create([Bind("FormacaoId,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudos")] Formacao formacao, IFormFile ficheiroLogotipoForm)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(formacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+
+            if (ficheiroLogotipoForm != null && ficheiroLogotipoForm.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroLogotipoForm.CopyTo(ficheiroMemoria);
+                    formacao.logotipoForm = ficheiroMemoria.ToArray();
+                }
             }
             return View(formacao);
         }
