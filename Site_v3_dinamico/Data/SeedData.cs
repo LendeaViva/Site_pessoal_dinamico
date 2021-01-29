@@ -37,7 +37,7 @@ namespace Site_v3_dinamico.Data
                 {
  
                     nomeInstituicao = "Instituto Politécnico da Guarda",
-                    dataInicio = "2020",
+                    dataInicio = new DateTime(2020,10,5),
                     dataFim = new DateTime(2021,4,2),
                     nomeCurso = "Curso em Programação .NET",
                     conteudos = "- Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />" +
@@ -52,8 +52,8 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicao = "Faculdade de Psicologia e de Ciências da Educação da Universidade de Coimbra",
-                    dataInicio = "2010 -2016",
-                    dataFim = new DateTime(2021,4,2),
+                    dataInicio = new DateTime(2010,9,10),
+                    dataFim = new DateTime(2016,10,30),
                     nomeCurso = "Mestrado Integrado em Psicologia",
                     conteudos = "- Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />"+
                                 "- Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra<br />"+
@@ -77,7 +77,7 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicaoComp = "Instituto CRIAP",
-                    dataIniciodataFimComp = "2020",
+                    dataIniciodataFimComp = new DateTime(2020,5,10),
                     nomeCursoComp = "Curso de Técnico de Apoio à Vítima"
 
                 },
@@ -86,7 +86,7 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicaoComp = "Ordem dos Psicológos Portugueses",
-                    dataIniciodataFimComp = "2020",
+                    dataIniciodataFimComp = new DateTime(2020,5,20),
                     nomeCursoComp = "Intervenção Psicológica em Situações de Catástrofe"
 
                 },
@@ -95,7 +95,7 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicaoComp = "Mindform",
-                    dataIniciodataFimComp = "2020",
+                    dataIniciodataFimComp = new DateTime(2019,12,30),
                     nomeCursoComp = "Formação Pedagógica Inicial de Formadores (CCP)"
 
                 },
@@ -104,7 +104,7 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicaoComp = "Instituto CRIAP",
-                    dataIniciodataFimComp = "2019",
+                    dataIniciodataFimComp = new DateTime(2019,10,10),
                     nomeCursoComp = "Especialização Avançada em Terapias Cognitivo-Comportamentais para Adultos"
 
                 },
@@ -124,8 +124,8 @@ namespace Site_v3_dinamico.Data
                 new Exp_Profissional
                 {
                    nomeEmpresa = "Upskill",
-                   dataInicio = 2020,
-                   dataFim = 2021,
+                   dataInicio = new DateTime(2020,10,5),
+                   dataFim = DateTime.Now,
                    funcao = "Trainee",
                    descricaoFuncao = "Programa de requalificação profissional na área das novas tecnologias"+
                    "Estágio na multinacional Altran"
@@ -134,8 +134,8 @@ namespace Site_v3_dinamico.Data
                      new Exp_Profissional
                 {
                    nomeEmpresa = "VillaRamadas",
-                   dataInicio = 2017,
-                   dataFim = 2020,
+                   dataInicio = new DateTime(2017,4,1),
+                   dataFim = new DateTime(2019,10,30),
                    funcao = "Psicóloga clínica e da saúde",
                    descricaoFuncao = "Acompanhamento psicoterapêutico individual de jovens e adultos, de abordagem cognitivo-comportamental, em português e inglês"+
                                     "Dinamização e mediação de sessões terapêuticas de grupo (e.g.: psicoeducação, mindfulness, prevenção da recaída, terapia ocupacional)"+

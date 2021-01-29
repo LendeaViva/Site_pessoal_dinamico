@@ -10,13 +10,14 @@ https://templatemo.com/tm-531-reflux
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
 body {
     font-family: 'Raleway', sans-serif;
-    background: url(~/img/page-bg.png) no-repeat center center fixed;
+    /*background: url(~/img/page-bg.png) no-repeat center center fixed;*/
 }
 
 #page-wraper {
-    -webkit-background-size: cover;
+    background: url(../img/page-bg.png) no-repeat center center fixed;
+    /* -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover;*/
     background-size: cover;
     width: 100%;
 }
@@ -292,7 +293,7 @@ html {
 /* Section */
 
 .section {
-    color: #fff;
+    /*color: #fff;*/
     width: 55%;
     right: 10%;
     left: 35%;
@@ -511,7 +512,7 @@ section.my-work .section-heading {
     font-size: 15px;
     font-weight: 700;
     border-bottom: 2px solid transparent;
-    transform: ease-in-out 0.5s;
+/*    transform: ease-in-out 0.5s;*/
     cursor: pointer;
 }
 
@@ -707,7 +708,7 @@ section.contact-me {
     }
 
     .section {
-        color: #fff;
+       /* color: #fff;*/
         width: 65%;
         right: 5%;
         left: 30%;
