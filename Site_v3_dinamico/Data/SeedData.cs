@@ -37,7 +37,7 @@ namespace Site_v3_dinamico.Data
                 {
  
                     nomeInstituicao = "Instituto Politécnico da Guarda",
-                    dataIniciodataFim = "2020",
+                    dataInicio = "2020",
                     dataFim = new DateTime(2021,4,2),
                     nomeCurso = "Curso em Programação .NET",
                     conteudos = "- Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />" +
@@ -52,7 +52,7 @@ namespace Site_v3_dinamico.Data
                 {
 
                     nomeInstituicao = "Faculdade de Psicologia e de Ciências da Educação da Universidade de Coimbra",
-                    dataIniciodataFim = "2010 -2016",
+                    dataInicio = "2010 -2016",
                     dataFim = new DateTime(2021,4,2),
                     nomeCurso = "Mestrado Integrado em Psicologia",
                     conteudos = "- Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />"+
