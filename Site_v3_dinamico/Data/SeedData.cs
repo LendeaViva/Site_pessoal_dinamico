@@ -12,9 +12,12 @@ namespace Site_v3_dinamico.Data
     {
         private const string NOME_UTILIZADOR_ADMIN_PADRAO = "pgameiro@upskill.pt";
         private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "Secret123$";
+
+        private const string CLIENTE_1 = "bernardosousa@upskill.pt";
+        private const string CLIENTE_2 = "pedrogaspar@upskill.pt";
+        private const string CLIENTE_3 = "mariaalice@maravilhas.pt";
+
         private const string ROLE_CLIENTE = "Cliente";
-
-
         private const string ROLE_ADMIN = "Administradora";
 
         internal static void PreencheDadosSite(SiteDinamicoBdContext bd)
@@ -22,7 +25,8 @@ namespace Site_v3_dinamico.Data
             InsereFormacao(bd);
             InsereFormacaoComp(bd);
             InsereExpProfissional(bd);
-            InsereServicos(bd); 
+            InsereServicos(bd);
+            InsereClientesFicticios(bd);
 
         }
 
@@ -177,7 +181,7 @@ namespace Site_v3_dinamico.Data
              Descricao = "Desenvolvimento front-end e back-end de aplicações dinâmicas, intuitivas e user-friendly" 
                 },
 
-                                new Servicos
+                new Servicos
                 {
              Nome = "Testes de software",
              Descricao = "Uau"
@@ -188,10 +192,56 @@ namespace Site_v3_dinamico.Data
             bd.SaveChanges();
         }
 
-
-        internal static async Task InsereClientesFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
+        private static void InsereClientesFicticios(SiteDinamicoBdContext bd)
         {
-            IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "sofia@ipg.pt", "Secret123$");
+            if (!bd.Cliente.Any(c => c.Email == CLIENTE_1))
+            {
+                Cliente c = new Cliente
+                {
+                    Nome = "Bernardo",
+                    Email = CLIENTE_1,
+                    Telemóvel = "910000000"
+                };
+
+                bd.Cliente.Add(c);
+                bd.SaveChanges();
+            }
+
+            if (!bd.Cliente.Any(c => c.Email == CLIENTE_2))
+            {
+                Cliente c = new Cliente
+                {
+                    Nome = "Pedro",
+                    Email = CLIENTE_2,
+                    Telemóvel = "910000000"
+                };
+
+                bd.Cliente.Add(c);
+                bd.SaveChanges();
+            }
+
+            if (!bd.Cliente.Any(c => c.Email == CLIENTE_3))
+            {
+                Cliente c = new Cliente
+                {
+                    Nome = "Maria Alice",
+                    Email = CLIENTE_3,
+                    Telemóvel = "910000000"
+                };
+
+                bd.Cliente.Add(c);
+                bd.SaveChanges();
+            }
+        }
+        internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
+        {
+            IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, CLIENTE_1, "Secret123$");
+            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
+
+           cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, CLIENTE_2, "Secret123$");
+            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
+
+           cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, CLIENTE_3, "Secret123$");
             await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
 
             //    IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");

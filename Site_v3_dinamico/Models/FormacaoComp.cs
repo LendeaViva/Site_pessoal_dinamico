@@ -17,6 +17,7 @@ namespace Site_v3_dinamico.Models
         [Display(Name = "Nome da instituição de ensino/entidade formadora")]
         public string nomeInstituicaoComp { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Data de conclusão da formação")]
         public DateTime dataIniciodataFimComp { get; set; }
 

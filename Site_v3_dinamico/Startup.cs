@@ -102,7 +102,7 @@ namespace Site_v3_dinamico
             if (env.IsDevelopment())
             {
                 SeedData.PreencheDadosSite(bd);
-                //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
+                SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
             }
 
         }

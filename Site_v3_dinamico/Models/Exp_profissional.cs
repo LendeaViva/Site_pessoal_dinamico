@@ -15,9 +15,11 @@ namespace Site_v3_dinamico.Models
         [Display(Name = "Nome da empresa")]
         public string nomeEmpresa { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Data de início")]
         public DateTime dataInicio { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Data de fim")]
         public DateTime dataFim { get; set; }
 

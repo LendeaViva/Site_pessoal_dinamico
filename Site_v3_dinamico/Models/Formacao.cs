@@ -21,9 +21,11 @@ namespace Site_v3_dinamico.Models
         [Display(Name = "Logótipo da instituição de ensino/entidade formadora")]
         public byte[] logotipoForm { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Data de início da formação")]
         public DateTime dataInicio { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Data de conclusão da formação")]
         public DateTime dataFim { get; set; }
 
