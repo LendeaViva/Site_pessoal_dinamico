@@ -37,11 +37,8 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
-            var encomenda = await _context.Encomenda
-                .Include(e => e.ClienteId == id)
-                .Include(e => e.Servicos)
-                .FirstOrDefaultAsync(m => m.EncomendaId == id);
+            var encomenda = await _context.Encomenda.Include(p => p.Servicos)
+                .SingleOrDefaultAsync(p => p.EncomendaId == id); 
             if (encomenda == null)
             {
                 return NotFound();

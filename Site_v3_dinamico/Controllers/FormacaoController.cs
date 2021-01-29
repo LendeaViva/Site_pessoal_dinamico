@@ -14,7 +14,7 @@ using System.IO;
 
 namespace Site_v3_dinamico.Controllers
 {
-    [Authorize]
+   
     public class FormacaoController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
@@ -49,6 +49,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Formacao/Create
+        [Authorize(Roles = "Administradora")]
         public IActionResult Create()
         {
             return View();
@@ -84,6 +85,7 @@ namespace Site_v3_dinamico.Controllers
             }
         }
         // GET: Formacao/Edit/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -136,6 +138,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Formacao/Delete/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

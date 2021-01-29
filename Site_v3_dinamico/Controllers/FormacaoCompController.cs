@@ -49,6 +49,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: FormacaoComp/Create
+        [Authorize(Roles = "Administradora")]
         public IActionResult Create()
         {
             return View();
@@ -71,6 +72,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: FormacaoComp/Edit/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -122,6 +124,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: FormacaoComp/Delete/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -46,6 +47,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Servicos/Create
+        [Authorize(Roles = "Administradora")]
         public IActionResult Create()
         {
             return View();
@@ -82,6 +84,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Servicos/Edit/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,6 +137,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: Servicos/Delete/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
