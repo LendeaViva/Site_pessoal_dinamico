@@ -12,19 +12,19 @@ namespace Site_v3_dinamico.Models
 
         [Required(ErrorMessage = "Insira o nome da instituição de ensino/entidade formadora.")]
         [StringLength(200, MinimumLength = 4, ErrorMessage = "O nome deve ter pelo menos 4 caracteres e não deve exceder os 200 caracteres.")]
-        [Display(Name = "Nome da empresa")]
+        [Display(Name = "Nome da instituição de ensino/entidade formadora")]
         public string nomeInstituicao { get; set; }
 
         [Display(Name = "Website da instituição de ensino/entidade formadora")]
         public string website { get; set; }
 
         [Display(Name = "Logótipo da instituição de ensino/entidade formadora")]
-        public byte[] logotipo { get; set; }
+        public byte[] logotipoForm { get; set; }
 
         [Display(Name = "Data de início da formação")]
         public DateTime dataInicio { get; set; }
 
-        [Display(Name = "Data de fim da formação")]
+        [Display(Name = "Data de conclusão da formação")]
         public DateTime dataFim { get; set; }
 
         [Required(ErrorMessage = "Insira o nome da da formação/curso.")]

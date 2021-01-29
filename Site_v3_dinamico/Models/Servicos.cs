@@ -10,12 +10,15 @@ namespace Site_v3_dinamico.Models
     {
         public int ServicosId { get; set; }
 
-        [Required(ErrorMessage = "Deve preencher o nome.")]
+        [Required(ErrorMessage = "Insira o nome do serviço.")]
         [StringLength(200, MinimumLength = 4, ErrorMessage = "O nome deve ter pelo menos 4 caracteres e não deve exceder os 200 caracteres.")]
         public string Nome { get; set; }
 
-        [Display(Name = "Descrição")]
+        [Display(Name = "Descrição do serviço")]
         public string Descricao { get; set; }
+
+        [Display(Name = "Imagem ilustrativa")]
+        public byte[] imagem { get; set; }
 
         public ICollection<Encomenda> Encomenda { get; set; }
 
