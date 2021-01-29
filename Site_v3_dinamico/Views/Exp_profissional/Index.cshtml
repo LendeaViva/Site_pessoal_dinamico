@@ -59,15 +59,21 @@
                                 @Html.DisplayFor(modelItem => item.descricaoFuncao)
 
                             </ul>
-                            <a asp-action="Edit" asp-route-id="@item.Exp_ProfissionalId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Exp_ProfissionalId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Exp_ProfissionalId">Delete</a>
+                            @if (User.IsInRole("Administradora"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Exp_ProfissionalId">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Exp_ProfissionalId">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.Exp_ProfissionalId">Delete</a>
+                            }
                         </td>
                     </tr>
                 }
 
             </table>
+            @if (User.IsInRole("Administradora"))
+            { 
             <a asp-action="Create">Adicionar trabalho</a>
+            }
         </div>
     </div>
     </div>
