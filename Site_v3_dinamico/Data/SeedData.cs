@@ -13,9 +13,9 @@ namespace Site_v3_dinamico.Data
         private const string NOME_UTILIZADOR_ADMIN_PADRAO = "pgameiro@upskill.pt";
         private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "Secret123$";
 
-        private const string CLIENTE_1 = "bernardosousa@upskill.pt";
-        private const string CLIENTE_2 = "pedrogaspar@upskill.pt";
-        private const string CLIENTE_3 = "mariaalice@maravilhas.pt";
+        private const string CLIENTE_1 = "mariaalice@upskill.pt";
+        private const string CLIENTE_2 = "joaquimteles@upskill.pt";
+        private const string CLIENTE_3 = "ruidebraga@upskill.pt";
 
         private const string ROLE_CLIENTE = "Cliente";
         private const string ROLE_ADMIN = "Administradora";
@@ -27,9 +27,61 @@ namespace Site_v3_dinamico.Data
             InsereExpProfissional(bd);
             InsereServicos(bd);
             InsereClientesFicticios(bd);
-
+            InsereEncomendas(bd);
         }
 
+
+        public static void InsereEncomendas(SiteDinamicoBdContext bd)
+        {
+            if (bd.Encomenda.Any()) return;
+
+            Servicos designPaginasWeb = bd.Servicos.FirstOrDefault(c => c.Nome == "Design de Páginas Web");
+            Servicos designCV = bd.Servicos.FirstOrDefault(c => c.Nome == "Design de Curriculum Vitae");
+            Servicos devApp = bd.Servicos.FirstOrDefault(c => c.Nome == "Desenvolvimento de aplicações");
+            Servicos testesSoftware = bd.Servicos.FirstOrDefault(c => c.Nome == "Testes de software");
+
+            for (int i = 0; i < 10; i++)
+            {
+                bd.Encomenda.Add(new Encomenda
+                {
+                    ClienteId = 1,
+                    Servicos = designPaginasWeb,
+                    dataEncomenda = new DateTime(2021, 1, 12)
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                bd.Encomenda.Add(new Encomenda
+                {
+                    ClienteId = 2,
+                    Servicos = designCV,
+                    dataEncomenda = new DateTime(2021, 1, 13)
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                bd.Encomenda.Add(new Encomenda
+                {
+                    ClienteId = 3,
+                    Servicos = devApp,
+                    dataEncomenda = new DateTime(2021, 1, 20)
+                });
+            }
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                bd.Encomenda.Add(new Encomenda
+                {
+                    ClienteId = 1,
+                    Servicos = testesSoftware,
+                    dataEncomenda = new DateTime(2021, 1, 24)
+                });
+            }
+            bd.SaveChanges();
+        }
         public static void InsereFormacao(SiteDinamicoBdContext bd)
         {
             // Insere exemplos de formações principais(bd);
@@ -198,7 +250,7 @@ namespace Site_v3_dinamico.Data
             {
                 Cliente c = new Cliente
                 {
-                    Nome = "Bernardo",
+                    Nome = "Maria Alice",
                     Email = CLIENTE_1,
                     Telemóvel = "910000000"
                 };
@@ -211,7 +263,7 @@ namespace Site_v3_dinamico.Data
             {
                 Cliente c = new Cliente
                 {
-                    Nome = "Pedro",
+                    Nome = "Joaquim Teles",
                     Email = CLIENTE_2,
                     Telemóvel = "910000000"
                 };
@@ -224,7 +276,7 @@ namespace Site_v3_dinamico.Data
             {
                 Cliente c = new Cliente
                 {
-                    Nome = "Maria Alice",
+                    Nome = "Rui de Braga",
                     Email = CLIENTE_3,
                     Telemóvel = "910000000"
                 };

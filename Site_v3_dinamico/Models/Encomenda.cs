@@ -10,6 +10,7 @@ namespace Site_v3_dinamico.Models
     {
         public int EncomendaId { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime dataEncomenda { get; set; }
 
         [Display(Name = "Cliente")]

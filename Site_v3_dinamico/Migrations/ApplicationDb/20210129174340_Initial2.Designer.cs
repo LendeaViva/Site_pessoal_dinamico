@@ -10,7 +10,7 @@ using Site_v3_dinamico.Data;
 namespace Site_v3_dinamico.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210129153600_Initial2")]
+    [Migration("20210129174340_Initial2")]
     partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

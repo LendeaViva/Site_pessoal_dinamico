@@ -26,10 +26,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (User.IsInRole("Administradora"))
         {
-            if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
+            @foreach (var item in Model)
             {
+
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.dataEncomenda)
@@ -40,14 +41,36 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Servicos.Nome)
                     </td>
-            
+
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.EncomendaId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.EncomendaId">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.EncomendaId">Delete</a>
                     </td>
                 </tr>
+
+            }
+
+        }
+        @if (User.IsInRole("Cliente"))
+        {
+            @foreach (var item in Model)
+            {
+                if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dataEncomenda)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cliente.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                        </td>
+                    </tr>
+                }
             }
         }
-        </tbody>
+    </tbody>
 </table>
