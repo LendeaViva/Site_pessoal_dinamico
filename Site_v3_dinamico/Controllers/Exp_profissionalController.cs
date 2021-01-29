@@ -60,12 +60,11 @@ namespace SitePessoalDinamico.Controllers
         {
             if (ModelState.IsValid)
             {
+                AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
                 _context.Add(Exp_Profissional);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
 
             _context.Add(Exp_Profissional);
             await _context.SaveChangesAsync();

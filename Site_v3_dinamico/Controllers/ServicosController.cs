@@ -60,6 +60,7 @@ namespace Site_v3_dinamico.Controllers
         {
             if (ModelState.IsValid)
             {
+                AtualizaImagem(servicos, ficheiroImagem);
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -74,6 +75,18 @@ namespace Site_v3_dinamico.Controllers
                 }
             }
             return View(servicos);
+        }
+
+        private static void AtualizaImagem(Servicos servicos, IFormFile ficheiroImagem)
+        {
+            if (ficheiroImagem != null && ficheiroImagem.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroImagem.CopyTo(ficheiroMemoria);
+                    servicos.imagem = ficheiroMemoria.ToArray();
+                }
+            }
         }
 
         // GET: Servicos/Edit/5
