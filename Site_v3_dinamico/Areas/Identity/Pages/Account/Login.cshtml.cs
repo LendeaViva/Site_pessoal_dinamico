@@ -83,7 +83,7 @@ namespace Site_v3_dinamico.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl); /*mudar aqui*/
                 }
                 if (result.RequiresTwoFactor)
                 {

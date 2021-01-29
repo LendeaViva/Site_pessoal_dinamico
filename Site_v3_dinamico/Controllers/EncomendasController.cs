@@ -51,7 +51,7 @@ namespace Site_v3_dinamico.Controllers
         // GET: Encomendas/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email");
+            //ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email");
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome");
             return View();
         }
@@ -63,12 +63,13 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
 
 
-        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ClienteId,ServicosId")] Encomenda encomenda)
+        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ServicosId")] Encomenda encomenda)
         {
 
             if (ModelState.IsValid)
             {
-
+                var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
+                encomenda.Cliente = cliente;
                 encomenda.dataEncomenda = DateTime.Now;
                 _context.Add(encomenda);
                 await _context.SaveChangesAsync();

@@ -66,14 +66,6 @@ namespace Site_v3_dinamico.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            if (ficheiroImagem != null && ficheiroImagem.Length > 0)
-            {
-                using (var ficheiroMemoria = new MemoryStream())
-                {
-                    ficheiroImagem.CopyTo(ficheiroMemoria);
-                    servicos.imagem = ficheiroMemoria.ToArray();
-                }
-            }
             return View(servicos);
         }
 
@@ -110,7 +102,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ServicosId,Nome,Descricao")] Servicos servicos)
+        public async Task<IActionResult> Edit(int id, [Bind("ServicosId,Nome,Descricao,imagem")] Servicos servicos, IFormFile ficheiroImagem)
         {
             if (id != servicos.ServicosId)
             {
@@ -121,6 +113,7 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
+                    AtualizaImagem(servicos, ficheiroImagem);
                     _context.Update(servicos);
                     await _context.SaveChangesAsync();
                 }
