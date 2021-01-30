@@ -23,13 +23,39 @@ namespace Site_v3_dinamico.Controllers
 
         // GET: Encomendas
         //[Authorize (Roles="Administradora")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina = 1)
         {
 
             string conta = ContarNovas().ToString();
             ViewBag.Message = conta;
+
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Encomenda.CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Encomenda> encomendas = await _context.Encomenda
+                .Include(p => p.Servicos)
+                .Include(p => p.Cliente)
+                .OrderBy(p => p.respondido)
+                .ThenByDescending(p => p.dataEncomenda)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaEncomendasViewModel modelo = new ListaEncomendasViewModel
+            {
+       
+                Encomenda = encomendas,
+                Paginacao = paginacao,
+
+            };
+
+            
+
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
-            return View(await siteDinamicoBdContext.ToListAsync());
+            return base.View(modelo);
         }
 
         public int ContarNovas()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Site_v3_dinamico.Models.Encomenda>
+﻿@model ListaEncomendasViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -30,13 +30,13 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.dataEncomenda)
+                                @Html.DisplayNameFor(model => model.Encomenda[0].dataEncomenda)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Cliente)
+                                @Html.DisplayNameFor(model => model.Encomenda[0].Cliente)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Servicos)
+                                @Html.DisplayNameFor(model => model.Encomenda[0].Servicos)
                             </th>
                             @if (User.IsInRole("Administradora"))
                             {
@@ -49,38 +49,37 @@
                     <tbody>
                         @if (User.IsInRole("Administradora"))
                         {
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Encomenda)
                             {
 
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.dataEncomenda)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cliente.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Servicos.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.respondido)
-                            </td>
-                            <td>
-                        
-                            </td>
-                            <td>
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dataEncomenda)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cliente.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                                    </td>
+                                    <td >
+                                        @Html.DisplayFor(modelItem => item.respondido)
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
 
-                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EncomendaId"> Apagar </a>
-                            </td>
-                        </tr>
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EncomendaId"> Apagar </a>
+                                    </td>
+                                </tr>
 
                             }
 
                         }
                         @if (User.IsInRole("Cliente"))
                         {
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Encomenda)
                             {
                                 if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
                                 {
@@ -101,6 +100,40 @@
                         }
                     </tbody>
                 </table>
+                <nav>
+                    <ul class="pagination">
+                        @{
+                            int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                            //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
+                            if (paginaInicial < 1)
+                            {
+                                paginaInicial = 1;
+                            }
+
+                            int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                            //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
+                            if (paginaFinal > Model.Paginacao.TotalPaginas)
+                            {
+                                paginaFinal = Model.Paginacao.TotalPaginas;
+                            }
+                        }
+
+                        <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pagina="1">Primeiro</a>
+                        </li>
+
+                        @for (int i = paginaInicial; i <= paginaFinal; i++)
+                        {
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@i">@i</a>
+                            </li>
+                        }
+
+                        <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas">Último</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
