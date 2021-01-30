@@ -30,7 +30,7 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Encomenda[0].dataEncomenda)
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrdenaData"]">@Html.DisplayNameFor(model => model.Encomenda[0].dataEncomenda)</a>
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Encomenda[0].Cliente)
@@ -54,6 +54,7 @@
 
                                 <tr>
                                     <td>
+                                        
                                         @Html.DisplayFor(modelItem => item.dataEncomenda)
                                     </td>
                                     <td>

@@ -23,12 +23,45 @@ namespace Site_v3_dinamico.Controllers
 
         // GET: Encomendas
         //[Authorize (Roles="Administradora")]
-        public async Task<IActionResult> Index(int pagina = 1)
+        public async Task<IActionResult> Index(string sortOrder, int pagina = 1)
         {
+            ViewData["OrdenaData"] = sortOrder == "data" ? "data_desc" : "data";
+            ViewData["OrdenaCliente"] = sortOrder == "nome" ? "nome_desc" : "nome";
+            ViewData["OrdenaServico"] = sortOrder == "servico" ? "servico_desc" : "servico";
 
+            var encomenda = from s in _context.Encomenda
+                             select s;
+            switch (sortOrder)
+            {
+                case "data":
+                    encomenda = encomenda.OrderBy(s => s.dataEncomenda);
+                    break;
+                case "data_desc":
+                    encomenda = encomenda.OrderByDescending(s => s.dataEncomenda);
+                    break;
+                case "nome":
+                    encomenda = encomenda.OrderBy(s => s.Cliente.Nome);
+                    break;
+                case "nome_desc":
+                    encomenda = encomenda.OrderByDescending(s => s.Cliente.Nome);
+                    break;
+                case "servico":
+                    encomenda = encomenda.OrderBy(s => s.Servicos);
+                    break;
+                case "servico_desc":
+                    encomenda = encomenda.OrderByDescending(s => s.Servicos);
+                    break;
+                default:
+                    encomenda = encomenda.OrderBy(p => p.respondido)
+                    .ThenByDescending(p => p.dataEncomenda);
+                    break;
+            }
+
+            //Contador de novas encomendas
             string conta = ContarNovas().ToString();
             ViewBag.Message = conta;
 
+            //Paginacao
             Paginacao paginacao = new Paginacao
             {
                 TotalItems = await _context.Encomenda.CountAsync(),
@@ -52,7 +85,7 @@ namespace Site_v3_dinamico.Controllers
 
             };
 
-            
+           
 
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
             return base.View(modelo);
