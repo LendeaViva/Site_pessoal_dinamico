@@ -2,75 +2,97 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<body>
+    <div class="section my-services" data-section="section5">
+        <div class="container">
+            <div class="section-heading">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.dataEncomenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servicos)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (User.IsInRole("Administradora"))
-        {
-            @foreach (var item in Model)
-            {
-
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dataEncomenda)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cliente.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Servicos.Nome)
-                    </td>
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.EncomendaId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.EncomendaId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.EncomendaId">Delete</a>
-                    </td>
-                </tr>
-
-            }
-
-        }
-        @if (User.IsInRole("Cliente"))
-        {
-            @foreach (var item in Model)
-            {
-                if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
+                @if (User.IsInRole("Administradora"))
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dataEncomenda)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cliente.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Servicos.Nome)
-                        </td>
-                    </tr>
+                    <h2>Encomendas de clientes</h2>
                 }
-            }
-        }
-    </tbody>
-</table>
+                @if (User.IsInRole("Cliente"))
+                {
+                    <h2>Encomendas realizadas</h2>
+                }
+                <div class="line-dec"></div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dataEncomenda)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cliente)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Servicos)
+                            </th>
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.respondido)
+                                </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (User.IsInRole("Administradora"))
+                        {
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dataEncomenda)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cliente.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                                        @*</td>
+                                                @Html.CheckBoxFor(modelItem => item.respondido)
+                                            <td>*@
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
+
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EncomendaId"> Apagar </a>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        }
+                        @if (User.IsInRole("Cliente"))
+                        {
+                            @foreach (var item in Model)
+                            {
+                                if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.dataEncomenda)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.detalhes)
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+

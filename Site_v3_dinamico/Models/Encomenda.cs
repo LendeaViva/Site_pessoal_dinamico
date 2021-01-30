@@ -11,7 +11,13 @@ namespace Site_v3_dinamico.Models
         public int EncomendaId { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Data da encomenda")]
         public DateTime dataEncomenda { get; set; }
+
+        [Display(Name = "Detalhes")]
+        public string detalhes { get; set; }
+
+        public bool respondido { get; set; }
 
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; }

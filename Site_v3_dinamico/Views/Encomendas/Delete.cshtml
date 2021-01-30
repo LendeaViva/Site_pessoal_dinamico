@@ -4,36 +4,54 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<section class="section my-services" data-section="section5">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Remover encomenda</h2>
+            <div class="line-dec"></div>
+            <h3 style="color: white;">Tem a certeza de que pretende remover esta encomenda?</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dataEncomenda)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cliente)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Servicos)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.respondido)
+                            </th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.dataEncomenda)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Cliente.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Servicos.Nome)
+                            @Html.DisplayFor(model => model.detalhes)
+                        @*</td>
+                            @Html.CheckBoxFor(modelItem => item.respondido)
+                        <td>*@
+                    </tr>
+                </tbody>
+            </table>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Encomenda</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.dataEncomenda)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.dataEncomenda)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Email)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Servicos)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Servicos.Nome)
-        </dd class>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="EncomendaId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="EncomendaId" />
+                <input type="submit" value="Apagar" class="btn btn-danger" /> |
+                <a class="btn btn-primary" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+        </div>
+</section>

@@ -28,6 +28,11 @@
                         <select asp-for="ServicosId" class="form-control" asp-items="ViewBag.ServicosId"></select>
                     </div>
                     <div class="form-group">
+                        <label for="exampleFormControlTextarea1" asp-for="detalhes" class="control-label">Detalhes sobre o projeto pretendido</label>
+                        <textarea asp-for="detalhes" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <span asp-validation-for="detalhes" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
@@ -37,9 +42,9 @@
         <div>
             <a asp-action="Index">Back to List</a>
         </div>
-        </div>
-    </section>
+    </div>
+</section>
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

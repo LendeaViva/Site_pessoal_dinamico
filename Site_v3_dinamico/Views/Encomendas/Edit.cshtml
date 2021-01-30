@@ -4,40 +4,48 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<section class="section my-services" data-section="section5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form style="color: white;" asp-action="Edit" enctype="multipart/form-data">
+                    <div class="section-heading">
+                        <h2>Editar encomenda</h2>
+                        <div class="line-dec"></div>
+                    </div>
 
-<h4>Encomenda</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EncomendaId" />
-            <div class="form-group">
-                <label asp-for="dataEncomenda" class="control-label"></label>
-                <input asp-for="dataEncomenda" class="form-control" />
-                <span asp-validation-for="dataEncomenda" class="text-danger"></span>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EncomendaId" />
+                    <div class="form-group">
+                        <label asp-for="dataEncomenda" class="control-label"></label>
+                        <input asp-for="dataEncomenda" class="form-control" />
+                        <span asp-validation-for="dataEncomenda" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ClienteId" class="control-label"></label>
+                        <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                        <span asp-validation-for="ClienteId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServicosId" class="control-label"></label>
+                        <select asp-for="ServicosId" class="form-control" asp-items="ViewBag.ServicosId"></select>
+                        <span asp-validation-for="ServicosId" class="text-danger"></span>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="respondido" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label asp-for="respondido" class="form-check-label" for="defaultCheck1">
+                            Default checkbox
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ServicosId" class="control-label"></label>
-                <select asp-for="ServicosId" class="form-control" asp-items="ViewBag.ServicosId"></select>
-                <span asp-validation-for="ServicosId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
