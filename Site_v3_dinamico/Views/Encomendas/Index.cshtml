@@ -14,8 +14,7 @@
                 {
                     <h2>Encomendas de clientes</h2>
                     @*<a class="btn btn-success" asp-area="" asp-controller="Encomendas" asp-action="ResolverVarios">Resolver vários</a>*@
-
-
+                    @ViewBag.Message <p> novas mensagens</p>
                 }
                 @if (User.IsInRole("Cliente"))
                 {
@@ -51,25 +50,28 @@
                             @foreach (var item in Model)
                             {
 
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dataEncomenda)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Cliente.Email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Servicos.Nome)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.respondido)
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dataEncomenda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.respondido)
+                            </td>
+                            <td>
+                        
+                            </td>
+                            <td>
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
 
-                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EncomendaId"> Apagar </a>
-                                    </td>
-                                </tr>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EncomendaId"> Apagar </a>
+                            </td>
+                        </tr>
 
                             }
 

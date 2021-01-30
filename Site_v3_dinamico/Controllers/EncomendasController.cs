@@ -25,9 +25,20 @@ namespace Site_v3_dinamico.Controllers
         //[Authorize (Roles="Administradora")]
         public async Task<IActionResult> Index()
         {
+            int count = 0;
+            foreach (var item in _context.Encomenda.ToList())
+            {
+                //SystemsCount 
+                count = _context.Encomenda.Where(x => x.respondido == false).Count();
+            }
+
+            string conta = count.ToString();
+            ViewBag.Message = conta;
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
             return View(await siteDinamicoBdContext.ToListAsync());
         }
+
+        
 
         // GET: Encomendas/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -170,6 +181,17 @@ namespace Site_v3_dinamico.Controllers
         private bool EncomendaExists(int id)
         {
             return _context.Encomenda.Any(e => e.EncomendaId == id);
+        }
+
+        public int NumeroEncomendas()
+        {
+            int count = 0;
+            foreach (var item in _context.Encomenda.ToList())
+            {
+                //SystemsCount 
+                count = _context.Encomenda.Where(x => x.respondido == false).Count();
+            }
+            return count;
         }
     }
 }
