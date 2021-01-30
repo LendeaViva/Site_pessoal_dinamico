@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<Site_v3_dinamico.Models.Encomenda>
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -32,7 +34,7 @@
     <link rel="stylesheet" href="~/css/templatemo-style.css" />
 
 </head>
-<body >
+<body>
     <div id="page-wraper" @*class="animate-in"*@>
 
         @RenderBody()
@@ -50,11 +52,14 @@
                         <h4>Patrícia Gameiro</h4>
                         <span>/dev in the making</span>
                     </div>
+                    <h3 style="color:deeppink; font-weight: bold;">@ViewBag.Message novos pedidos!</h3>
                     <nav class="main-nav" role="navigation">
                         <ul class="main-menu">
                             @if (User.IsInRole("Administradora"))
                             {
-                                <li> <a asp-area="" asp-controller="Encomendas" asp-action="Index">Encomendas</a></li>
+                                <li>
+                                    <a asp-area="" asp-controller="Encomendas" asp-action="Index">Encomendas</a>
+                                </li>
                                 <li> <a asp-area="" asp-controller="Servicos" asp-action="Index">Serviços <i class="fas fa-pencil-alt"></i> </a></li>
                                 <li><a asp-area="" asp-controller="Home" asp-action="Sobre_mim">Sobre Mim</a></li>
                                 <li> <a asp-area="" asp-controller="Home" asp-action="Competencias">Competências</a></li>

@@ -10,17 +10,19 @@
             <div class="section-heading">
 
 
-                @if (User.IsInRole("Administradora"))
-                {
-                    <h2>Encomendas de clientes</h2>
-                    @*<a class="btn btn-success" asp-area="" asp-controller="Encomendas" asp-action="ResolverVarios">Resolver vários</a>*@
-                    @ViewBag.Message <p> novas mensagens</p>
-                }
                 @if (User.IsInRole("Cliente"))
                 {
                     <h2>Encomendas realizadas</h2>
+                    <div class="line-dec"></div>
                 }
-                <div class="line-dec"></div>
+
+                @if (User.IsInRole("Administradora"))
+                {
+                    <h2>Encomendas de clientes</h2>
+                    <div class="line-dec"></div>
+                    @*<a class="btn btn-success" asp-area="" asp-controller="Encomendas" asp-action="ResolverVarios">Resolver vários</a>*@
+                    <h3 style="color:deeppink; font-weight: bold;">@ViewBag.Message novos pedidos!</h3>
+                }
 
             </div>
             <div class="table-responsive">
