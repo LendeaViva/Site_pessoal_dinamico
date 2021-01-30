@@ -9,72 +9,76 @@
     <div class="section my-services" data-section="section5">
         <div class="container">
             <div class="section-heading">
-                <h2>Formação</h2>
+                <h2>Experiência Profissional</h2>
                 <div class="line-dec"></div>
             </div>
             @*<table class="table">*@
             @*<tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nomeEmpresa)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dataInicio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dataFim)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.funcao)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.descricaoFuncao)
-                    </th>
-                    <th></th>
-                </tr>*@
-
-        <div class="table-responsive">
-            <table class="table table-dark">
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @if (item.logotipo != null)
-                            {
-                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logotipo)" class="img-fluid" />
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nomeEmpresa)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dataInicio)
-                            <hr />
-                            @Html.DisplayFor(modelItem => item.dataFim)
-                        </td>
-                        <td>
-                            <h4>
-                                @Html.DisplayFor(modelItem => item.funcao)
-                            </h4>
-                            <ul class="profissional">
-                                @Html.DisplayFor(modelItem => item.descricaoFuncao)
-
-                            </ul>
-                            @if (User.IsInRole("Administradora"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Exp_ProfissionalId">Edit</a>
-                                <a asp-action="Details" asp-route-id="@item.Exp_ProfissionalId">Details</a>
-                                <a asp-action="Delete" asp-route-id="@item.Exp_ProfissionalId">Delete</a>
-                            }
-                        </td>
-                    </tr>
-                }
-
-            </table>
+            <th>
+                @Html.DisplayNameFor(model => model.nomeEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.funcao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricaoFuncao)
+            </th>
+            <th></th>
+        </tr>*@
             @if (User.IsInRole("Administradora"))
-            { 
-            <a asp-action="Create">Adicionar trabalho</a>
+            {<div>
+
+                    <a class="btn btn-primary" asp-action="Create">Adicionar cargo/função</a>
+                </div>
+                <br/>
+                <br />
             }
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (item.logotipo != null)
+                                {
+                                    <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logotipo)" class="img-fluid" />
+                                }
+                                @Html.DisplayFor(modelItem => item.nomeEmpresa)
+                            </td>
+                            <td>
+                                De: @Html.DisplayFor(modelItem => item.dataInicio)
+                                <hr />
+                                Até: @Html.DisplayFor(modelItem => item.dataFim)
+                            </td>
+                            <td>
+                                <h3 style="color:#ff006a">
+                                    @Html.DisplayFor(modelItem => item.funcao)
+                                </h3>
+                                <ul class="profissional">
+                                    @Html.DisplayFor(modelItem => item.descricaoFuncao)
+                                </ul>
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Administradora"))
+                                {
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Exp_ProfissionalId">Editar</a>
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Exp_ProfissionalId"> Apagar </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
         </div>
-    </div>
     </div>
     </body>

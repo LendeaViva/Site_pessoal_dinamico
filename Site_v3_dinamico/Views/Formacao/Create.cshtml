@@ -6,10 +6,10 @@
 
 <!--Formação-->
 <section class="section my-services" data-section="section5">
-    <div class="container">  
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form style="color: white; " asp-action="Create" enctype="multipart/form-data">
+                <form style="color: white;" asp-action="Create" enctype="multipart/form-data">
                     <div class="section-heading">
                         <h2>Adicionar formação</h2>
                         <div class="line-dec"></div>
@@ -47,21 +47,15 @@
 
                         <span asp-validation-for="conteudos" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Adicionar" class="btn btn-primary" />
-                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
-                    </div>
-
-
                 </form>
             </div>
         </div>
+        <div class="form-group">
+            <input type="submit" value="Adicionar" class="btn btn-primary" /> |
+            <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+        </div>
     </div>
 </section>
-
-<hr />
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
