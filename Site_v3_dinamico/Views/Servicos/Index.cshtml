@@ -7,15 +7,27 @@
 <body>
     <div class="section my-services" data-section="section5">
         <div class="container">
-            <div class="section-heading">
-                <h2>Loja</h2>
-                <div class="line-dec"></div>
-            </div>
-            <p>
+            @if (User.IsInRole("Administradora"))
+            {
+                <div class="section-heading">
+                    <h2>Serviços disponibilizados</h2>
+                    <div class="line-dec"></div>
+                </div>
 
-            </p>
-            <table class="table">
-                <thead>
+                <a class="btn btn-primary" asp-action="Create">Adicionar serviço</a>
+                <br />
+                <br />
+            }
+            @if (!User.IsInRole("Administradora"))
+            {
+                <div class="section-heading">
+                    <h2>Loja</h2>
+                    <div class="line-dec"></div>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    @*<thead>
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.Nome)
@@ -25,41 +37,40 @@
                         </th>
                         <th></th>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @if (item.imagem != null)
-                                {
-                                    <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.imagem)" class="img-fluid" />
-                                }
+                </thead>*@
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.imagem != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.imagem)" class="img-fluid" />
+                                    }
 
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descricao)
-                            </td>
-                            <td>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td>
+                                    @if (User.IsInRole("Administradora"))
+                                    {
+                                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ServicosId">Editar</a>
+                                        <br />
+                                        <br />
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ServicosId"> Apagar </a>
+                                    }
 
-                                @if (User.IsInRole("Administradora"))
-                                {
-                                    <a asp-action="Edit" asp-route-id="@item.ServicosId">Edit</a>
-                                    <a asp-action="Details" asp-route-id="@item.ServicosId">Details</a>
-                                    <a asp-action="Delete" asp-route-id="@item.ServicosId">Delete</a>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            @if (User.IsInRole("Administradora"))
-            {
-                <a asp-action="Create">Create New</a>
-            }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
             </div>
         </div>
-    </body>
+        </div>
+</body>
