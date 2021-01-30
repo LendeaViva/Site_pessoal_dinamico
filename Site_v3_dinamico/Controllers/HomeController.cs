@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Site_v3_dinamico.Controllers
 {
     public class HomeController : Controller
@@ -20,6 +21,7 @@ namespace Site_v3_dinamico.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 

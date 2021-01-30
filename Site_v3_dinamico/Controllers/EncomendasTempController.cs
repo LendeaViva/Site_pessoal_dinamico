@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,40 +10,23 @@ using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
-    [Authorize(Roles ="Administradora, Cliente")]
-    public class EncomendasController : Controller
+    public class EncomendasTempController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
 
-        public EncomendasController(SiteDinamicoBdContext context)
+        public EncomendasTempController(SiteDinamicoBdContext context)
         {
             _context = context;
         }
 
-        // GET: Encomendas
-        //[Authorize (Roles="Administradora")]
+        // GET: EncomendasTemp
         public async Task<IActionResult> Index()
         {
-
-            string conta = ContarNovas().ToString();
-            ViewBag.Message = conta;
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
             return View(await siteDinamicoBdContext.ToListAsync());
         }
 
-        public int ContarNovas()
-        {
-            int count = 0;
-            foreach (var item in _context.Encomenda.ToList())
-            {
-                //SystemsCount 
-                count = _context.Encomenda.Where(x => x.respondido == false).Count();
-            }
-            return count;
-        }
-        
-
-        // GET: Encomendas/Details/5
+        // GET: EncomendasTemp/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,8 +34,10 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var encomenda = await _context.Encomenda.Include(p => p.Servicos)
-                .SingleOrDefaultAsync(p => p.EncomendaId == id); 
+            var encomenda = await _context.Encomenda
+                .Include(e => e.Cliente)
+                .Include(e => e.Servicos)
+                .FirstOrDefaultAsync(m => m.EncomendaId == id);
             if (encomenda == null)
             {
                 return NotFound();
@@ -62,29 +46,23 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
-        // GET: Encomendas/Create
+        // GET: EncomendasTemp/Create
         public IActionResult Create()
         {
-            //ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email");
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome");
             return View();
         }
 
-        // POST: Encomendas/Create
+        // POST: EncomendasTemp/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-
-        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ServicosId")] Encomenda encomenda)
+        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,detalhes,respondido,ClienteId,ServicosId")] Encomenda encomenda)
         {
-
             if (ModelState.IsValid)
             {
-                var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
-                encomenda.Cliente = cliente;
-                encomenda.dataEncomenda = DateTime.Now;
                 _context.Add(encomenda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,8 +72,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
-        [Authorize(Roles = "Administradora")]
-        // GET: Encomendas/Edit/5
+        // GET: EncomendasTemp/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -113,12 +90,12 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
-        // POST: Encomendas/Edit/5
+        // POST: EncomendasTemp/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EncomendaId,dataEncomenda,ClienteId,ServicosId, respondido")] Encomenda encomenda)
+        public async Task<IActionResult> Edit(int id, [Bind("EncomendaId,dataEncomenda,detalhes,respondido,ClienteId,ServicosId")] Encomenda encomenda)
         {
             if (id != encomenda.EncomendaId)
             {
@@ -150,8 +127,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
-        [Authorize(Roles = "Administradora")]
-        // GET: Encomendas/Delete/5
+        // GET: EncomendasTemp/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -171,7 +147,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
-        // POST: Encomendas/Delete/5
+        // POST: EncomendasTemp/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -185,17 +161,6 @@ namespace Site_v3_dinamico.Controllers
         private bool EncomendaExists(int id)
         {
             return _context.Encomenda.Any(e => e.EncomendaId == id);
-        }
-
-        public int NumeroEncomendas()
-        {
-            int count = 0;
-            foreach (var item in _context.Encomenda.ToList())
-            {
-                //SystemsCount 
-                count = _context.Encomenda.Where(x => x.respondido == false).Count();
-            }
-            return count;
         }
     }
 }

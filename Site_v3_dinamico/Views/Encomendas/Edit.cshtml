@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form style="color: white;" asp-action="Edit" enctype="multipart/form-data">
+                
                     <div class="section-heading">
                         <h2>Marcar como resolvido</h2>
                         <div class="line-dec"></div>
@@ -24,14 +24,12 @@
                                         @Html.DisplayNameFor(model => model.Cliente)
                                     </th>
                                     <th>
-                                        Tipo de serviço
+                                        @Html.DisplayNameFor(model => model.Servicos)
                                     </th>
-                                    <th>
-                                        Resolvido
-                                    </th>
+                                   
                                     @*<th>
-                            @Html.DisplayNameFor(model => model.respondido)
-                        </th>*@
+                        @Html.DisplayNameFor(model => model.respondido)
+                    </th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,20 +42,45 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.Servicos.Nome)
+                                
                                     <td>
-                                        <div class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" asp-for="respondido" /> Resolvido)
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
                     </div>
-                </form>
+                    <form style="color: white;" asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="EncomendaId" />
+                        <div class="form-group">
+                            @*<label asp-for="dataEncomenda" class="control-label"></label>*@
+                            <input type="hidden" asp-for="dataEncomenda" class="form-control" />
+                            <span asp-validation-for="dataEncomenda" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            @*<label asp-for="detalhes" class="control-label"></label>*@
+                            <input type="hidden" asp-for="detalhes" class="form-control" />
+                            <span asp-validation-for="detalhes" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="respondido" /> Marcar como resolvido
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            @*<label asp-for="ClienteId" class="control-label"></label>*@
+                            <input type="hidden" asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></>
+                            <span asp-validation-for="ClienteId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            @*<label asp-for="ServicosId" class="control-label"></label>*@
+                            <input type="hidden" asp-for="ServicosId" class="form-control" asp-items="ViewBag.ServicosId"></>
+                            <span asp-validation-for="ServicosId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                        </div>
+
+                    </form>
             </div>
         </div>
     </div>     
