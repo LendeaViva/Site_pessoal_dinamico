@@ -24,7 +24,7 @@
                             @Html.DisplayNameFor(model => model.Servicos)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.respondido)
+                            Respondido
                         </th>
                         @*<th>
                         @Html.DisplayNameFor(model => model.respondido)
@@ -45,8 +45,10 @@
                             @Html.DisplayFor(model => model.respondido)
                         </td>
                         <td>
-                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.EncomendaId">Editar</a>
-
+                            @if (Model.respondido == false)
+                            {
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.EncomendaId">Resolver</a>
+                            }
                             <a class="btn btn-danger" asp-action="Apagar" asp-route-id="@Model.EncomendaId"> Apagar </a>
                         </td>
                     </tr>

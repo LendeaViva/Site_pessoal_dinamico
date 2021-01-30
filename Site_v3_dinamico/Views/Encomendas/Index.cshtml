@@ -9,9 +9,13 @@
         <div class="container">
             <div class="section-heading">
 
+
                 @if (User.IsInRole("Administradora"))
                 {
                     <h2>Encomendas de clientes</h2>
+                    @*<a class="btn btn-success" asp-area="" asp-controller="Encomendas" asp-action="ResolverVarios">Resolver vários</a>*@
+
+
                 }
                 @if (User.IsInRole("Cliente"))
                 {
@@ -33,9 +37,12 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Servicos)
                             </th>
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.respondido)
-                                </th>*@
+                            @if (User.IsInRole("Administradora"))
+                            {
+                                <th>
+                                    Resolvido
+                                </th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -53,9 +60,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Servicos.Nome)
-                                        @*</td>
-                                                @Html.CheckBoxFor(modelItem => item.respondido)
-                                            <td>*@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.respondido)
                                     </td>
                                     <td>
                                         <a class="btn btn-info" asp-action="Details" asp-route-id="@item.EncomendaId">Detalhes</a>
