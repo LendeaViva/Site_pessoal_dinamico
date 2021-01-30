@@ -32,14 +32,19 @@
                 <tbody>
                 </tbody>
             </table>
+            @if (User.IsInRole("Administradora"))
+            {
+                <a class="btn btn-primary" asp-action="Create">Adicionar formação</a>
+                <br />
+                <br />
+
+            }
             <div class="table-responsive">
                 <table class="table table-dark">
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td class="inst">
-
-
                                 @if (item.logotipoForm != null)
                                 {
                                     <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logotipoForm)" class="img-fluid" />
@@ -48,10 +53,10 @@
                                     @Html.DisplayFor(modelItem => item.nomeInstituicao)
                                 </h4>
                             </td>
-                            <td>
+                            <td style="text-align: center">
+                                
                                 @Html.DisplayFor(modelItem => item.dataInicio)
-                            </td>
-                            <td>
+                                |
                                 @Html.DisplayFor(modelItem => item.dataFim)
                             </td>
                             <td>
@@ -66,62 +71,20 @@
                             <td>
                                 @if (User.IsInRole("Administradora"))
                                 {
-                                <a asp-action="Edit" asp-route-id="@item.FormacaoId">Edit</a>
-                                <a asp-action = "Delete" asp-route-id = "@item.FormacaoId" > Delete </a>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.FormacaoId">Editar</a>
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.FormacaoId"> Apagar </a>
                                 }
 
                             </td>
                         </tr>
                     }
-                    <tr>
-                        <td class="inst">
-                            <a href="http://www.ipg.pt/website/" target="_blank">
-                                <img src="~/img/IPG.png" alt="Avatar">
-                            </a>
-
-                            <h4>Instituto Politécnico da Guarda</h4>
-                        </td>
-                        <td>2020 -2021</td>
-                        <td>
-                            <h3>
-                                Curso em Programação .NET
-                            </h3>
-                            <p>
-                                - Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />
-                                - Entender e definir arquiteturas Cliente-Servidor, em particular em cenários Web;<br />
-                                - Estruturar e programar uma interface web, recorrendo a HTML e a Javascript;<br />
-                                - Arquiteturar aplicações servidoras em ASPNET CORE;<br />
-                                - Identificar e realizar as fases constituintes do Processo de Desenvolvimento de Software iterativo e incremental, em particular em sistemas Web;<br />
-                                - Realizar as fases da Engenharia de Requisitos;<br />
-                                - Modelar e inquerir informação numa base de dados relacional;
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="inst">
-                            <a href="https://www.uc.pt/fpce" target="_blank">
-                                <img src="~/img/UC.png" alt="Avatar">
-                            </a>
-                            <h4>Faculdade de Psicologia e de Ciências da Educação da Universidade de Coimbra</h4>
-                        </td>
-                        <td>2010 -2016</td>
-                        <td>
-                            <h3>Mestrado Integrado em Psicologia</h3>
-
-                            <p>
-                                - Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />
-                                - Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra <br />
-                                - Dissertação de mestrado "Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2"
-                            </p>
-                        </td>
                 </table>
-                @if (User.IsInRole("Administradora"))
-                { 
-                    <a asp-action="Create">Adicionar formação</a>
-                    }
-            </div>
-            <div>
 
+            </div>
+{
+            <div>
                 <button onclick="mostrar()">
                     <h4 style="padding:20px; margin-top:10px;">
                         <i class="far fa-plus-square"></i>
@@ -155,10 +118,12 @@
                         </table>
                     </div>
                 </div>
+                @if (User.IsInRole("Administradora"))
+                {
+                    <a class="btn btn-warning" asp-area="" asp-controller="FormacaoComp" asp-action="Index">Editar formação complementar</a>
 
+                }
             </div>
-
-
         </div>
     </div>
 </body>

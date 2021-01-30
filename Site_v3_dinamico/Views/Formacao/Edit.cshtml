@@ -11,82 +11,54 @@
             <div class="line-dec"></div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <form asp-action="Edit" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <form style="color: white;" asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="FormacaoId" />
-                    <div class="form-group">
-                        <label asp-for="nomeInstituicao" class="control-label">Nome da Instituição</label>
-                        <input asp-for="nomeInstituicao" class="form-control" />
-                        <span asp-validation-for="nomeInstituicao" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="ficheiroLogotipoForm" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
-                        <input name="ficheiroLogotipoForm" class="form-control-file" type="file" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="dataInicio" class="control-label">Data de Início - Data de Fim</label>
-                        <input asp-for="dataInicio" class="form-control" />
-                        <span asp-validation-for="dataInicio" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="dataFim" class="control-label">Data de Início - Data de Fim</label>
-                        <input asp-for="dataFim" class="form-control" />
-                        <span asp-validation-for="dataFim" class="text-danger"></span>
-                    </div>
                     <div class="form-group">
                         <label asp-for="nomeCurso" class="control-label">Nome do Curso</label>
                         <input asp-for="nomeCurso" class="form-control" />
                         <span asp-validation-for="nomeCurso" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="conteudos" class="control-label">Conteúdos Programáticos</label>
-                        <input asp-for="conteudos" class="form-control" />
+                        <label asp-for="nomeInstituicao" class="control-label">Nome da Instituição</label>
+                        <input asp-for="nomeInstituicao" class="form-control" />
+                        <span asp-validation-for="nomeInstituicao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="ficheiroLogotipoForm" class="control-label">Logótipo da instituição (especifique apenas caso queira alterar)</label>
+                        <input name="ficheiroLogotipoForm" class="form-control-file" type="file" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="dataInicio" class="control-label">Data de Início</label>
+                        <input asp-for="dataInicio" class="form-control" />
+                        <span asp-validation-for="dataInicio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="dataFim" class="control-label">Data de Fim</label>
+                        <input asp-for="dataFim" class="form-control" />
+                        <span asp-validation-for="dataFim" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" asp-for="conteudos" class="control-label">Conteúdos Programáticos</label>
+                        <textarea asp-for="conteudos" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
                         <span asp-validation-for="conteudos" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input asp-for="logotipoForm" type="hidden" />
                         <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-@*<div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="nomeInstituicao" class="control-label"></label>
-                <input asp-for="nomeInstituicao" class="form-control" />
-                <span asp-validation-for="nomeInstituicao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="dataIniciodataFim" class="control-label"></label>
-                <input asp-for="dataIniciodataFim" class="form-control" />
-                <span asp-validation-for="dataIniciodataFim" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="nomeCurso" class="control-label"></label>
-                <input asp-for="nomeCurso" class="form-control" />
-                <span asp-validation-for="nomeCurso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="conteudosCurso" class="control-label"></label>
-                <input asp-for="conteudosCurso" class="form-control" />
-                <span asp-validation-for="conteudosCurso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>*@
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

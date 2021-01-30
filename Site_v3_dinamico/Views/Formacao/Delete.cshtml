@@ -9,7 +9,7 @@
         <div class="section-heading">
             <h2>Remover formação</h2>
             <div class="line-dec"></div>
-            <h3>Tem a certeza de que pretende remover esta formação?</h3>
+            <h3 style="color: white;">Tem a certeza de que pretende remover esta formação?</h3>
         </div>
 
         <div class="table-responsive">
@@ -71,8 +71,8 @@
 
         <form asp-action="Delete">
             <input type="hidden" asp-for="FormacaoId" />
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Apagar" class="btn btn-danger" /> |
+            <a class="btn btn-primary" asp-action="Index">Cancelar</a>
         </form>
     </div>
 </section>
