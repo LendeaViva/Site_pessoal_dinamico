@@ -10,7 +10,7 @@ namespace Site_v3_dinamico.Models
     {
         public int SobreMimImgId { get; set; }
 
-        [Required]
+
         [Display(Name = "Imagem ilustrativa")]
         public byte[] imagem { get; set; }
     }

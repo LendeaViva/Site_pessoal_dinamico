@@ -52,17 +52,7 @@ namespace Site_v3_dinamico.Controllers
             return View();
         }
 
-        private static void AtualizaImagem(SobreMimImg sobreMimImg, IFormFile ficheiroImagem)
-        {
-            if (ficheiroImagem != null && ficheiroImagem.Length > 0)
-            {
-                using (var ficheiroMemoria = new MemoryStream())
-                {
-                    ficheiroImagem.CopyTo(ficheiroMemoria);
-                    sobreMimImg.imagem = ficheiroMemoria.ToArray();
-                }
-            }
-        }
+        
 
         // POST: SobreMimImg/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -78,7 +68,21 @@ namespace Site_v3_dinamico.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            _context.Add(sobreMimImg);
+            await _context.SaveChangesAsync();
             return View(sobreMimImg);
+        }
+
+        private static void AtualizaImagem(SobreMimImg sobreMimImg, IFormFile ficheiroImagem)
+        {
+            if (ficheiroImagem != null && ficheiroImagem.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroImagem.CopyTo(ficheiroMemoria);
+                    sobreMimImg.imagem = ficheiroMemoria.ToArray();
+                }
+            }
         }
 
         // GET: SobreMimImg/Edit/5

@@ -10,8 +10,8 @@ using Site_v3_dinamico.Data;
 namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    [Migration("20210131112022_sobremim")]
-    partial class sobremim
+    [Migration("20210131165707_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -217,6 +217,38 @@ namespace Site_v3_dinamico.Migrations
                     b.HasKey("ServicosId");
 
                     b.ToTable("Servicos");
+                });
+
+            modelBuilder.Entity("Site_v3_dinamico.Models.SobreMim", b =>
+                {
+                    b.Property<int>("SobreMimId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descricao")
+                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(5000);
+
+                    b.HasKey("SobreMimId");
+
+                    b.ToTable("SobreMim");
+                });
+
+            modelBuilder.Entity("Site_v3_dinamico.Models.SobreMimImg", b =>
+                {
+                    b.Property<int>("SobreMimImgId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("imagem")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("SobreMimImgId");
+
+                    b.ToTable("SobreMimImg");
                 });
 
             modelBuilder.Entity("Site_v3_dinamico.Models.Encomenda", b =>

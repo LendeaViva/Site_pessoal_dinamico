@@ -1,35 +1,51 @@
-﻿@model IEnumerable<Site_v3_dinamico.Models.SobreMim>
+﻿@model SobreMimViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<section class="section about-me" data-section="section1">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Sobre Mim</h2>
+            <div class="line-dec"></div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.descricao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.descricao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SobreMimId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SobreMimId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SobreMimId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            @foreach (var item in Model.SobreMim)
+            {<span>
+                    @Html.DisplayFor(modelItem => item.descricao)
+
+                    <a asp-action="Edit" asp-route-id="@item.SobreMimId">Edit</a> |
+
+                    <a asp-action="Delete" asp-route-id="@item.SobreMimId">Delete</a>
+                </span>
+            }
+
+            <a class="btn btn-primary" asp-action="Create">Adicionar Sobre Mim</a>
+
+        </div>
+        <div class="sobre-mim-icones">
+            <div class="row">
+                @foreach (var item in Model.SobreMimImg)
+                {
+                <div class="col-6 pb-3 col-xl-3">
+                    @if (item.imagem != null)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.imagem)" class="img-fluid" />
+                    }
+
+                    <a asp-action="Edit" asp-route-id="@item.SobreMimImgId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SobreMimImgId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SobreMimImgId">Delete</a>
+                </div>
+                }
+            </div>
+            <p>
+                <a asp-area="" asp-controller="SobreMimImg" asp-action="Create">Adicionar imagem</a>
+            </p>
+
+
+        </div>
+    </div>
+</section>
+
+

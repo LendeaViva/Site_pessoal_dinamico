@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Site_v3_dinamico.Migrations
 {
-    public partial class sobremim : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,6 +106,32 @@ namespace Site_v3_dinamico.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SobreMim",
+                columns: table => new
+                {
+                    SobreMimId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    descricao = table.Column<string>(maxLength: 5000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SobreMim", x => x.SobreMimId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SobreMimImg",
+                columns: table => new
+                {
+                    SobreMimImgId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    imagem = table.Column<byte[]>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SobreMimImg", x => x.SobreMimImgId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Encomenda",
                 columns: table => new
                 {
@@ -161,6 +187,12 @@ namespace Site_v3_dinamico.Migrations
 
             migrationBuilder.DropTable(
                 name: "FormacaoComp");
+
+            migrationBuilder.DropTable(
+                name: "SobreMim");
+
+            migrationBuilder.DropTable(
+                name: "SobreMimImg");
 
             migrationBuilder.DropTable(
                 name: "Cliente");
