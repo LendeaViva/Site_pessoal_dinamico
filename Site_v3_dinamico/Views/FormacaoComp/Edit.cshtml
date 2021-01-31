@@ -4,40 +4,45 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<section class="section my-services" data-section="section5">
+    <div class="container">
 
-<h4>FormacaoComp</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FormacaoCompId" />
-            <div class="form-group">
-                <label asp-for="nomeInstituicaoComp" class="control-label"></label>
-                <input asp-for="nomeInstituicaoComp" class="form-control" />
-                <span asp-validation-for="nomeInstituicaoComp" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <form style="color: white;" asp-action="Edit" enctype="multipart/form-data">
+                    <div class="section-heading">
+                        <h2>Editar formação</h2>
+                        <div class="line-dec"></div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="FormacaoCompId" />
+                    <div class="form-group">
+                        <label asp-for="nomeInstituicaoComp" class="control-label"></label>
+                        <input asp-for="nomeInstituicaoComp" class="form-control" />
+                        <span asp-validation-for="nomeInstituicaoComp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="dataIniciodataFimComp" class="control-label"></label>
+                        <input asp-for="dataIniciodataFimComp" class="form-control" />
+                        <span asp-validation-for="dataIniciodataFimComp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nomeCursoComp" class="control-label"></label>
+                        <input asp-for="nomeCursoComp" class="form-control" />
+                        <span asp-validation-for="nomeCursoComp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                       
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                    </div>
+
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="dataIniciodataFimComp" class="control-label"></label>
-                <input asp-for="dataIniciodataFimComp" class="form-control" />
-                <span asp-validation-for="dataIniciodataFimComp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="nomeCursoComp" class="control-label"></label>
-                <input asp-for="nomeCursoComp" class="form-control" />
-                <span asp-validation-for="nomeCursoComp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
