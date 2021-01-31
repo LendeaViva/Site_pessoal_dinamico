@@ -33,7 +33,7 @@ namespace Site_v3_dinamico.Data
 
 
 
-        public DbSet<Site_v3_dinamico.Models.Competencias> Competencias { get; set; }
+        public DbSet<Site_v3_dinamico.Models.CompetenciasP> Competencias { get; set; }
         public DbSet<Site_v3_dinamico.Models.Exp_Profissional> Exp_Profissional { get; set; }
         public DbSet<Site_v3_dinamico.Models.Formacao> Formacao { get; set; }
         public DbSet<Site_v3_dinamico.Models.FormacaoComp> FormacaoComp { get; set; }
@@ -47,6 +47,10 @@ namespace Site_v3_dinamico.Data
         public DbSet<Site_v3_dinamico.Models.SobreMim> SobreMim { get; set; }
 
         public DbSet<Site_v3_dinamico.Models.SobreMimImg> SobreMimImg { get; set; }
+
+        public DbSet<Site_v3_dinamico.Models.CompetenciasD> CompetenciasD { get; set; }
+
+        public DbSet<Site_v3_dinamico.Models.CompetenciasF> CompetenciasF { get; set; }
 
         //The preceding code creates a DbSet<Formacao> property for the entity set. 
         //In Entity Framework terminology, an entity set typically corresponds to 

@@ -10,22 +10,22 @@ using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
-    public class CompetenciasController : Controller
+    public class CompetenciasDController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
 
-        public CompetenciasController(SiteDinamicoBdContext context)
+        public CompetenciasDController(SiteDinamicoBdContext context)
         {
             _context = context;
         }
 
-        // GET: Competencias
+        // GET: CompetenciasD
         public async Task<IActionResult> Index()
         {
             return View(await _context.CompetenciasD.ToListAsync());
         }
 
-        // GET: Competencias/Details/5
+        // GET: CompetenciasD/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +43,13 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasD);
         }
 
-        // GET: Competencias/Create
+        // GET: CompetenciasD/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Competencias/Create
+        // POST: CompetenciasD/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +65,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasD);
         }
 
-        // GET: Competencias/Edit/5
+        // GET: CompetenciasD/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +81,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasD);
         }
 
-        // POST: Competencias/Edit/5
+        // POST: CompetenciasD/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -116,7 +116,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasD);
         }
 
-        // GET: Competencias/Delete/5
+        // GET: CompetenciasD/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasD);
         }
 
-        // POST: Competencias/Delete/5
+        // POST: CompetenciasD/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,4 +1,4 @@
-﻿@model Site_v3_dinamico.Models.CompetenciasD
+﻿@model Site_v3_dinamico.Models.CompetenciasF
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,13 +6,13 @@
 
 <h1>Edit</h1>
 
-<h4>CompetenciasD</h4>
+<h4>CompetenciasF</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CompetenciasDId" />
+            <input type="hidden" asp-for="CompetenciasFId" />
             <div class="form-group">
                 <label asp-for="nomeComp" class="control-label"></label>
                 <input asp-for="nomeComp" class="form-control" />
@@ -22,6 +22,11 @@
                 <label asp-for="nivelComp" class="control-label"></label>
                 <input asp-for="nivelComp" class="form-control" />
                 <span asp-validation-for="nivelComp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="logo" class="control-label"></label>
+                <input asp-for="logo" class="form-control" />
+                <span asp-validation-for="logo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

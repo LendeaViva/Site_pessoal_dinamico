@@ -1,4 +1,4 @@
-﻿@model Site_v3_dinamico.Models.CompetenciasD
+﻿@model Site_v3_dinamico.Models.CompetenciasP
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>CompetenciasD</h4>
+    <h4>CompetenciasP</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,14 +17,14 @@
             @Html.DisplayFor(model => model.nomeComp)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.nivelComp)
+            @Html.DisplayNameFor(model => model.descricaoComp)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.nivelComp)
+            @Html.DisplayFor(model => model.descricaoComp)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CompetenciasDId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.CompetenciasPId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

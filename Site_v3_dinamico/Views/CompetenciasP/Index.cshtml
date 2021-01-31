@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Site_v3_dinamico.Models.CompetenciasD>
+﻿@model IEnumerable<Site_v3_dinamico.Models.CompetenciasP>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.nomeComp)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nivelComp)
+                @Html.DisplayNameFor(model => model.descricaoComp)
             </th>
             <th></th>
         </tr>
@@ -28,12 +28,12 @@
                 @Html.DisplayFor(modelItem => item.nomeComp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nivelComp)
+                @Html.DisplayFor(modelItem => item.descricaoComp)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CompetenciasDId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CompetenciasDId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompetenciasDId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CompetenciasPId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CompetenciasPId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CompetenciasPId">Delete</a>
             </td>
         </tr>
 }

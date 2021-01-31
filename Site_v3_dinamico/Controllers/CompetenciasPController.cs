@@ -10,22 +10,22 @@ using Site_v3_dinamico.Models;
 
 namespace Site_v3_dinamico.Controllers
 {
-    public class CompetenciasController : Controller
+    public class CompetenciasPController : Controller
     {
         private readonly SiteDinamicoBdContext _context;
 
-        public CompetenciasController(SiteDinamicoBdContext context)
+        public CompetenciasPController(SiteDinamicoBdContext context)
         {
             _context = context;
         }
 
-        // GET: Competencias
+        // GET: CompetenciasP
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CompetenciasD.ToListAsync());
+            return View(await _context.Competencias.ToListAsync());
         }
 
-        // GET: Competencias/Details/5
+        // GET: CompetenciasP/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var competenciasD = await _context.CompetenciasD
-                .FirstOrDefaultAsync(m => m.CompetenciasDId == id);
-            if (competenciasD == null)
+            var competenciasP = await _context.Competencias
+                .FirstOrDefaultAsync(m => m.CompetenciasPId == id);
+            if (competenciasP == null)
             {
                 return NotFound();
             }
 
-            return View(competenciasD);
+            return View(competenciasP);
         }
 
-        // GET: Competencias/Create
+        // GET: CompetenciasP/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Competencias/Create
+        // POST: CompetenciasP/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompetenciasDId,nomeComp,nivelComp")] CompetenciasD competenciasD)
+        public async Task<IActionResult> Create([Bind("CompetenciasPId,nomeComp,descricaoComp")] CompetenciasP competenciasP)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(competenciasD);
+                _context.Add(competenciasP);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(competenciasD);
+            return View(competenciasP);
         }
 
-        // GET: Competencias/Edit/5
+        // GET: CompetenciasP/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var competenciasD = await _context.CompetenciasD.FindAsync(id);
-            if (competenciasD == null)
+            var competenciasP = await _context.Competencias.FindAsync(id);
+            if (competenciasP == null)
             {
                 return NotFound();
             }
-            return View(competenciasD);
+            return View(competenciasP);
         }
 
-        // POST: Competencias/Edit/5
+        // POST: CompetenciasP/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompetenciasDId,nomeComp,nivelComp")] CompetenciasD competenciasD)
+        public async Task<IActionResult> Edit(int id, [Bind("CompetenciasPId,nomeComp,descricaoComp")] CompetenciasP competenciasP)
         {
-            if (id != competenciasD.CompetenciasDId)
+            if (id != competenciasP.CompetenciasPId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
-                    _context.Update(competenciasD);
+                    _context.Update(competenciasP);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CompetenciasDExists(competenciasD.CompetenciasDId))
+                    if (!CompetenciasPExists(competenciasP.CompetenciasPId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Site_v3_dinamico.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(competenciasD);
+            return View(competenciasP);
         }
 
-        // GET: Competencias/Delete/5
+        // GET: CompetenciasP/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var competenciasD = await _context.CompetenciasD
-                .FirstOrDefaultAsync(m => m.CompetenciasDId == id);
-            if (competenciasD == null)
+            var competenciasP = await _context.Competencias
+                .FirstOrDefaultAsync(m => m.CompetenciasPId == id);
+            if (competenciasP == null)
             {
                 return NotFound();
             }
 
-            return View(competenciasD);
+            return View(competenciasP);
         }
 
-        // POST: Competencias/Delete/5
+        // POST: CompetenciasP/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var competenciasD = await _context.CompetenciasD.FindAsync(id);
-            _context.CompetenciasD.Remove(competenciasD);
+            var competenciasP = await _context.Competencias.FindAsync(id);
+            _context.Competencias.Remove(competenciasP);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CompetenciasDExists(int id)
+        private bool CompetenciasPExists(int id)
         {
-            return _context.CompetenciasD.Any(e => e.CompetenciasDId == id);
+            return _context.Competencias.Any(e => e.CompetenciasPId == id);
         }
     }
 }
