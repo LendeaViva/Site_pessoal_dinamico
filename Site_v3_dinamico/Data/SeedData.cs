@@ -28,10 +28,25 @@ namespace Site_v3_dinamico.Data
             InsereServicos(bd);
             InsereClientesFicticios(bd);
             InsereEncomendas(bd);
+            InsereSobreMim(bd);
         }
 
+        public static void InsereSobreMim(SiteDinamicoBdContext bd)
+        {
+            if (bd.SobreMim.Any()) return;
 
-        public static void InsereEncomendas(SiteDinamicoBdContext bd)
+            bd.SobreMim.AddRange(new SobreMim[]
+            {
+                 new SobreMim
+                 {
+                     descricao = "Psicóloga em processo de requalificação profissional para Web Developer, com conhecimentos de C#, HTML, CSS e Javascript.",
+
+                 }
+            });
+            bd.SaveChanges();
+        }
+
+            public static void InsereEncomendas(SiteDinamicoBdContext bd)
         {
             if (bd.Encomenda.Any()) return;
 
@@ -46,7 +61,8 @@ namespace Site_v3_dinamico.Data
                 {
                     ClienteId = 1,
                     Servicos = designPaginasWeb,
-                    dataEncomenda = new DateTime(2021, 1, 12)
+                    dataEncomenda = new DateTime(2021, 1, 12),
+                    detalhes = "Procuro uma página com design intuitivo"
                 });
             }
 
@@ -56,7 +72,8 @@ namespace Site_v3_dinamico.Data
                 {
                     ClienteId = 2,
                     Servicos = designCV,
-                    dataEncomenda = new DateTime(2021, 1, 13)
+                    dataEncomenda = new DateTime(2021, 1, 13),
+                    detalhes = "Quero um CV estilizado, que evidencie a minha vasta experiência profissional"
                 });
             }
 
@@ -66,7 +83,8 @@ namespace Site_v3_dinamico.Data
                 {
                     ClienteId = 3,
                     Servicos = devApp,
-                    dataEncomenda = new DateTime(2021, 1, 20)
+                    dataEncomenda = new DateTime(2021, 1, 20),
+                    detalhes = "Quero uma aplicação para gerir a minha clínica."
                 });
             }
 
@@ -77,7 +95,8 @@ namespace Site_v3_dinamico.Data
                 {
                     ClienteId = 1,
                     Servicos = testesSoftware,
-                    dataEncomenda = new DateTime(2021, 1, 24)
+                    dataEncomenda = new DateTime(2021, 1, 24),
+                     detalhes = "Procuro beta tester para o meu novo mod para o marketplace do Minecraft"
                 });
             }
             bd.SaveChanges();

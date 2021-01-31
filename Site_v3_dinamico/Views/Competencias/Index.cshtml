@@ -1,41 +1,94 @@
-﻿@model IEnumerable<Site_v3_dinamico.Models.CompetenciasD>
+﻿@model CompetenciasViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<!--Competências-->
+<section class="section my-services" data-section="section2">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Competências</h2>
+            <div class="line-dec"></div>
+        </div>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <!-- Competências Pessoais -->
+        <div class="row mb-5 d-flex justify-content-center">
+            @foreach (var item in Model.CompetenciasP)
+            {
+                <div class="flip-card col-md-3 mb-5">
+                    <div class="flip-card-inner ">
+                        <div class="flip-card-front align-items-center d-flex justify-content-center">
+                            <h1> @Html.DisplayFor(modelItem => item.nomeComp)</h1>
+                        </div>
+                        <div class="flip-card-back align-items-center d-flex justify-content-center">
+                            @Html.DisplayFor(modelItem => item.descricaoComp)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nomeComp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nivelComp)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeComp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nivelComp)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CompetenciasDId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CompetenciasDId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompetenciasDId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="row">
+            <div class="col-md-6 justify-content-center">
+
+                @foreach (var item in Model.CompetenciasD)
+                {
+                    <!--Competéncias Técnicas-->
+
+                    <div class="row">
+                        <div class="skills col-6 d-flex justify-content-end">
+                            <p>@Html.DisplayFor(modelItem => item.nomeComp)</p>
+                        </div>
+                        <div class="col-6 align-items-center">
+                            <div class="skills ">
+                                <ul>
+                                    @for (int i = 0; i < item.nivelComp; i++)
+                                    {
+                                        <li>
+                                            <i class="fas fa-star"></i>
+                                        </li>
+                                    }
+
+                                    @for (int i = 0; i < 5 - item.nivelComp; i++)
+                                    {
+                                        <li>
+                                            <i class="far fa-star"></i>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div>
+            <table>
+                @foreach (var item in Model.CompetenciasF)
+                {
+
+                    <tr>
+                        <td>
+                            @if (item.logo != null)
+                            {
+                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
+                            }
+                        </td>
+
+                        <td class="progress" style="height: 20px; width: 400px;">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%">
+                                @item.nomeComp
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+           
+        </div>
+    </section>
+

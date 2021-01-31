@@ -22,7 +22,20 @@ namespace Site_v3_dinamico.Controllers
         // GET: Competencias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CompetenciasD.ToListAsync());
+            List<CompetenciasD> competenciasD = await _context.CompetenciasD.ToListAsync();
+            List<CompetenciasF> competenciasF = await _context.CompetenciasF.ToListAsync();
+            List<CompetenciasP> competenciasP = await _context.CompetenciasP.ToListAsync();
+
+            CompetenciasViewModel modelo = new CompetenciasViewModel
+            {
+
+                CompetenciasD = competenciasD,
+                CompetenciasF = competenciasF,
+                CompetenciasP = competenciasP
+
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Competencias/Details/5

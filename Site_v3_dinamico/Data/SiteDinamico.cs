@@ -48,6 +48,8 @@ namespace Site_v3_dinamico.Data
 
         public DbSet<Site_v3_dinamico.Models.SobreMimImg> SobreMimImg { get; set; }
 
+        public DbSet<Site_v3_dinamico.Models.CompetenciasP> CompetenciasP { get; set; }
+
         public DbSet<Site_v3_dinamico.Models.CompetenciasD> CompetenciasD { get; set; }
 
         public DbSet<Site_v3_dinamico.Models.CompetenciasF> CompetenciasF { get; set; }

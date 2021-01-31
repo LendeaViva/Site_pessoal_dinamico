@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -54,15 +56,28 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompetenciasFId,nomeComp,nivelComp,logo")] CompetenciasF competenciasF)
+        public async Task<IActionResult> Create([Bind("CompetenciasFId,nomeComp,nivelComp,logo")] CompetenciasF competenciasF, IFormFile ficheiroLogo)
         {
             if (ModelState.IsValid)
             {
+                AtualizaLogo(competenciasF, ficheiroLogo);
                 _context.Add(competenciasF);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(competenciasF);
+        }
+
+        private static void AtualizaLogo(CompetenciasF competenciasF, IFormFile ficheiroLogo)
+        {
+            if (ficheiroLogo != null && ficheiroLogo.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroLogo.CopyTo(ficheiroMemoria);
+                    competenciasF.logo = ficheiroMemoria.ToArray();
+                }
+            }
         }
 
         // GET: CompetenciasF/Edit/5
@@ -86,7 +101,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompetenciasFId,nomeComp,nivelComp,logo")] CompetenciasF competenciasF)
+        public async Task<IActionResult> Edit(int id, [Bind("CompetenciasFId,nomeComp,nivelComp,logo")] CompetenciasF competenciasF, IFormFile ficheiroLogo)
         {
             if (id != competenciasF.CompetenciasFId)
             {
@@ -97,6 +112,7 @@ namespace Site_v3_dinamico.Controllers
             {
                 try
                 {
+                    AtualizaLogo(competenciasF, ficheiroLogo);
                     _context.Update(competenciasF);
                     await _context.SaveChangesAsync();
                 }
