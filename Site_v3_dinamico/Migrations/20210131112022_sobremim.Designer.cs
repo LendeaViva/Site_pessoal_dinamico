@@ -10,8 +10,8 @@ using Site_v3_dinamico.Data;
 namespace Site_v3_dinamico.Migrations
 {
     [DbContext(typeof(SiteDinamicoBdContext))]
-    [Migration("20210129174303_Initial")]
-    partial class Initial
+    [Migration("20210131112022_sobremim")]
+    partial class sobremim
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +87,12 @@ namespace Site_v3_dinamico.Migrations
 
                     b.Property<DateTime>("dataEncomenda")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("detalhes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("respondido")
+                        .HasColumnType("bit");
 
                     b.HasKey("EncomendaId");
 

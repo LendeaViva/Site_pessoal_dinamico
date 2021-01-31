@@ -10,6 +10,7 @@ namespace Site_v3_dinamico.Models
     {
         public int SobreMimId { get; set; }
 
+        [Display(Name = "Breve descrição sobre mim")]
         [StringLength(5000)]
         public string descricao { get; set; }
     }

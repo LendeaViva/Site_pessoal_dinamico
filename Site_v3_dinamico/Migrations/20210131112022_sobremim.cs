@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Site_v3_dinamico.Migrations
 {
-    public partial class Initial : Migration
+    public partial class sobremim : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -112,6 +112,8 @@ namespace Site_v3_dinamico.Migrations
                     EncomendaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     dataEncomenda = table.Column<DateTime>(nullable: false),
+                    detalhes = table.Column<string>(nullable: true),
+                    respondido = table.Column<bool>(nullable: false),
                     ClienteId = table.Column<int>(nullable: false),
                     ServicosId = table.Column<int>(nullable: false)
                 },
