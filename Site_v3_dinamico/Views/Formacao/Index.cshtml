@@ -13,22 +13,22 @@
             </div>
             <table class="table">
                 @*<thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.nomeInstituicao)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.dataIniciodataFim)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.nomeCurso)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.conteudosCurso)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>*@
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nomeInstituicao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dataIniciodataFim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nomeCurso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.conteudosCurso)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>*@
                 <tbody>
                 </tbody>
             </table>
@@ -54,7 +54,7 @@
                                 </h4>
                             </td>
                             <td>
-                                
+
                                 De: @Html.DisplayFor(modelItem => item.dataInicio)
                                 <hr />
                                 Até: @Html.DisplayFor(modelItem => item.dataFim)
@@ -83,49 +83,60 @@
                 </table>
 
             </div>
-{
-            <div>
-                <button onclick="mostrar()">
-                    <h4 style="padding:20px; margin-top:10px;">
-                        <i class="far fa-plus-square"></i>
-                        Formação complementar
-                    </h4>
-                </button>
-                <div id="mostrarDiv" style="display:none">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-dark">
-                            @foreach (var item in Model.FormacaoComp)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.nomeInstituicaoComp)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.nomeCursoComp)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.dataIniciodataFimComp)</td>
-                                </tr>
-                                @*<tr>
-                                    <td>Ordem dos Psicológos Portugueses</td>
-                                    <td>2020</td>
-                                    <td>Intervenção Psicológica em Situações de Catástrofe</td>
-                                </tr>
-                                <tr>
-                                    <td>Mindform</td>
-                                    <td>2019</td>
-                                    <td>Formação Pedagógica Inicial de Formadores (CCP)</td>
-                                </tr>
-                                <tr>
-                                    <td>Instituto CRIAP</td>
-                                    <td>2019</td>
-                                    <td>Especialização Avançada em Terapias Cognitivo-Comportamentais para Adultos</td>
-                                </tr>*@
-                            }
+            @if (!User.IsInRole("Administradora"))
+            {
+                <div>
+                    <button onclick="mostrar()">
+                        <h4 style="padding:20px; margin-top:10px;">
+                            <i class="far fa-plus-square"></i>
+                            Formação complementar
+                        </h4>
+                    </button>
+                    <div id="mostrarDiv" style="display:none">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-dark">
+                                @foreach (var item in Model.FormacaoComp)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.nomeInstituicaoComp)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.nomeCursoComp)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.dataIniciodataFimComp)</td>
+                                    </tr>
+                                }
                             </table>
+                        </div>
+                       
                     </div>
-                </div>
-                @if (User.IsInRole("Administradora"))
-                {
-                    <a class="btn btn-warning" asp-area="" asp-controller="FormacaoComp" asp-action="Index">Editar formação complementar</a>
 
-                }
+                </div>
+            }
+
+            @if (User.IsInRole("Administradora"))
+            {
+        <div>
+            <h4 style="padding:20px; margin-top:10px;">
+                Formação complementar
+            </h4>
+            <div class="table-responsive">
+                <table class="table table-hover table-dark">
+                    @foreach (var item in Model.FormacaoComp)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.nomeInstituicaoComp)</td>
+                            <td>@Html.DisplayFor(modelItem => item.nomeCursoComp)</td>
+                            <td>@Html.DisplayFor(modelItem => item.dataIniciodataFimComp)</td>
+                            <td>
+                                <a class="btn btn-warning" asp-area="" asp-controller="FormacaoComp" asp-action="Edit" asp-route-id="@item.FormacaoCompId">Editar</a>
+                                <a class="btn btn-danger" asp-area="" asp-controller="FormacaoComp" asp-action="Delete" asp-route-id="@item.FormacaoCompId">Apagar</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
             </div>
+            <a asp-area="" asp-controller="FormacaoComp" asp-action="Create">Criar</a>
+            <a asp-area="" asp-controller="FormacaoComp" asp-action="Index">Index</a>
+        </div>
+            }
         </div>
     </div>
 </body>

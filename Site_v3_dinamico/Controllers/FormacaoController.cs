@@ -59,6 +59,8 @@ namespace Site_v3_dinamico.Controllers
             return View(formacao);
         }
 
+
+
         // GET: Formacao/Create
         [Authorize(Roles = "Administradora")]
         public IActionResult Create()
