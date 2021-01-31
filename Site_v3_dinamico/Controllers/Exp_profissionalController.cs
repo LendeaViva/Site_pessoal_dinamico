@@ -110,7 +110,7 @@ namespace SitePessoalDinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
+        public async Task<IActionResult> Edit(int id, [Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao, logotipo")] Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
         {
             if (id != Exp_Profissional.Exp_ProfissionalId)
             {
