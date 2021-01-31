@@ -27,7 +27,18 @@ namespace Site_v3_dinamico.Controllers
         // GET: Formacao
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Formacao.ToListAsync());
+            List<Formacao> formacao = await _context.Formacao.ToListAsync();
+            List<FormacaoComp> formacaoComp = await _context.FormacaoComp.ToListAsync();
+
+            FormacaoViewModel modelo = new FormacaoViewModel
+            {
+
+                Formacao = formacao,
+                FormacaoComp = formacaoComp,
+
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Formacao/Details/5

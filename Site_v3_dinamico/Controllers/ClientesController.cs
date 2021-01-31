@@ -87,6 +87,7 @@ namespace Site_v3_dinamico.Controllers
             }
 
             utilizador = new IdentityUser(infoCliente.Email);
+
             IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoCliente.Password);
             if (!resultado.Succeeded)
             {
