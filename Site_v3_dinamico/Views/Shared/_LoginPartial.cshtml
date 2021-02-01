@@ -2,16 +2,32 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<div style="position: absolute; top: 0; right: 0;">
+<div style="        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #282C34;
+        color: #FF006A;
+        font-family: 'JetBrains Mono', monospace">
     <ul>
         @if (SignInManager.IsSignedIn(User))
         {
-            <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-            </li>
+            if (User.IsInRole("Cliente"))
+            {
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" asp-area="" asp-controller="Clientes" asp-action="Details">Olá @User.Identity.Name!</a>
+                </li>
+            }
+
+            if (User.IsInRole("Administradora"))
+            {
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @User.Identity.Name!</a>
+                </li>
+            }
+
             <li class="nav-item mx-0 mx-lg-1">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link py-3 px-0 px-lg-3 rounded">Logout</button>
+                    <button type="submit" class="nav-link py-3 px-0 px-lg-3 rounded" style="color:aliceblue">Logout</button>
                 </form>
             </li>
         }
@@ -21,7 +37,7 @@
                 <a class="nav-link py-3 px-0 px-lg-3 rounded" asp-controller="Clientes" asp-action="Registo">Registar</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                <a class="nav-link py-3 px-0 px-lg-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
             </li>
         }
     </ul>

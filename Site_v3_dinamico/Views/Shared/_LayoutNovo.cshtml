@@ -56,22 +56,27 @@
                         <ul class="main-menu">
                             @if (User.IsInRole("Administradora"))
                             {
-                                <li>
+                                <li style="border-top: 5px solid #c4004e;
+                                    border-bottom: 5px solid #c4004e;
+                                    border-left: 5px solid #c4004e;
+                                    border-right: 5px solid #c4004e;
+                                    background-color: #77002d;">
                                     <a asp-area="" asp-controller="Encomendas" asp-action="Index">Encomendas</a>
                                 </li>
                                 <li> <a asp-area="" asp-controller="Servicos" asp-action="Index">Serviços <i class="fas fa-pencil-alt"></i> </a></li>
-                                <li><a asp-area="" asp-controller="SobreMim" asp-action="Index">Sobre Mim</a></li>
-                                <li> <a asp-area="" asp-controller="Competencias" asp-action="Index">Competências</a></li>
+                                <li><a asp-area="" asp-controller="SobreMim" asp-action="Index">Sobre Mim <i class="fas fa-pencil-alt"></i> </a></li>
+                                <li> <a asp-area="" asp-controller="Competencias" asp-action="Index">Competências <i class="fas fa-pencil-alt"></i> </a></li>
                                 <li> <a asp-area="" asp-controller="Formacao" asp-action="Index">Formação <i class="fas fa-pencil-alt"></i> </a></li>
                                 <li> <a asp-area="" asp-controller="Exp_Profissional" asp-action="Index">Experiência Profissional <i class="fas fa-pencil-alt"></i> </a></li>
-
+                                    
                             }
                             @if (!User.IsInRole("Administradora"))
                             {
-
-
-
-                                <li> <a asp-area="" asp-controller="Servicos" asp-action="Index">Loja</a></li>
+                                <li style="border-top: 5px solid #c4004e;
+                                    border-bottom: 5px solid #c4004e;
+                                    border-left: 5px solid #c4004e;
+                                    border-right: 5px solid #c4004e;
+                                    background-color: #77002d;"> <a asp-area="" asp-controller="Servicos" asp-action="Index">Loja</a></li>
                                 <li><a asp-area="" asp-controller="SobreMim" asp-action="Index">Sobre Mim</a></li>
                                 <li> <a asp-area="" asp-controller="Competencias" asp-action="Index">Competências</a></li>
                                 <li> <a asp-area="" asp-controller="Formacao" asp-action="Index">Formação</a></li>
