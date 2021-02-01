@@ -11,88 +11,210 @@
             <h2>Competências</h2>
             <div class="line-dec"></div>
         </div>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
+
         <!-- Competências Pessoais -->
-        <div class="row mb-5 d-flex justify-content-center">
-            @foreach (var item in Model.CompetenciasP)
-            {
-                <div class="flip-card col-md-3 mb-5">
-                    <div class="flip-card-inner ">
-                        <div class="flip-card-front align-items-center d-flex justify-content-center">
-                            <h1> @Html.DisplayFor(modelItem => item.nomeComp)</h1>
+        @if (User.IsInRole("Administradora"))
+        {
+            <p>
+                <a class="btn btn-primary" asp-area="" asp-controller="CompetenciasP" asp-action="Create">Adicionar competência pessoal</a>
+            </p>
+            <div class="row mb-5 d-flex justify-content-center">
+
+                @foreach (var item in Model.CompetenciasP)
+                {
+                    <div class="flip-card col-md-3 mb-5">
+                        <div class="flip-card-inner ">
+                            <div class="flip-card-front align-items-center d-flex justify-content-center">
+                                <h1> @Html.DisplayFor(modelItem => item.nomeComp)</h1>
+                            </div>
+                            <div class="flip-card-back align-items-center d-flex justify-content-center">
+                                @Html.DisplayFor(modelItem => item.descricaoComp)
+                            </div>
                         </div>
-                        <div class="flip-card-back align-items-center d-flex justify-content-center">
-                            @Html.DisplayFor(modelItem => item.descricaoComp)
+                        <div style="text-align: center;">
+                            <a class="btn btn-warning" asp-area="" asp-controller="CompetenciasP" asp-action="Edit" asp-route-id="@item.CompetenciasPId">Editar</a>
+                            <a class="btn btn-danger" asp-area="" asp-controller="CompetenciasP" asp-action="Delete" asp-route-id="@item.CompetenciasPId"> Apagar </a>
                         </div>
                     </div>
+                }
+
+            </div>
+        }
+
+        @if (!User.IsInRole("Administradora"))
+        {
+            <div class="row mb-5 d-flex justify-content-center">
+                @foreach (var item in Model.CompetenciasP)
+                {
+                    <div class="flip-card col-md-3 mb-5">
+                        <div class="flip-card-inner ">
+                            <div class="flip-card-front align-items-center d-flex justify-content-center">
+                                <h1> @Html.DisplayFor(modelItem => item.nomeComp)</h1>
+                            </div>
+                            <div class="flip-card-back align-items-center d-flex justify-content-center">
+                                @Html.DisplayFor(modelItem => item.descricaoComp)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <!--Competéncias Técnicas-->
+        <div class="row">
+
+            @if (User.IsInRole("Administradora"))
+            {
+                <div class="col-12 col-sm-6">
+                    <p>
+                        <a class="btn btn-primary" asp-action="Create">Adicionar competência digital</a>
+                    </p>
+                    <table style="margin-left: auto;
+                    margin-right: auto;
+                    border-collapse: separate;">
+                        @foreach (var item in Model.CompetenciasD)
+                        {
+                            <!--Competéncias Técnicas-->
+
+                            <tr style="height: 40px;">
+                                <td>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CompetenciasDId">Editar</a>
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CompetenciasDId"> Apagar </a>
+                                </td>
+                                <td style="margin-right: 100px; color: white;">
+                                    @Html.DisplayFor(modelItem => item.nomeComp)
+                                </td>
+                                <td class="skills" style="margin-left: 100px;">
+
+                                    <ul>
+                                        @for (int i = 0; i < item.nivelComp; i++)
+                                        {
+                                            <li>
+                                                <i class="fas fa-star"></i>
+                                            </li>
+                                        }
+
+                                        @for (int i = 0; i < 5 - item.nivelComp; i++)
+                                        {
+                                            <li>
+                                                <i class="far fa-star"></i>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </td>
+                            </tr>
+
+                        }
+                    </table>
+
+                </div>}
+
+            @if (!User.IsInRole("Administradora"))
+            {
+                <div class="col-12 col-sm-6">
+                    <table style="margin-left: auto;
+                    margin-right: auto;
+                    border-collapse: separate;">
+                        @foreach (var item in Model.CompetenciasD)
+                        {
+                            <tr style="height: 40px;">
+                                <td style="margin-right: 100px; color: white;">
+                                    @Html.DisplayFor(modelItem => item.nomeComp)
+                                </td>
+                                <td class="skills" style="margin-left: 100px;">
+
+                                    <ul>
+                                        @for (int i = 0; i < item.nivelComp; i++)
+                                        {
+                                            <li>
+                                                <i class="fas fa-star"></i>
+                                            </li>
+                                        }
+
+                                        @for (int i = 0; i < 5 - item.nivelComp; i++)
+                                        {
+                                            <li>
+                                                <i class="far fa-star"></i>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </td>
+                            </tr>
+
+                        }
+                    </table>
+
+                </div>}
+
+
+
+            @if (User.IsInRole("Administradora"))
+            {
+                <div class="col-12 col-sm-6">
+                    <p>
+                        <a class="btn btn-primary" asp-area="" asp-controller="CompetenciasF" asp-action="Create">Adicionar ferramenta</a>
+                    </p>
+                    <table style="margin-left: auto; margin-right: auto;">
+                        @foreach (var item in Model.CompetenciasF)
+                        {
+
+                            <tr style="height: 80px;">
+                                <td style=" height: 80px;">
+                                    @if (item.logo != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
+                                    }
+                                </td>
+
+                                <td class="progress" style="height: 30px; width: 200px; margin-top: 25px; margin-left: 10px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
+                                        @item.nomeComp
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" asp-area="" asp-controller="CompetenciasF" asp-action="Edit" asp-route-id="@item.CompetenciasFId">Editar</a>
+
+                                    <a class="btn btn-danger" asp-area="" asp-controller="CompetenciasF" asp-action="Delete" asp-route-id="@item.CompetenciasFId"> Apagar </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+            }
+
+
+            @if (!User.IsInRole("Administradora"))
+            {
+                <div class="col-12 col-sm-6">
+                    <table style="margin-left: auto; margin-right: auto;">
+                        @foreach (var item in Model.CompetenciasF)
+                        {
+
+                            <tr style="height: 80px;">
+                                <td style=" height: 80px;">
+                                    @if (item.logo != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
+                                    }
+                                </td>
+
+                                <td class="progress" style="height: 30px; width: 400px; margin-top: 25px; margin-left: 10px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
+                                        @item.nomeComp
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
                 </div>
             }
         </div>
-
-
-        <table style="margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
-        border-collapse: separate;
-">
-            @foreach (var item in Model.CompetenciasD)
-            {
-                <!--Competéncias Técnicas-->
-
-                <tr style="height: 40px;">
-                    <td style="margin-top: 25px; margin-right: 100px; color: white;">
-                        @Html.DisplayFor(modelItem => item.nomeComp)
-                    </td>
-                <td class="skills" style="margin-left: 100px;">
- 
-                        <ul>
-                            @for (int i = 0; i < item.nivelComp; i++)
-                            {
-                                <li>
-                                    <i class="fas fa-star"></i>
-                                </li>
-                            }
-
-                            @for (int i = 0; i < 5 - item.nivelComp; i++)
-                            {
-                                <li>
-                                    <i class="far fa-star"></i>
-                                </li>
-                            }
-                        </ul>
-      
-                </td>
-                </tr>
-            }
-            </table>
-
-        <div style="margin-top:100px;">
-            <table style="margin-left: auto; margin-right: auto;">
-                @foreach (var item in Model.CompetenciasF)
-                {
-
-                    <tr style="height: 80px;">
-                        <td style=" height: 80px;">
-                            @if (item.logo != null)
-                            {
-                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
-                            }
-                        </td>
-
-                        <td class="progress" style="height: 30px; width: 400px; margin-top: 25px; margin-left: 10px;">
-                            <div class="progress-bar" role="progressbar"
-                                 aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
-                                @item.nomeComp
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-
     </div>
-
-    </section>
+</section>
 
