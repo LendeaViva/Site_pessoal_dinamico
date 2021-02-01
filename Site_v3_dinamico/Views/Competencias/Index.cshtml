@@ -31,64 +31,68 @@
             }
         </div>
 
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6 justify-content-center">
 
-                @foreach (var item in Model.CompetenciasD)
-                {
-                    <!--Competéncias Técnicas-->
+        <table style="margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        border-collapse: separate;
+">
+            @foreach (var item in Model.CompetenciasD)
+            {
+                <!--Competéncias Técnicas-->
 
-                    <div class="row">
-                        <div class="skills col-6 d-flex justify-content-end">
-                            <p>@Html.DisplayFor(modelItem => item.nomeComp)</p>
-                        </div>
-                        <div class="col-6 align-items-center">
-                            <div class="skills ">
-                                <ul>
-                                    @for (int i = 0; i < item.nivelComp; i++)
-                                    {
-                                        <li>
-                                            <i class="fas fa-star"></i>
-                                        </li>
-                                    }
+                <tr style="height: 40px;">
+                    <td style="margin-top: 25px; margin-right: 100px; color: white;">
+                        @Html.DisplayFor(modelItem => item.nomeComp)
+                    </td>
+                <td class="skills" style="margin-left: 100px;">
+ 
+                        <ul>
+                            @for (int i = 0; i < item.nivelComp; i++)
+                            {
+                                <li>
+                                    <i class="fas fa-star"></i>
+                                </li>
+                            }
 
-                                    @for (int i = 0; i < 5 - item.nivelComp; i++)
-                                    {
-                                        <li>
-                                            <i class="far fa-star"></i>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                            @for (int i = 0; i < 5 - item.nivelComp; i++)
+                            {
+                                <li>
+                                    <i class="far fa-star"></i>
+                                </li>
+                            }
+                        </ul>
+      
+                </td>
+                </tr>
+            }
+            </table>
 
-                }
-            </div>
-        </div>
         <div style="margin-top:100px;">
-            <table >
+            <table style="margin-left: auto; margin-right: auto;">
                 @foreach (var item in Model.CompetenciasF)
                 {
 
-                    <tr style="margin-top: 10px;">
-                        <td style="height: 20px;">
+                    <tr style="height: 80px;">
+                        <td style=" height: 80px;">
                             @if (item.logo != null)
                             {
                                 <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
                             }
                         </td>
 
-                        <td class="progress" style="height: 20px; width: 400px; " >
-                            <div width:@item.nivelComp%" class="progress-bar" role="progressbar"
-                                 aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100">
+                        <td class="progress" style="height: 30px; width: 400px; margin-top: 25px; margin-left: 10px;">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
                                 @item.nomeComp
                             </div>
                         </td>
                     </tr>
                 }
             </table>
-           
         </div>
+
+    </div>
+
     </section>
 
