@@ -30,6 +30,7 @@ namespace Site_v3_dinamico.Controllers
             return View(await _context.FormacaoComp.ToListAsync());
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: FormacaoComp/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,6 +48,7 @@ namespace Site_v3_dinamico.Controllers
 
             return View(formacaoComp);
         }
+
 
         // GET: FormacaoComp/Create
         [Authorize(Roles = "Administradora")]

@@ -27,6 +27,7 @@ namespace Site_v3_dinamico.Controllers
             return View(await _context.CompetenciasF.ToListAsync());
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: CompetenciasF/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +46,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasF);
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: CompetenciasF/Create
         public IActionResult Create()
         {
@@ -80,6 +82,7 @@ namespace Site_v3_dinamico.Controllers
             }
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: CompetenciasF/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -132,6 +135,7 @@ namespace Site_v3_dinamico.Controllers
             return View(competenciasF);
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: CompetenciasF/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

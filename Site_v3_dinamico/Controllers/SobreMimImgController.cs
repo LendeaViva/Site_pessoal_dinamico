@@ -28,6 +28,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: SobreMimImg/Details/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +47,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: SobreMimImg/Create
+        [Authorize(Roles = "Administradora")]
         public IActionResult Create()
         {
 
@@ -86,6 +88,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: SobreMimImg/Edit/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -138,6 +141,7 @@ namespace Site_v3_dinamico.Controllers
         }
 
         // GET: SobreMimImg/Delete/5
+        [Authorize(Roles = "Administradora")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

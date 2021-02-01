@@ -28,6 +28,7 @@ namespace SitePessoalDinamico.Controllers
             return View(await _context.Exp_Profissional.ToListAsync());
         }
 
+        [Authorize(Roles = "Administradora")]
         // GET: Exp_Profissional/Details/5
         public async Task<IActionResult> Details(int? id)
         {
