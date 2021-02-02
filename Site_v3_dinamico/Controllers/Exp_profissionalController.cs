@@ -41,7 +41,7 @@ namespace SitePessoalDinamico.Controllers
                 .FirstOrDefaultAsync(m => m.Exp_ProfissionalId == id);
             if (Exp_Profissional == null)
             {
-                return NotFound();
+                return View("Inexistente");
             }
 
             return View(Exp_Profissional);
@@ -120,30 +120,34 @@ namespace SitePessoalDinamico.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
-                    _context.Update(Exp_Profissional);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Exp_ProfissionalExists(Exp_Profissional.Exp_ProfissionalId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                
+                return View(Exp_Profissional);
             }
 
-            ViewBag.Mensagem = "Produto alterado com sucesso";
+            try
+            {
+                AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
+                _context.Update(Exp_Profissional);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!Exp_ProfissionalExists(Exp_Profissional.Exp_ProfissionalId))
+                {
+                    return View("EliminarInserir", Exp_Profissional);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro. Não foi possível guardar o cargo/função. Tente novamente e se o problema persistir contacte a assistência.");
+                    return View(Exp_Profissional);
+                }
+            }
+
+            ViewBag.Mensagem = "Cargo/função alterado com sucesso";
             return View("Sucesso");
+           
         }
 
         // GET: Exp_Profissional/Delete/5
@@ -174,7 +178,8 @@ namespace SitePessoalDinamico.Controllers
             var Exp_Profissional = await _context.Exp_Profissional.FindAsync(id);
             _context.Exp_Profissional.Remove(Exp_Profissional);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O produto foi eliminado com sucesso";
+            return View("Sucesso");
         }
 
         private bool Exp_ProfissionalExists(int id)
