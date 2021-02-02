@@ -74,7 +74,8 @@ namespace Site_v3_dinamico.Controllers
             {
                 _context.Add(sobreMim);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Sobre mim adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(sobreMim);
         }
@@ -126,7 +127,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Sobre mim alterado com sucesso";
+                return View("Sucesso");
             }
             return View(sobreMim);
         }
@@ -158,7 +160,8 @@ namespace Site_v3_dinamico.Controllers
             var sobreMim = await _context.SobreMim.FindAsync(id);
             _context.SobreMim.Remove(sobreMim);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Sobre mim removido com sucesso";
+            return View("Sucesso");
         }
 
         private bool SobreMimExists(int id)

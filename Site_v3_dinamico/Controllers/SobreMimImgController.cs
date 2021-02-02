@@ -69,11 +69,13 @@ namespace Site_v3_dinamico.Controllers
                 AtualizaImagem(sobreMimImg, ficheiroImagem);
                 _context.Add(sobreMimImg);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Imagem adicionada com sucesso";
+                return View("Sucesso");
             }
             _context.Add(sobreMimImg);
             await _context.SaveChangesAsync();
-            return View(sobreMimImg);
+            ViewBag.Mensagem = "Imagem adicionada com sucesso";
+            return View("Sucesso");
         }
 
         private static void AtualizaImagem(SobreMimImg sobreMimImg, IFormFile ficheiroImagem)
@@ -136,7 +138,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Imagem alterada com sucesso";
+                return View("Sucesso");
             }
             return View(sobreMimImg);
         }
@@ -168,7 +171,8 @@ namespace Site_v3_dinamico.Controllers
             var sobreMimImg = await _context.SobreMimImg.FindAsync(id);
             _context.SobreMimImg.Remove(sobreMimImg);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Imagem apagada com sucesso";
+            return View("Sucesso");
         }
 
         private bool SobreMimImgExists(int id)
