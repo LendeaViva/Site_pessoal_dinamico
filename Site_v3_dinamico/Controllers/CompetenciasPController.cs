@@ -39,7 +39,7 @@ namespace Site_v3_dinamico.Controllers
                 .FirstOrDefaultAsync(m => m.CompetenciasPId == id);
             if (competenciasP == null)
             {
-                return NotFound();
+                return View("Inexistente");
             }
 
             return View(competenciasP);
@@ -59,13 +59,18 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CompetenciasPId,nomeComp,descricaoComp")] CompetenciasP competenciasP)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(competenciasP);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return View(competenciasP);
             }
-            return View(competenciasP);
+
+           
+            _context.Add(competenciasP);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Competência adicionada com sucesso";
+            return View("Sucesso");
         }
 
         [Authorize(Roles = "Administradora")]
@@ -97,27 +102,33 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(competenciasP);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompetenciasPExists(competenciasP.CompetenciasPId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                return View(competenciasP);
             }
-            return View(competenciasP);
+
+            try
+            {
+               
+                _context.Update(competenciasP);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CompetenciasPExists(competenciasP.CompetenciasPId))
+                {
+                    return View("EliminarInserir", competenciasP);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro. Não foi possível guardar a competência. Tente novamente e se o problema persistir contacte a assistência.");
+                    return View(competenciasP);
+                }
+            }
+
+            ViewBag.Mensagem = "Competência alterada com sucesso";
+            return View("Sucesso");
         }
 
         [Authorize(Roles = "Administradora")]
@@ -147,7 +158,8 @@ namespace Site_v3_dinamico.Controllers
             var competenciasP = await _context.Competencias.FindAsync(id);
             _context.Competencias.Remove(competenciasP);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A competência foi eliminado com sucesso";
+            return View("Sucesso");
         }
 
         private bool CompetenciasPExists(int id)

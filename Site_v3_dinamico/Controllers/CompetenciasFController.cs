@@ -41,7 +41,7 @@ namespace Site_v3_dinamico.Controllers
                 .FirstOrDefaultAsync(m => m.CompetenciasFId == id);
             if (competenciasF == null)
             {
-                return NotFound();
+                return View("Inexistente");
             }
 
             return View(competenciasF);
@@ -61,14 +61,22 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CompetenciasFId,nomeComp,nivelComp,logo")] CompetenciasF competenciasF, IFormFile ficheiroLogo)
         {
+            if (!ModelState.IsValid)
+            {
+
+                return View(competenciasF);
+            }
+
             if (ModelState.IsValid)
             {
                 AtualizaLogo(competenciasF, ficheiroLogo);
                 _context.Add(competenciasF);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Competência adicionada com sucesso";
+                return View("Sucesso");
             }
-            return View(competenciasF);
+            ViewBag.Mensagem = "Competência adicionada com sucesso";
+            return View("Sucesso");
         }
 
         private static void AtualizaLogo(CompetenciasF competenciasF, IFormFile ficheiroLogo)
@@ -131,7 +139,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Competência alterada com sucesso";
+                return View("Sucesso");
             }
             return View(competenciasF);
         }
@@ -163,7 +172,8 @@ namespace Site_v3_dinamico.Controllers
             var competenciasF = await _context.CompetenciasF.FindAsync(id);
             _context.CompetenciasF.Remove(competenciasF);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A competência foi eliminado com sucesso";
+            return View("Sucesso");
         }
 
         private bool CompetenciasFExists(int id)

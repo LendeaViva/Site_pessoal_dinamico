@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Sucesso";
+    ViewData["Title"] = "Competência inexistente";
 }
 
 <section class="section my-services" data-section="section5">
@@ -8,19 +8,18 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="section-heading">
-                    <h2>Sucesso <i class="fas fa-check" style="color: #06a11a"></i></h2>
+                    <h2>@ViewBag.Title <i class="fas fa-check" style="color: #06a11a"></i></h2>
                     <div class="line-dec"></div>
                 </div>
-               
-                <div  class="card text-white bg-success mb-3">
-                    <div class="card-body">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body" style="background-color: #06a11a">
                         </>
 
-                        <p class="card-text">@ViewBag.Mensagem</p>
+                        <p class="card-text">A competência que selecionou já não existe.</p>
 
                         <div>
                             <a class="btn btn-primary" asp-action="Index">
-                                Ver Experiência Profissional
+                                Ver Competências
                             </a>
                         </div>
                     </div>
