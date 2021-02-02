@@ -146,7 +146,8 @@ namespace Site_v3_dinamico.Controllers
                 encomenda.dataEncomenda = DateTime.Now;
                 _context.Add(encomenda);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Encomenda criada com sucesso";
+                return View("Sucesso");
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
             ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome", encomenda.ServicosId);
@@ -238,7 +239,8 @@ namespace Site_v3_dinamico.Controllers
             var encomenda = await _context.Encomenda.FindAsync(id);
             _context.Encomenda.Remove(encomenda);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Encomenda apagada com sucesso";
+            return View("Sucesso");
         }
 
         private bool EncomendaExists(int id)
