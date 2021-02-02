@@ -178,7 +178,7 @@ namespace SitePessoalDinamico.Controllers
             var Exp_Profissional = await _context.Exp_Profissional.FindAsync(id);
             _context.Exp_Profissional.Remove(Exp_Profissional);
             await _context.SaveChangesAsync();
-            ViewBag.Mensagem = "O produto foi eliminado com sucesso";
+            ViewBag.Mensagem = "O cargo/função foi eliminado com sucesso";
             return View("Sucesso");
         }
 

@@ -92,7 +92,7 @@ namespace Site_v3_dinamico
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=SobreMim}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
 
