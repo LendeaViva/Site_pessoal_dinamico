@@ -120,7 +120,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FormacaoId,nomeInstituicao,dataIniciodataFim,nomeCurso,conteudos,logotipoForm")] Formacao formacao, IFormFile ficheiroLogotipoForm)
+        public async Task<IActionResult> Edit(int id, [Bind("FormacaoId,nomeInstituicao,dataInicio,dataFim,nomeCurso,conteudos,logotipoForm")] Formacao formacao, IFormFile ficheiroLogotipoForm) //Verificar
         {
             if (id != formacao.FormacaoId)
             {

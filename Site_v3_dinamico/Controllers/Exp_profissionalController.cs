@@ -25,7 +25,9 @@ namespace SitePessoalDinamico.Controllers
         // GET: Exp_Profissional
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Exp_Profissional.ToListAsync());
+            return View(await _context.Exp_Profissional
+                .OrderByDescending(p => p.dataFim)
+                .ToListAsync());
         }
 
         [Authorize(Roles = "Administradora")]

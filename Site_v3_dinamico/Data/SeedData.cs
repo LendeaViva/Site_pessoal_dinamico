@@ -31,6 +31,129 @@ namespace Site_v3_dinamico.Data
             InsereSobreMim(bd);
         }
 
+        public static void InsereCompetenciasD(SiteDinamicoBdContext bd)
+        {
+            if (bd.CompetenciasD.Any()) return;
+
+            bd.CompetenciasD.AddRange(new CompetenciasD[]
+            {
+                 new CompetenciasD
+                 {
+                     nomeComp = "HTML/CSS",
+                     nivelComp = 3
+
+                 },
+
+
+                  new CompetenciasD
+                 {
+                     nomeComp = "C#",
+                     nivelComp = 3
+
+                 },
+
+                  new CompetenciasD
+                 {
+                     nomeComp = "Boostrap",
+                     nivelComp = 3
+
+                 },
+
+                   new CompetenciasD
+                 {
+                     nomeComp = "Asp Net Core",
+                     nivelComp = 3
+
+                 },
+
+         
+            });
+
+
+            bd.SaveChanges();
+        }
+
+        public static void InsereCompetenciasF(SiteDinamicoBdContext bd)
+        {
+            if (bd.CompetenciasF.Any()) return;
+
+            bd.CompetenciasF.AddRange(new CompetenciasF[]
+            {
+                 new CompetenciasF
+                 {
+                     nomeComp = "Photoshop",
+                     nivelComp = 70
+
+                 },
+
+
+                  new CompetenciasF
+                 {
+                     nomeComp = "Adobe Premiere",
+                     nivelComp = 40
+
+                 },
+
+                  new CompetenciasF
+                 {
+                     nomeComp = "Visual Studio",
+                     nivelComp = 70
+
+                 },
+
+                   new CompetenciasF
+                 {
+                     nomeComp = "Office",
+                     nivelComp = 90
+
+                 },
+            });
+
+
+            bd.SaveChanges();
+        }
+
+        public static void InsereCompetenciasP(SiteDinamicoBdContext bd)
+        {
+            if (bd.CompetenciasP.Any()) return;
+
+            bd.CompetenciasP.AddRange(new CompetenciasP[]
+            {
+                 new CompetenciasP
+                 {
+                     nomeComp = "Comunicação",
+                     descricaoComp = "Comunicação clara e empática, adaptada ao contexto e ao tipo de público-alvo, em português e em inglês"
+
+                 },
+
+
+                  new CompetenciasP
+                 {
+                     nomeComp = "Trabalho em equipa",
+                     descricaoComp = "Experiência em integração de equipas multidisciplinares com profissionais de diferentes nacionalidades"
+
+                 },
+
+                  new CompetenciasP
+                 {
+                     nomeComp = "Resolução de problemas",
+                     descricaoComp = "Facilidade na adaptação à mudança e na criação de soluções em situações limite"
+
+                 },
+
+                   new CompetenciasP
+                 {
+                     nomeComp = "Resiliência",
+                     descricaoComp = "Capacidade de gestão emocional em ambientes de trabalho exigentes com elevados padrões de qualidade"
+
+                 },
+
+            });
+
+
+            bd.SaveChanges();
+        }
+
         public static void InsereSobreMim(SiteDinamicoBdContext bd)
         {
             if (bd.SobreMim.Any()) return;
@@ -115,12 +238,12 @@ namespace Site_v3_dinamico.Data
                     dataInicio = new DateTime(2020,10,5),
                     dataFim = new DateTime(2021,4,2),
                     nomeCurso = "Curso em Programação .NET",
-                    conteudos = "- Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; <br />" +
-                                "- Entender e definir arquiteturas Cliente-Servidor, em particular em cenários Web;< br />"+
-                                "-Estruturar e programar uma interface web, recorrendo a HTML e a Javascript;<br />"+
-                                "- Arquiteturar aplicações servidoras em ASPNET CORE;<br />"+
-                                "- Identificar e realizar as fases constituintes do Processo de Desenvolvimento de Software iterativo e incremental, em particular em sistemas Web;<br />"+
-                                "- Realizar as fases da Engenharia de Requisitos;<br />"+
+                    conteudos = "- Analisar e estruturar algoritmicamente problemas computacionais e codificá-los recorrendo à linguagem de programação C# utilizando o paradigma OO; \n" +
+                                "- Entender e definir arquiteturas Cliente-Servidor, em particular em cenários Web; \n "+
+                                "-Estruturar e programar uma interface web, recorrendo a HTML e a Javascript; \n "+
+                                "- Arquiteturar aplicações servidoras em ASPNET CORE; \n"+
+                                "- Identificar e realizar as fases constituintes do Processo de Desenvolvimento de Software iterativo e incremental, em particular em sistemas Web; \n"+
+                                "- Realizar as fases da Engenharia de Requisitos; \n "+
                                 "- Modelar e inquerir informação numa base de dados relacional;"
                 },
                 new Formacao
@@ -130,9 +253,9 @@ namespace Site_v3_dinamico.Data
                     dataInicio = new DateTime(2010,9,10),
                     dataFim = new DateTime(2016,10,30),
                     nomeCurso = "Mestrado Integrado em Psicologia",
-                    conteudos = "- Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento <br />"+
-                                "- Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra<br />"+
-                                "- Dissertação de mestrado 'Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2'"
+                    conteudos = "- Mestrado em Psicologia da Educação, Desenvolvimento e Aconselhamento \n"+
+                                "- Estágio no SPO do Colégio da Rainha Santa Isabel em Coimbra \n"+
+                                "- Dissertação de mestrado 'Consciência metalinguística em crianças portuguesas com 9 anos de idade: estudo exploratório com o THAM-2"
                       
                 },
 
@@ -202,7 +325,7 @@ namespace Site_v3_dinamico.Data
                    dataInicio = new DateTime(2020,10,5),
                    dataFim = DateTime.Now,
                    funcao = "Trainee",
-                   descricaoFuncao = "Programa de requalificação profissional na área das novas tecnologias"+
+                   descricaoFuncao = "Programa de requalificação profissional na área das novas tecnologias \n"+
                    "Estágio na multinacional Altran"
                 },
 
@@ -212,13 +335,13 @@ namespace Site_v3_dinamico.Data
                    dataInicio = new DateTime(2017,4,1),
                    dataFim = new DateTime(2019,10,30),
                    funcao = "Psicóloga clínica e da saúde",
-                   descricaoFuncao = "Acompanhamento psicoterapêutico individual de jovens e adultos, de abordagem cognitivo-comportamental, em português e inglês"+
-                                    "Dinamização e mediação de sessões terapêuticas de grupo (e.g.: psicoeducação, mindfulness, prevenção da recaída, terapia ocupacional)"+
-                                    "Integração de equipa multidisciplinar em parceria com multinacional holandesa"+
-                                    "Elaboração de planos de tratamento individuais com estabelecimento de objetivos terapêuticos"+
-                                    "Aplicação de instrumentos de avaliação psicológica e elaboração de relatórios"+
-                                    "Coordenação de unidade terapêutica e gestão da respetiva equipa"+
-                                    "Colaboração no desenvolvimento de modelo terapêutico adaptado e de materiais psicoeducativos"+
+                   descricaoFuncao = "Acompanhamento psicoterapêutico individual de jovens e adultos, de abordagem cognitivo-comportamental, em português e inglês \n "+
+                                    "Dinamização e mediação de sessões terapêuticas de grupo (e.g.: psicoeducação, mindfulness, prevenção da recaída, terapia ocupacional) \n"+
+                                    "Integração de equipa multidisciplinar em parceria com multinacional holandesa \n "+
+                                    "Elaboração de planos de tratamento individuais com estabelecimento de objetivos terapêuticos \n "+
+                                    "Aplicação de instrumentos de avaliação psicológica e elaboração de relatórios \n"+
+                                    "Coordenação de unidade terapêutica e gestão da respetiva equipa \n"+
+                                    "Colaboração no desenvolvimento de modelo terapêutico adaptado e de materiais psicoeducativos \n"+
                                     "Desempenho de tarefas administrativas e logísticas inerentes à manutenção e organização interna da unidade terapêutica"
                 },
 
