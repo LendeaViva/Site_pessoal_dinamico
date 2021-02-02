@@ -62,18 +62,20 @@ namespace SitePessoalDinamico.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Exp_ProfissionalId,nomeEmpresa,dataInicio,dataFim,funcao,descricaoFuncao")] Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
         {
-            if (ModelState.IsValid)
+           
+            if (!ModelState.IsValid)
             {
-                AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
-                _context.Add(Exp_Profissional);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+               
+                return View(Exp_Profissional);
             }
+
+            AtualizaLogotipoExp(Exp_Profissional, ficheiroLogotipo);
 
             _context.Add(Exp_Profissional);
             await _context.SaveChangesAsync();
 
-            return View(Exp_Profissional);
+            ViewBag.Mensagem = "Cargo/função adicionado com sucesso.";
+            return View("Sucesso");
         }
 
         private static void AtualizaLogotipoExp(Exp_Profissional Exp_Profissional, IFormFile ficheiroLogotipo)
@@ -139,7 +141,9 @@ namespace SitePessoalDinamico.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(Exp_Profissional);
+
+            ViewBag.Mensagem = "Produto alterado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: Exp_Profissional/Delete/5
