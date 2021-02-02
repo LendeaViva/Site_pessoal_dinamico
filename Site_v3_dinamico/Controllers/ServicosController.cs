@@ -65,7 +65,8 @@ namespace Site_v3_dinamico.Controllers
                 AtualizaImagem(servicos, ficheiroImagem);
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Serviço adicionado com sucesso";
+                return View("Sucesso");
             }
 
             return View(servicos);
@@ -131,7 +132,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Serviço alterado com sucesso";
+                return View("Sucesso");
             }
             return View(servicos);
         }
@@ -163,7 +165,8 @@ namespace Site_v3_dinamico.Controllers
             var servicos = await _context.Servicos.FindAsync(id);
             _context.Servicos.Remove(servicos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Serviço apagado com sucesso";
+            return View("Sucesso");
         }
 
         private bool ServicosExists(int id)
