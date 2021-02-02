@@ -80,7 +80,8 @@ namespace Site_v3_dinamico.Controllers
                 AtualizaLogotipoForm(formacao, ficheiroLogotipoForm);
                 _context.Add(formacao);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Formação adicionada com sucesso.";
+                return View("Sucesso");
             }
 
             return View(formacao);
@@ -145,7 +146,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Formação alterada com sucesso.";
+                return View("Sucesso");
             }
             return View(formacao);
         }
@@ -177,7 +179,8 @@ namespace Site_v3_dinamico.Controllers
             var formacao = await _context.Formacao.FindAsync(id);
             _context.Formacao.Remove(formacao);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Formação removida com sucesso.";
+            return View("Sucesso");
         }
 
         private bool FormacaoExists(int id)

@@ -68,7 +68,8 @@ namespace Site_v3_dinamico.Controllers
             {
                 _context.Add(formacaoComp);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Formação adicionada com sucesso.";
+                return View("Sucesso");
             }
             return View(formacaoComp);
         }
@@ -120,7 +121,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Formação alterada com sucesso.";
+                return View("Sucesso");
             }
             return View(formacaoComp);
         }
@@ -152,7 +154,8 @@ namespace Site_v3_dinamico.Controllers
             var formacaoComp = await _context.FormacaoComp.FindAsync(id);
             _context.FormacaoComp.Remove(formacaoComp);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Formação removida com sucesso.";
+            return View("Sucesso");
         }
 
         private bool FormacaoCompExists(int id)

@@ -69,22 +69,20 @@
                     <p>
                         <a class="btn btn-primary" asp-action="Create">Adicionar competência digital</a>
                     </p>
-                    <table style="margin-left: auto;
-                    margin-right: auto;
-                    border-collapse: separate;">
+                    <table>
                         @foreach (var item in Model.CompetenciasD)
                         {
                             <!--Competéncias Técnicas-->
 
-                            <tr style="height: 40px;">
+                            <tr>
                                 <td>
                                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CompetenciasDId">Editar</a>
                                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CompetenciasDId"> Apagar </a>
                                 </td>
-                                <td style="margin-right: 100px; color: white;">
+                                <td style="color: white; style="height: 80px;">
                                     @Html.DisplayFor(modelItem => item.nomeComp)
                                 </td>
-                                <td class="skills" style="margin-left: 100px;">
+                                <td class="skills" style= "height: 80px;">
 
                                     <ul>
                                         @for (int i = 0; i < item.nivelComp; i++)
@@ -113,35 +111,33 @@
             @if (!User.IsInRole("Administradora"))
             {
                 <div class="col-12 col-sm-6">
-                    <table style="margin-left: auto;
-                    margin-right: auto;
-                    border-collapse: separate;">
+                    <table border="0">
                         @foreach (var item in Model.CompetenciasD)
                         {
-                            <tr style="height: 40px;">
-                                <td style="margin-right: 100px; color: white;">
-                                    @Html.DisplayFor(modelItem => item.nomeComp)
-                                </td>
-                                <td class="skills" style="margin-left: 100px;">
+                        <tr style= "color: white;">
+                            <td style="padding:0px; margin:0px;">
+                                @Html.DisplayFor(modelItem => item.nomeComp)
+                            </td>
+                            <td class="skills" style="padding:0px; margin:0px;">
 
-                                    <ul>
-                                        @for (int i = 0; i < item.nivelComp; i++)
-                                        {
-                                            <li>
-                                                <i class="fas fa-star"></i>
-                                            </li>
-                                        }
+                                <ul>
+                                    @for (int i = 0; i < item.nivelComp; i++)
+                                    {
+                                        <li>
+                                            <i class="fas fa-star"></i>
+                                        </li>
+                                    }
 
-                                        @for (int i = 0; i < 5 - item.nivelComp; i++)
-                                        {
-                                            <li>
-                                                <i class="far fa-star"></i>
-                                            </li>
-                                        }
-                                    </ul>
+                                    @for (int i = 0; i < 5 - item.nivelComp; i++)
+                                    {
+                                        <li>
+                                            <i class="far fa-star"></i>
+                                        </li>
+                                    }
+                                </ul>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
                         }
                     </table>

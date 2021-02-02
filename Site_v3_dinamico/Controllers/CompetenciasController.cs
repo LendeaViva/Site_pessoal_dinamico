@@ -76,7 +76,8 @@ namespace Site_v3_dinamico.Controllers
             {
                 _context.Add(competenciasD);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Competência adicionada com sucesso";
+                return View("Sucesso");
             }
             return View(competenciasD);
         }
@@ -128,7 +129,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Competência alterada com sucesso";
+                return View("Sucesso");
             }
             return View(competenciasD);
         }
@@ -160,7 +162,8 @@ namespace Site_v3_dinamico.Controllers
             var competenciasD = await _context.CompetenciasD.FindAsync(id);
             _context.CompetenciasD.Remove(competenciasD);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Competência removida com sucesso";
+            return View("Sucesso");
         }
 
         private bool CompetenciasDExists(int id)
