@@ -9,5 +9,7 @@ namespace Site_v3_dinamico.Models
     {
         public List<Encomenda> Encomenda { get; set; }
         public Paginacao Paginacao { get; set; }
+
+        public string NomePesquisar { get; set; }
     }
 }

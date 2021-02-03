@@ -23,7 +23,7 @@ namespace Site_v3_dinamico.Controllers
 
         // GET: Encomendas
         //[Authorize (Roles="Administradora")]
-        public async Task<IActionResult> Index(string sortOrder, int pagina = 1)
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             //Contador de novas encomendas
             int conta = ContarNovas();
@@ -41,11 +41,11 @@ namespace Site_v3_dinamico.Controllers
             //Paginacao
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Encomenda.CountAsync(),
+                TotalItems = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<Encomenda> encomendas = await _context.Encomenda
+            List<Encomenda> encomendas = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar))
                 .Include(p => p.Servicos)
                 .Include(p => p.Cliente)
                 .OrderBy(p => p.respondido)
@@ -59,6 +59,7 @@ namespace Site_v3_dinamico.Controllers
        
                 Encomenda = encomendas,
                 Paginacao = paginacao,
+                NomePesquisar = nomePesquisar
 
             };
 
