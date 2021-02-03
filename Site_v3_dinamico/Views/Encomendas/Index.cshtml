@@ -137,8 +137,7 @@
                         }
                     </tbody>
                 </table>
-                @if (User.IsInRole("Administradora"))
-                {
+                
                     <nav>
                         <ul class="pagination">
                             @{
@@ -173,7 +172,7 @@
                             </li>
                         </ul>
                     </nav>
-                }
+                
                 @if (User.IsInRole("Cliente"))
                 {
                     <a class="btn btn-primary" asp-area="" asp-controller="Clientes" asp-action="Details">

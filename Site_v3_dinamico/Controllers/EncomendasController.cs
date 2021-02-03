@@ -38,8 +38,8 @@ namespace Site_v3_dinamico.Controllers
             }
             ViewBag.Message = novas;
 
-            //Paginacao
-            Paginacao paginacao = new Paginacao
+            //Paginacao Admin
+            Paginacao paginacao1 = new Paginacao
             {
                 TotalItems = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
@@ -50,35 +50,39 @@ namespace Site_v3_dinamico.Controllers
                 .Include(p => p.Cliente)
                 .OrderBy(p => p.respondido)
                 .ThenByDescending(p => p.dataEncomenda)
-                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
-                .Take(paginacao.ItemsPorPagina)
+                .Skip(paginacao1.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao1.ItemsPorPagina)
                 .ToListAsync();
 
             ListaEncomendasViewModel modelo = new ListaEncomendasViewModel
             {
        
                 Encomenda = encomendas1,
-                Paginacao = paginacao,
+                Paginacao = paginacao1,
                 NomePesquisar = nomePesquisar
 
             };
 
-
+            //Paginação cliente
+            Paginacao paginacao2 = new Paginacao
+            {
+                TotalItems = await _context.Encomenda.Include(p => p.Cliente).Where(p => p.Cliente.Email == User.Identity.Name).CountAsync(),
+                PaginaAtual = pagina
+            };
 
             List<Encomenda> encomendas2 = await _context.Encomenda
                 .Include(p => p.Servicos)
                 .Include(p => p.Cliente).Where(p => p.Cliente.Email == User.Identity.Name)
-                .OrderByDescending(p => p.dataEncomenda)  
-                .ToListAsync();
-
-            var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
-           
+                .OrderByDescending(p => p.dataEncomenda)
+                .Skip(paginacao2.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao2.ItemsPorPagina)
+                .ToListAsync();           
 
             ListaEncomendasViewModel modelo2 = new ListaEncomendasViewModel
             {
                 
                 Encomenda = encomendas2,
-
+                Paginacao = paginacao2,
             };
 
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
