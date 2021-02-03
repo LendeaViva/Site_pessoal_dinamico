@@ -29,6 +29,9 @@ namespace Site_v3_dinamico.Data
             InsereClientesFicticios(bd);
             InsereEncomendas(bd);
             InsereSobreMim(bd);
+            InsereCompetenciasD(bd);
+            InsereCompetenciasF(bd);
+            InsereCompetenciasP(bd);
         }
 
         public static void InsereCompetenciasD(SiteDinamicoBdContext bd)

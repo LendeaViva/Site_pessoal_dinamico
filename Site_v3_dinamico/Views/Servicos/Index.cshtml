@@ -80,14 +80,10 @@
             </table>
             @if (!User.IsInRole("Administradora"))
             {
-                if (User.Identity.Name == null)
-                {
-                    <a class="btn btn-danger" style="background-color: #ff006a; border-color: #ff006a" asp-area="" asp-controller="Clientes" asp-action="Registo">Pedir orçamento</a>
-                }
-                else
-                {
+                
+                
                     <a class="btn btn-danger" style="background-color: #ff006a; border-color: #ff006a" asp-area="" asp-controller="Encomendas" asp-action="Create">Pedir orçamento</a>
-                }
+                
 
             }
         </div>

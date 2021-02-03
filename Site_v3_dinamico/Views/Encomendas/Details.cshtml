@@ -21,9 +21,9 @@
                             @Html.DisplayNameFor(model => model.Cliente)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Servicos)
+                            Tipo de serviço
                         </th>
-                        <th>
+                        <th style="text-align:center">
                             Respondido
                         </th>
                         @*<th>
@@ -49,7 +49,7 @@
                             {
                                 <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.EncomendaId">Resolver</a>
                             }
-                            <a class="btn btn-danger" asp-action="Apagar" asp-route-id="@Model.EncomendaId"> Apagar </a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.EncomendaId"> Apagar </a>
                         </td>
                     </tr>
                 </tbody>

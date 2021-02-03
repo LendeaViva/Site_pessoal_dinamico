@@ -22,11 +22,14 @@
                             @Html.DisplayNameFor(model => model.Cliente)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Servicos)
+                            Tipo de serviço
+                        </th>
+                        <th>
+                            Detalhes
                         </th>
                         @*<th>
-                                @Html.DisplayNameFor(model => model.respondido)
-                            </th>*@
+            @Html.DisplayNameFor(model => model.respondido)
+        </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +42,11 @@
                         </td>
                         <td>
                             @Html.DisplayFor(model => model.Servicos.Nome)
+                        </td>
+                        <td>
                             @Html.DisplayFor(model => model.detalhes)
+                        </td>
+                            
                         @*</td>
                             @Html.CheckBoxFor(modelItem => item.respondido)
                         <td>*@

@@ -46,6 +46,8 @@
                 @if (User.IsInRole("Cliente"))
                 {
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ClienteId">Editar dados pessoais</a>
+                    <a class="btn btn-info" asp-area="" asp-controller="Encomendas" asp-action="Index">Ver pedidos realizados</a>
+
                 }
                 @if (User.IsInRole("Administradora"))
                 {

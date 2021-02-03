@@ -79,7 +79,7 @@
                                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CompetenciasDId">Editar</a>
                                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CompetenciasDId"> Apagar </a>
                                 </td>
-                                <td style="color: white; style="height: 80px;">
+                                <td style="color: white; height: 80px;">
                                     @Html.DisplayFor(modelItem => item.nomeComp)
                                 </td>
                                 <td class="skills" style= "height: 80px;">
@@ -152,19 +152,19 @@
                     <p>
                         <a class="btn btn-primary" asp-area="" asp-controller="CompetenciasF" asp-action="Create">Adicionar ferramenta</a>
                     </p>
-                    <table style="margin-left: auto; margin-right: auto;">
+                    <table border="0">
                         @foreach (var item in Model.CompetenciasF)
                         {
 
-                            <tr style="height: 80px;">
-                                <td style=" height: 80px;">
+                            <tr>
+                                <td style="padding:0px; margin:0px; width:37px;">
                                     @if (item.logo != null)
                                     {
                                         <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
                                     }
                                 </td>
 
-                                <td class="progress" style="height: 30px; width: 200px; margin-top: 25px; margin-left: 10px;">
+                                <td class="progress" style="width: 250px; padding:0px; margin:0px; height: 30px">
                                     <div class="progress-bar" role="progressbar"
                                          aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
                                         @item.nomeComp
@@ -186,19 +186,19 @@
             @if (!User.IsInRole("Administradora"))
             {
                 <div class="col-12 col-sm-6">
-                    <table style="margin-left: auto; margin-right: auto;">
+                    <table border="0">
                         @foreach (var item in Model.CompetenciasF)
                         {
 
-                            <tr style="height: 80px;">
-                                <td style=" height: 80px;">
+                            <tr>
+                                <td style="padding:0px; margin:0px; width:37px;">
                                     @if (item.logo != null)
                                     {
                                         <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.logo)" class="img-fluid" />
                                     }
                                 </td>
 
-                                <td class="progress" style="height: 30px; width: 400px; margin-top: 25px; margin-left: 10px;">
+                                <td class="progress" style=" width: 400px; padding:0px; margin:0px; height: 30px">
                                     <div class="progress-bar" role="progressbar"
                                          aria-valuenow="@item.nivelComp" aria-valuemin="0" aria-valuemax="100" style="width:@item.nivelComp%;">
                                         @item.nomeComp
@@ -206,6 +206,12 @@
                                 </td>
 
                             </tr>
+                           <tr>
+                               <td style="height: 10px">
+                                         
+                               </td>
+                           </tr>
+
                         }
                     </table>
                 </div>

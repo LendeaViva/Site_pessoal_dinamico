@@ -7,7 +7,7 @@
 <section class="section my-services" data-section="section5">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 
                     <div class="section-heading">
                         <h2>Marcar como resolvido</h2>
@@ -24,12 +24,11 @@
                                         @Html.DisplayNameFor(model => model.Cliente)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Servicos)
+                                        Tipo de serviço
                                     </th>
-                                   
-                                    @*<th>
-                        @Html.DisplayNameFor(model => model.respondido)
-                    </th>*@
+                                    <th>
+                                       Detalhes
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,8 +41,12 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.Servicos.Nome)
-                                
+
+                                    </td>
                                     <td>
+                                        @Html.DisplayFor(model => model.Servicos.Descricao)
+
+                                    </td>
                             </tbody>
                         </table>
                     </div>

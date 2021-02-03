@@ -25,41 +25,18 @@ namespace Site_v3_dinamico.Controllers
         //[Authorize (Roles="Administradora")]
         public async Task<IActionResult> Index(string sortOrder, int pagina = 1)
         {
-            ViewData["OrdenaData"] = sortOrder == "data" ? "data_desc" : "data";
-            ViewData["OrdenaCliente"] = sortOrder == "nome" ? "nome_desc" : "nome";
-            ViewData["OrdenaServico"] = sortOrder == "servico" ? "servico_desc" : "servico";
-
-            var encomenda = from s in _context.Encomenda
-                             select s;
-            switch (sortOrder)
-            {
-                case "data":
-                    encomenda = encomenda.OrderBy(s => s.dataEncomenda);
-                    break;
-                case "data_desc":
-                    encomenda = encomenda.OrderByDescending(s => s.dataEncomenda);
-                    break;
-                case "nome":
-                    encomenda = encomenda.OrderBy(s => s.Cliente.Nome);
-                    break;
-                case "nome_desc":
-                    encomenda = encomenda.OrderByDescending(s => s.Cliente.Nome);
-                    break;
-                case "servico":
-                    encomenda = encomenda.OrderBy(s => s.Servicos);
-                    break;
-                case "servico_desc":
-                    encomenda = encomenda.OrderByDescending(s => s.Servicos);
-                    break;
-                default:
-                    encomenda = encomenda.OrderBy(p => p.respondido)
-                    .ThenByDescending(p => p.dataEncomenda);
-                    break;
-            }
-
             //Contador de novas encomendas
-            string conta = ContarNovas().ToString();
-            ViewBag.Message = conta;
+            int conta = ContarNovas();
+            string novas = "";
+            if (conta == 0)
+            {
+                novas = "Não tem";
+            }
+            if (conta > 0 )
+            {
+                novas = conta.ToString();
+            }
+            ViewBag.Message = novas;
 
             //Paginacao
             Paginacao paginacao = new Paginacao
@@ -111,7 +88,9 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var encomenda = await _context.Encomenda.Include(p => p.Servicos)
+            var encomenda = await _context.Encomenda
+                .Include(p => p.Servicos)
+                .Include(p => p.Cliente)
                 .SingleOrDefaultAsync(p => p.EncomendaId == id); 
             if (encomenda == null)
             {
@@ -121,6 +100,7 @@ namespace Site_v3_dinamico.Controllers
             return View(encomenda);
         }
 
+        [Authorize(Roles = "Cliente")]
         // GET: Encomendas/Create
         public IActionResult Create()
         {
@@ -136,7 +116,7 @@ namespace Site_v3_dinamico.Controllers
         [ValidateAntiForgeryToken]
 
 
-        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ServicosId")] Encomenda encomenda)
+        public async Task<IActionResult> Create([Bind("EncomendaId,dataEncomenda,ServicosId, detalhes")] Encomenda encomenda)
         {
 
             if (ModelState.IsValid)
@@ -146,7 +126,7 @@ namespace Site_v3_dinamico.Controllers
                 encomenda.dataEncomenda = DateTime.Now;
                 _context.Add(encomenda);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Encomenda criada com sucesso";
+                ViewBag.Mensagem = "Pedido de orçamento realizado com sucesso.";
                 return View("Sucesso");
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
@@ -163,7 +143,10 @@ namespace Site_v3_dinamico.Controllers
                 return NotFound();
             }
 
-            var encomenda = await _context.Encomenda.FindAsync(id);
+            var encomenda = await _context.Encomenda
+               .Include(e => e.Cliente)
+               .Include(e => e.Servicos)
+               .FirstOrDefaultAsync(m => m.EncomendaId == id);
             if (encomenda == null)
             {
                 return NotFound();
@@ -178,7 +161,7 @@ namespace Site_v3_dinamico.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EncomendaId,dataEncomenda,ClienteId,ServicosId, respondido")] Encomenda encomenda)
+        public async Task<IActionResult> Edit(int id, [Bind("EncomendaId,dataEncomenda,ClienteId,ServicosId, respondido, detalhes")] Encomenda encomenda)
         {
             if (id != encomenda.EncomendaId)
             {
@@ -202,7 +185,10 @@ namespace Site_v3_dinamico.Controllers
                     {
                         throw;
                     }
+
                 }
+                ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);
+                ViewData["ServicosId"] = new SelectList(_context.Servicos, "ServicosId", "Nome", encomenda.ServicosId);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Email", encomenda.ClienteId);

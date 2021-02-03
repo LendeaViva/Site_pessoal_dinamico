@@ -23,8 +23,11 @@ namespace Site_v3_dinamico.Models
         public int ClienteId { get; set; }
         public Cliente Cliente{ get; set; }
 
-        [Display(Name = "Serviço")]
+
+        [Display(Name = "Tipo de serviço")]
         public int ServicosId { get; set; }
+
+      
         public Servicos Servicos { get; set; }
 
 
