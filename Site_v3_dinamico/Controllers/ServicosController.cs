@@ -163,11 +163,31 @@ namespace Site_v3_dinamico.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var servicos = await _context.Servicos.FindAsync(id);
+
+            try
+            {
+                _context.Servicos.Remove(servicos);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                if (_context.Encomenda.Any(p => p.ServicosId == servicos.ServicosId))
+                {
+                    ViewBag.Mensagem = "Este serviço não pode ser apagado porque já tem encomendas associadas.";
+                }
+                else
+                {
+                    ViewBag.Mensagem = "Não foi possível eliminar o serviço. Tente novamente mais tarde e se o problema persistir contacte a assistência";
+                }
+                return View("Erro");
+            }
+
             _context.Servicos.Remove(servicos);
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Serviço apagado com sucesso";
             return View("Sucesso");
         }
+
 
         private bool ServicosExists(int id)
         {
