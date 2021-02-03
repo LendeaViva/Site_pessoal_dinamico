@@ -26,9 +26,12 @@
                         <th style="text-align:center">
                             Respondido
                         </th>
+                        <th style="text-align:center">
+                            Detalhes
+                        </th>
                         @*<th>
-                        @Html.DisplayNameFor(model => model.respondido)
-                    </th>*@
+            @Html.DisplayNameFor(model => model.respondido)
+        </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -37,13 +40,21 @@
                             @Html.DisplayFor(model => model.dataEncomenda)
                         </td>
                         <td>
-                            @Html.DisplayFor(model => model.Cliente.Email)
+                            @Html.DisplayFor(model => model.Cliente.Nome) <br/>
+                            @Html.DisplayFor(model => model.Cliente.Email)<br />
+                            @Html.DisplayFor(model => model.Cliente.Telemóvel)
                         </td>
                         <td>
                             @Html.DisplayFor(model => model.Servicos.Nome)
                         <td style="text-align:center">
                             @Html.DisplayFor(model => model.respondido)
                         </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(model => model.detalhes)
+                        </td>
+                        
+                    </tr>
+                    <tr>
                         <td>
                             @if (Model.respondido == false)
                             {
