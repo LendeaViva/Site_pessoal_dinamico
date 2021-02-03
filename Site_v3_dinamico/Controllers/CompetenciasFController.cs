@@ -72,10 +72,10 @@ namespace Site_v3_dinamico.Controllers
                 AtualizaLogo(competenciasF, ficheiroLogo);
                 _context.Add(competenciasF);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Competência adicionada com sucesso";
+                ViewBag.Mensagem = "Ferramenta adicionada com sucesso";
                 return View("Sucesso");
             }
-            ViewBag.Mensagem = "Competência adicionada com sucesso";
+            ViewBag.Mensagem = "Ferramenta adicionada com sucesso";
             return View("Sucesso");
         }
 
@@ -139,7 +139,7 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                ViewBag.Mensagem = "Competência alterada com sucesso";
+                ViewBag.Mensagem = "Ferramenta alterada com sucesso";
                 return View("Sucesso");
             }
             return View(competenciasF);
@@ -172,7 +172,7 @@ namespace Site_v3_dinamico.Controllers
             var competenciasF = await _context.CompetenciasF.FindAsync(id);
             _context.CompetenciasF.Remove(competenciasF);
             await _context.SaveChangesAsync();
-            ViewBag.Mensagem = "A competência foi eliminado com sucesso";
+            ViewBag.Mensagem = "A ferramenta foi eliminado com sucesso";
             return View("Sucesso");
         }
 

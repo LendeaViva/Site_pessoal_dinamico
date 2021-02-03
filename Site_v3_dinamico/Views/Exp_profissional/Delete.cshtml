@@ -13,25 +13,44 @@
         </div>
         <div class="table-responsive">
             <table class="table table-dark">
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nomeEmpresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dataInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dataFim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.funcao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descricaoFuncao)
+                    </th>
+                </tr>
                 <tr>
                     <td>
                         @Html.DisplayFor(model => model.nomeEmpresa)
                     </td>
                     <td>
-                        De: @Html.DisplayFor(model => model.dataInicio)
-                        <hr />
-                        Até: @Html.DisplayFor(model => model.dataFim)
+                        @Html.DisplayFor(model => model.dataInicio)
+                        </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dataFim)
                     </td>
                     <td>
-                        <h3 style="color:#ff006a">
+                      
                             @Html.DisplayFor(model => model.funcao)
-                        </h3>
-                        <ul class="profissional">
-                            @Html.DisplayFor(model => model.descricaoFuncao)
-                        </ul>
                     </td>
-
+                    <td>
+                            @Html.DisplayFor(model => model.descricaoFuncao)
+                    </td>
                 </tr>
+
+
                 }
 
             </table>

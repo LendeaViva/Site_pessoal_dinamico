@@ -116,6 +116,7 @@ namespace Site_v3_dinamico.Controllers
             return RedirectToAction(nameof(Details));
         }
 
+        [Authorize(Roles = "Cliente")]
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -162,7 +163,8 @@ namespace Site_v3_dinamico.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Dados pessoais alterados com sucesso.";
+                return View("Sucesso");
             }
             return View(cliente);
         }
