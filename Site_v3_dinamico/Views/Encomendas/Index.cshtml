@@ -118,7 +118,7 @@
                         {
                             @foreach (var item in Model.Encomenda)
                             {
-                                if (item.Cliente.Email == User.Identity.Name) //Assegura que cada cliente só vê as suas encomendas
+                                if (item.Cliente.Email == User.Identity.Name)
                                 {
                                     <tr>
                                         <td>

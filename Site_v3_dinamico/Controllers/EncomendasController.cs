@@ -45,7 +45,7 @@ namespace Site_v3_dinamico.Controllers
                 PaginaAtual = pagina
             };
 
-            List<Encomenda> encomendas = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar))
+            List<Encomenda> encomendas1 = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar))
                 .Include(p => p.Servicos)
                 .Include(p => p.Cliente)
                 .OrderBy(p => p.respondido)
@@ -57,16 +57,41 @@ namespace Site_v3_dinamico.Controllers
             ListaEncomendasViewModel modelo = new ListaEncomendasViewModel
             {
        
-                Encomenda = encomendas,
+                Encomenda = encomendas1,
                 Paginacao = paginacao,
                 NomePesquisar = nomePesquisar
 
             };
 
+
+
+            List<Encomenda> encomendas2 = await _context.Encomenda
+                .Include(p => p.Servicos)
+                .Include(p => p.Cliente).Where(p => p.Cliente.Email == User.Identity.Name)
+                .OrderByDescending(p => p.dataEncomenda)  
+                .ToListAsync();
+
+            var cliente = _context.Cliente.SingleOrDefault(c => c.Email == User.Identity.Name);
            
 
+            ListaEncomendasViewModel modelo2 = new ListaEncomendasViewModel
+            {
+                
+                Encomenda = encomendas2,
+
+            };
+
             var siteDinamicoBdContext = _context.Encomenda.Include(e => e.Cliente).Include(e => e.Servicos);
-            return base.View(modelo);
+
+            if (User.IsInRole("Administradora"))
+            {
+                return base.View(modelo);
+            }
+
+            else
+            {
+                return base.View(modelo2);
+            }
         }
 
         public int ContarNovas()
