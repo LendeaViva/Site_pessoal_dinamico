@@ -27,6 +27,7 @@ namespace Site_v3_dinamico.Controllers
         // GET: Formacao
         public async Task<IActionResult> Index()
         {
+            
             List<Formacao> formacao = await _context.Formacao.ToListAsync();
             List<FormacaoComp> formacaoComp = await _context.FormacaoComp.ToListAsync();
 
