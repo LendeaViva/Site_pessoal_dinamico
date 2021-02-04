@@ -181,9 +181,8 @@ namespace Site_v3_dinamico.Controllers
                 }
                 return View("Erro");
             }
-
-            _context.Servicos.Remove(servicos);
-            await _context.SaveChangesAsync();
+                
+            
             ViewBag.Mensagem = "Serviço apagado com sucesso";
             return View("Sucesso");
         }

@@ -41,11 +41,11 @@ namespace Site_v3_dinamico.Controllers
             //Paginacao Admin
             Paginacao paginacao1 = new Paginacao
             {
-                TotalItems = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<Encomenda> encomendas1 = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Email.Contains(nomePesquisar))
+            List<Encomenda> encomendas1 = await _context.Encomenda.Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar))
                 .Include(p => p.Servicos)
                 .Include(p => p.Cliente)
                 .OrderBy(p => p.respondido)

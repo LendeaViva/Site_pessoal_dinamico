@@ -38,7 +38,7 @@
                 <div>
                     <form asp-action="Index" method="get">
                         <div class="form-group">
-                            <p>Pesquisar por email do cliente</p>
+                            <p>Pesquisar por nome de cliente</p>
                             @*<label for="nomePesquisar" class="control-label">Nome</label>*@
                             <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
                         </div>
@@ -90,7 +90,7 @@
                                 <tr>
 
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Cliente.Email)
+                                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
                                     </td>
                                     <td>
 
