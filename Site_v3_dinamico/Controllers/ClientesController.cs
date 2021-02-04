@@ -58,7 +58,6 @@ namespace Site_v3_dinamico.Controllers
 
                 if (cliente == null)
                 {
-                    // todo: Enviar para uma página a explicar o problema
                     return NotFound();
                 }
             }

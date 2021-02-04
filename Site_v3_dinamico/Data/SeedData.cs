@@ -363,13 +363,13 @@ namespace Site_v3_dinamico.Data
                 new Servicos
                 {
              Nome = "Design de Páginas Web",
-             Descricao = "Uau"
+             Descricao = "Promova a sua imagem e/ou os seus produtos com um website distinto e atrativo."
                 },
 
                 new Servicos
                 {
              Nome = "Design de Curriculum Vitae",
-             Descricao = " "
+             Descricao = "Destaque as suas competências e aumente a sua empregabilidade com um CV único e personalizado."
                 },
 
                 new Servicos
@@ -381,7 +381,7 @@ namespace Site_v3_dinamico.Data
                 new Servicos
                 {
              Nome = "Testes de software",
-             Descricao = "Uau"
+             Descricao = "Análise minuciosa de falhas/bugs e respetiva correção para asseugrar um produto final de qualidade para o cliente,"
                 },
 
 
